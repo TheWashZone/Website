@@ -1,8 +1,33 @@
 .title {
+  margin-top: 50px;
   font-weight: bold;
-  font-size: 4rem;
+  font-size: 50px;
 }
 
 .subtitle {
-  font-size: 2rem;
+  font-size: 40px;
+}
+
+.home-flex {
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: row;
+}
+
+.home-flex > div {
+  padding: 20px;
+  flex: 1;
+  min-width: 500px;
+}
+
+.home-flex img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1000px) {
+  .home-flex {
+    flex-direction: column;
+    align-items: center;
+  }
 }

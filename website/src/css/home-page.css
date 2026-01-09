@@ -30,4 +30,8 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .hide-navbar {
+    display: none;
+  }
 }

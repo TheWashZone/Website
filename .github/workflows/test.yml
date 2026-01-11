@@ -14,8 +14,12 @@ jobs:
       with:
         node-version: '20'
 
+    - name: Clean dependencies
+      run: rm -rf node_modules package-lock.json
+      working-directory: website
+
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       working-directory: website
 
     - name: Run tests

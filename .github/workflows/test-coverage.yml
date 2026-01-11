@@ -14,9 +14,8 @@ jobs:
       with:
         node-version: '24'
 
-    - name: Clean root node_modules
-      run: rm -rf node_modules
-      working-directory: website
+    - name: Clean node_modules
+      run: rm -rf node_modules && rm -rf website/node_modules
 
     - name: Install dependencies
       run: npm ci

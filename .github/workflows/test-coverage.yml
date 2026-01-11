@@ -19,7 +19,7 @@ jobs:
       working-directory: website
 
     - name: Install dependencies
-      run: npm install
+      run: npm install --include=optional
       working-directory: website
 
     - name: Get test coverage

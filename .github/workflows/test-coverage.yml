@@ -15,8 +15,9 @@ jobs:
         node-version: '20'
 
     - name: Clean dependencies
-      run: rm -rf node_modules package-lock.json
-      working-directory: website
+      run: |
+        rm -rf node_modules package-lock.json
+        rm -rf website/node_modules website/package-lock.json
 
     - name: Install dependencies
       run: npm install --include=optional

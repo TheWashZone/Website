@@ -16,6 +16,7 @@ jobs:
 
     - name: Clean root node_modules
       run: rm -rf node_modules package-lock.json
+      working-directory: website
 
     - name: Install dependencies
       run: npm ci

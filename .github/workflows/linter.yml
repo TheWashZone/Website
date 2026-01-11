@@ -17,8 +17,13 @@ jobs:
         with:
           node-version: 24
 
+      - name: Clean dependencies
+        run: |
+          rm -rf node_modules package-lock.json
+          rm -rf website/node_modules website/package-lock.json
+
       - name: Install dependencies
-        run: npm ci
+        run: npm install --include=optional
         working-directory: website
 
       - name: Run ESLint

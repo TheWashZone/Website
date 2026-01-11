@@ -22,5 +22,5 @@ jobs:
       working-directory: website
 
     - name: Get test coverage
-      run: npm test -- --coverage --run
+      run: npx vitest --coverage --run
       working-directory: website

@@ -22,5 +22,5 @@ jobs:
       working-directory: website
 
     - name: Run tests
-      run: npm test -- --run
+      run: npx vitest --run
       working-directory: website

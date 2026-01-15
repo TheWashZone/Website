@@ -1,11 +1,11 @@
 /* Hamburger Button Styles */
 .hamburger-btn {
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 66px;
+  left: 16px;
   z-index: 1050;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   background-color: #007bff;
   border: none;
   border-radius: 8px;
@@ -106,8 +106,8 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .hamburger-btn {
-    top: 15px;
-    left: 15px;
+    top: 66px;
+    left: 16px;
     width: 45px;
     height: 45px;
   }

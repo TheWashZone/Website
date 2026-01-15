@@ -10,7 +10,11 @@ function HamburgerMenu() {
   const handleShow = () => setShow(true);
 
   const menuItems = [
-    { path: "/", label: "Home" }
+    { path: "/", label: "Home" },
+    { path: "/about-us", label: "About" },
+    { path: "/frequently-asked", label: "Frequently Asked" },
+    { path: "/contact-us", label: "Contact Us" },
+    { path: "/gift-card", label: "Gift Cards" }
   ];
 
   return (

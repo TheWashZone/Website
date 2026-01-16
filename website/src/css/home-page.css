@@ -8,10 +8,17 @@
   font-size: 40px;
 }
 
+.boxed {
+    border: 5px solid black;
+    border-radius: 20px;
+    margin: 20px;
+}
+
 .home-flex {
   display: flex;
   /* flex-wrap: wrap; */
   flex-direction: row;
+  margin-top: 226px;
 }
 
 .home-flex > div {
@@ -23,6 +30,26 @@
 .home-flex img {
   max-width: 100%;
   height: auto;
+  border: 5px solid black;
+  border-radius: 20px;
+}
+
+.header-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.header-img {
+  height: 150px !important;
+  object-fit: cover;
+  margin-top: 56px;
+  width: 100% !important;
+  max-width: none !important;
+  display: block;
 }
 
 @media (max-width: 1000px) {

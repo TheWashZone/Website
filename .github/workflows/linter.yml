@@ -1,0 +1,31 @@
+name: ESLint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Clean dependencies
+        run: |
+          rm -rf node_modules package-lock.json
+          rm -rf website/node_modules website/package-lock.json
+
+      - name: Install dependencies
+        run: npm install --include=optional
+        working-directory: website
+
+      - name: Run ESLint
+        run: npx eslint src --max-warnings=0
+        working-directory: website

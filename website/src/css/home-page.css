@@ -6,6 +6,7 @@
 
 .subtitle {
   font-size: 40px;
+  padding-bottom: 20px;
 }
 
 .boxed {
@@ -14,10 +15,11 @@
   margin: 20px;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  background-color: aqua;
 }
 
 .colored {
-  background-color: lightgray;
+  background-color: lightblue;
 }
 
 .colored2 {
@@ -59,7 +61,7 @@
 }
 
 .hours {
-  font-size: 20px;
+  font-size: 30px;
   text-align: left;
 }
 
@@ -68,6 +70,12 @@
   text-align: left;
   margin-left: 30%;
   margin-right: 30%;
+}
+
+.membership-title {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .hours-parent {
@@ -83,17 +91,25 @@
   width: fit-content;
   padding: 50px;
   margin: 0 auto;
+  background-color: lightblue;
 }
 
 .membership-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
   /* background-color: white; */
 }
 
 .membership-item {
   font-size: 30px;
   text-wrap: wrap;
+  width: 30%;
+  display: block;
+  margin: 10px auto;
+  min-width: 400px;
+  padding: 20px;
 }
 
 @media (max-width: 1000px) {

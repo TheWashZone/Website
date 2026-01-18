@@ -28,18 +28,18 @@ function HomePage() {
           <img src={location} alt="The Wash Zone Image" />
         </div>
         <div className="colored">
-          <span className="subtitle">Memberships</span>
-          <div className="memberships-container">
-            <div className="boxed">
-              <span className="membership-item">Deluxe</span>
+          <div className="subtitle">Memberships</div>
+          <div className="membership-container">
+            <div className="boxed membership-item">
+              <div className="membership-title">Deluxe</div>
               <p>askdlfasjdfkasjdflasdfklasdjk fldasfjaskdlfkajsdlfaksdflasjdklajsdflajfsaasd fasfdasfdasdfasdfasdfasdfasdfasdf asdfadsfasdfasdfasfasfd</p>
             </div>
-            <div className="boxed">
-              <span className="membership-item">Ultimate</span>
+            <div className="boxed membership-item">
+              <div className="membership-title">Ultimate</div>
               <p>adkslfasjkfalksfljakdfalsfdjkalsfjasdfjkalfjklsfsdkjalfjkdalskfadjsjakfsdkjlf</p>
             </div>
-            <div className="boxed">
-              <span className="membership-item">Basic</span>
+            <div className="boxed membership-item">
+              <div className="membership-title">Basic</div>
               <p>akldsfjkaslkfajsflksafksdljfklasfdjkasfdkjaslfksajklfdasjkflasfjdkalsfkads;a</p>
             </div>
           </div>

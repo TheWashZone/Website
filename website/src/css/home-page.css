@@ -88,6 +88,7 @@
 .membership-container {
   display: flex;
   flex-direction: column;
+  /* background-color: white; */
 }
 
 .membership-item {

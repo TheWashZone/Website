@@ -9,29 +9,35 @@
 }
 
 .boxed {
-    border: 5px solid black;
-    border-radius: 20px;
-    margin: 20px;
+  border: 2px solid black;
+  border-radius: 20px;
+  margin: 20px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
-.home-flex {
-  display: flex;
-  /* flex-wrap: wrap; */
-  flex-direction: row;
-  margin-top: 226px;
+.colored {
+  background-color: lightgray;
 }
 
-.home-flex > div {
+.colored2 {
+  background-color: aqua;
+  text-align: center;
+}
+
+.home-format {
+  margin-top: 206px;
+}
+
+.home-format>div {
   padding: 20px;
   flex: 1;
   min-width: 500px;
 }
 
-.home-flex img {
+.home-format img {
   max-width: 100%;
   height: auto;
-  border: 5px solid black;
-  border-radius: 20px;
 }
 
 .header-container {
@@ -52,8 +58,45 @@
   display: block;
 }
 
+.hours {
+  font-size: 20px;
+  text-align: left;
+}
+
+.memberships {
+  font-size: 20px;
+  text-align: left;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.hours-parent {
+  font-size: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hours-stack {
+  border: black 2px solid;
+  border-radius: 15px;
+  width: fit-content;
+  padding: 50px;
+  margin: 0 auto;
+}
+
+.membership-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.membership-item {
+  font-size: 30px;
+  text-wrap: wrap;
+}
+
 @media (max-width: 1000px) {
-  .home-flex {
+  .home-format {
     flex-direction: column;
     align-items: center;
   }

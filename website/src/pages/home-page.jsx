@@ -1,5 +1,5 @@
 import location from '../images/temp-washzone-picture.jpg';
-import banner from '../images/ChatGPT-Soapy-pavement.png';
+import banner from '../images/ChatGPT-Soapy-Pavement.png';
 // import logo from '../images/TheWashZoneLogo.jpg';
 import { Stack } from 'react-bootstrap';
 

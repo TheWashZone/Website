@@ -99,7 +99,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-  /* background-color: white; */
 }
 
 .membership-item {
@@ -110,6 +109,16 @@
   margin: 10px auto;
   min-width: 400px;
   padding: 20px;
+}
+
+.left-align {
+  text-align: left;
+}
+
+.basic-disclaimer {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 70px;
 }
 
 @media (max-width: 1000px) {

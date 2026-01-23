@@ -1,0 +1,30 @@
+.header-img {
+  height: 150px !important;
+  object-fit: cover;
+  margin-top: 56px;
+  width: 100% !important;
+  max-width: none !important;
+  display: block;
+}
+
+.colored {
+  background-color: lightblue;
+}
+
+.colored2 {
+  background-color: aqua;
+  text-align: center;
+}
+
+.contact-us-format {
+  margin-top: 206px;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  width: 100vw;
+}
+
+.contact-us-format>div {
+  padding: 20px;
+  flex: 1;
+  min-width: 500px;
+}

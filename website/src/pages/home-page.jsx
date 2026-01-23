@@ -2,11 +2,7 @@ import location from '../images/temp-washzone-picture.jpg';
 import banner from '../images/ChatGPT-Soapy-Pavement.png';
 // import logo from '../images/TheWashZoneLogo.jpg';
 import { Stack } from 'react-bootstrap';
-
-
-
 import '../css/home-page.css';
-// THIS PICTURE SHOULD BE REPLACED WHEN WE HAVE ANOTHER ONE
 
 
 function HomePage() {
@@ -31,16 +27,49 @@ function HomePage() {
           <div className="subtitle">Memberships</div>
           <div className="membership-container">
             <div className="boxed membership-item">
-              <div className="membership-title">Deluxe</div>
-              <p>askdlfasjdfkasjdflasdfklasdjk fldasfjaskdlfkajsdlfaksdflasjdklajsdflajfsaasd fasfdasfdasdfasdfasdfasdfasdfasdf asdfadsfasdfasdfasfasfd</p>
+              <div className="membership-title">Ultimate - $16.50</div>
+              <ul>
+                <li className="left-align">1</li>
+                <li className="left-align">2</li>
+                <li className="left-align">3</li>
+                <li className="left-align">4</li>
+                <li className="left-align">5</li>
+              </ul>
             </div>
             <div className="boxed membership-item">
-              <div className="membership-title">Ultimate</div>
-              <p>adkslfasjkfalksfljakdfalsfdjkalsfjasdfjkalfjklsfsdkjalfjkdalskfadjsjakfsdkjlf</p>
+              <div className="membership-title">Deluxe - $13.50 </div>
+              <ul>
+                <li className="left-align">1</li>
+                <li className="left-align">2</li>
+                <li className="left-align">3</li>
+                <li className="left-align">4</li>
+              </ul>
             </div>
             <div className="boxed membership-item">
-              <div className="membership-title">Basic</div>
-              <p>akldsfjkaslkfajsflksafksdljfklasfdjkasfdkjaslfksajklfdasjkflasfjdkalsfkads;a</p>
+              <div className="membership-title">Basic - $10.00</div>
+              <ul>
+                <li className="left-align">1</li>
+                <li className="left-align">2</li>
+              </ul>
+              <p className="basic-disclaimer">No longer accepting new subscriptions for this wash type</p>
+            </div>
+            <div className="boxed membership-item">
+              <div className="membership-title">Add Ons</div>
+              <ul>
+                <li className="left-align">Wax: $0.00</li>
+                <li className="left-align">Wheel Brite: $0.00</li>
+                <li className="left-align">Floor Mats: $0.00</li>
+                <li className="left-align">Hand Wash: $0.00</li>
+              </ul>
+            </div>
+            <div className="boxed membership-item">
+              <div className="membership-title">Single Wash</div>
+              <ul>
+                <li className="left-align">TEMP: $0.00</li>
+                <li className="left-align">TEMP: $0.00</li>
+                <li className="left-align">TEMP: $0.00</li>
+                <li className="left-align">TEMP: $0.00</li>
+              </ul>
             </div>
           </div>
         </div>

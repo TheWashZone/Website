@@ -28,46 +28,46 @@ function HomePage() {
             <div className="boxed membership-item" data-testid="box1">
               <div className="membership-title">Ultimate - $16.50</div>
               <ul>
-                <li className="left-align">1</li>
-                <li className="left-align">2</li>
-                <li className="left-align">3</li>
-                <li className="left-align">4</li>
-                <li className="left-align">5</li>
+                <li className="left-align" data-testid="ultimate1">1</li>
+                <li className="left-align" data-testid="ultimate2">2</li>
+                <li className="left-align" data-testid="ultimate3">3</li>
+                <li className="left-align" data-testid="ultimate4">4</li>
+                <li className="left-align" data-testid="ultimate5">5</li>
               </ul>
             </div>
             <div className="boxed membership-item" data-testid="box2">
               <div className="membership-title">Deluxe - $13.50</div>
               <ul>
-                <li className="left-align">1</li>
-                <li className="left-align">2</li>
-                <li className="left-align">3</li>
-                <li className="left-align">4</li>
+                <li className="left-align" data-testid="deluxe1">1</li>
+                <li className="left-align" data-testid="deluxe2">2</li>
+                <li className="left-align" data-testid="deluxe3">3</li>
+                <li className="left-align" data-testid="deluxe4">4</li>
               </ul>
             </div>
             <div className="boxed membership-item" data-testid="box3">
               <div className="membership-title">Basic - $10.00</div>
               <ul>
-                <li className="left-align">1</li>
-                <li className="left-align">2</li>
+                <li className="left-align" data-testid="basic1">1</li>
+                <li className="left-align" data-testid="basic2">2</li>
               </ul>
               <p className="basic-disclaimer">No longer accepting new subscriptions for this wash type</p>
             </div>
             <div className="boxed membership-item" data-testid="box4">
               <div className="membership-title">Add Ons</div>
               <ul>
-                <li className="left-align">Wax: $0.00</li>
-                <li className="left-align">Wheel Brite: $0.00</li>
-                <li className="left-align">Floor Mats: $0.00</li>
-                <li className="left-align">Hand Wash: $0.00</li>
+                <li className="left-align" data-testid="addOn1">Wax: $0.00</li>
+                <li className="left-align" data-testid="addOn2">Wheel Brite: $0.00</li>
+                <li className="left-align" data-testid="addOn3">Floor Mats: $0.00</li>
+                <li className="left-align" data-testid="addOn4">Hand Wash: $0.00</li>
               </ul>
             </div>
             <div className="boxed membership-item" data-testid="box5">
               <div className="membership-title">Single Wash</div>
               <ul>
-                <li className="left-align">TEMP: $0.00</li>
-                <li className="left-align">TEMP: $0.00</li>
-                <li className="left-align">TEMP: $0.00</li>
-                <li className="left-align">TEMP: $0.00</li>
+                <li className="left-align" data-testid="singleWash1">TEMP: $0.00</li>
+                <li className="left-align" data-testid="singleWash2">TEMP: $0.00</li>
+                <li className="left-align" data-testid="singleWash3">TEMP: $0.00</li>
+                <li className="left-align" data-testid="singleWash4">TEMP: $0.00</li>
               </ul>
             </div>
           </div>

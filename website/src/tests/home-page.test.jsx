@@ -110,4 +110,123 @@ describe ('Memberships Section', () => {
     const title5 = screen.getByText("Single Wash");
     expect(title5).toBeInTheDocument();
   })
+
+  // Check that Ultimate features are there
+  it('finds the first ultimate item', () => {
+    render(<HomePage />);
+    const ultimate1 = screen.getByTestId("ultimate1");
+    expect(ultimate1).toBeInTheDocument();
+  })
+
+  it('finds the second ultimate item', () => {
+    render(<HomePage />);
+    const ultimate2 = screen.getByTestId("ultimate2");
+    expect(ultimate2).toBeInTheDocument();
+  })
+
+  it('finds the third ultimate item', () => {
+    render(<HomePage />);
+    const ultimate3 = screen.getByTestId("ultimate3");
+    expect(ultimate3).toBeInTheDocument();
+  })
+
+  it('finds the fourth ultimate item', () => {
+    render(<HomePage />);
+    const ultimate4 = screen.getByTestId("ultimate4");
+    expect(ultimate4).toBeInTheDocument();
+  })
+
+  it('finds the fifth ultimate item', () => {
+    render(<HomePage />);
+    const ultimate5 = screen.getByTestId("ultimate5");
+    expect(ultimate5).toBeInTheDocument();
+  })
+
+  // Check that Deluxe features are there
+  it('finds the first deluxe item', () => {
+    render(<HomePage />);
+    const deluxe1 = screen.getByTestId("ultimate1");
+    expect(deluxe1).toBeInTheDocument();
+  })
+
+  it('finds the second deluxe item', () => {
+    render(<HomePage />);
+    const deluxe2 = screen.getByTestId("ultimate2");
+    expect(deluxe2).toBeInTheDocument();
+  })
+
+  it('finds the third deulxe item', () => {
+    render(<HomePage />);
+    const deluxe3 = screen.getByTestId("ultimate3");
+    expect(deluxe3).toBeInTheDocument();
+  })
+
+  it('finds the fourth deluxe item', () => {
+    render(<HomePage />);
+    const deluxe4 = screen.getByTestId("ultimate4");
+    expect(deluxe4).toBeInTheDocument();
+  })
+
+  // Check that Basic features are there
+  it('finds the first basic item', () => {
+    render(<HomePage />);
+    const basic1 = screen.getByTestId("basic1");
+    expect(basic1).toBeInTheDocument();
+  })
+
+  it('finds the second basic item', () => {
+    render(<HomePage />);
+    const basic2 = screen.getByTestId("basic2");
+    expect(basic2).toBeInTheDocument();
+  })
+
+  // Check that Add On features are there
+  it('finds the first add on item', () => {
+    render(<HomePage />);
+    const addOn1 = screen.getByTestId("addOn1");
+    expect(addOn1).toBeInTheDocument();
+  })
+
+  it('finds the second add on item', () => {
+    render(<HomePage />);
+    const addOn2 = screen.getByTestId("addOn2");
+    expect(addOn2).toBeInTheDocument();
+  })
+
+  it('finds the third add on item', () => {
+    render(<HomePage />);
+    const addOn3 = screen.getByTestId("addOn3");
+    expect(addOn3).toBeInTheDocument();
+  })
+
+  it('finds the fourth add on item', () => {
+    render(<HomePage />);
+    const addOn4 = screen.getByTestId("addOn4");
+    expect(addOn4).toBeInTheDocument();
+  })
+
+  // Check that Single Wash features are there
+  it('finds the first single wash item', () => {
+    render(<HomePage />);
+    const singleWash1 = screen.getByTestId("singleWash1");
+    expect(singleWash1).toBeInTheDocument();
+  })
+
+  it('finds the second single wash item', () => {
+    render(<HomePage />);
+    const singleWash2 = screen.getByTestId("singleWash2");
+    expect(singleWash2).toBeInTheDocument();
+  })
+
+  it('finds the third single wash item', () => {
+    render(<HomePage />);
+    const singleWash3 = screen.getByTestId("singleWash3");
+    expect(singleWash3).toBeInTheDocument();
+  })
+
+  it('finds the fourth single wash item', () => {
+    render(<HomePage />);
+    const singleWash4 = screen.getByTestId("singleWash4");
+    expect(singleWash4).toBeInTheDocument();
+  })
 });

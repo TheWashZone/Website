@@ -28,7 +28,8 @@
 .contact-us-format>div {
   padding: 20px;
   flex: 1;
-  min-width: 500px;
+  min-width: 250px;
+  min-height: calc(100vh - 206px);
 }
 
 .contact-us-title {
@@ -39,16 +40,15 @@
 
 .contact-us-info {
   background-color: aqua;
-  width: 50vw;
   text-align: left;
-  height: 100vw;
 }
 
 .contact-us-map {
   background-color: lightblue;
-  width: 50vw;
   text-align: center;
-  height: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-us-item {
@@ -58,8 +58,24 @@
 }
 
 .map-iframe {
-  width: 80%;
+  width: 100%;
   height: 500px;
+  max-width: 100%;
 }
 
-/* NEED MEDIA QUERIES HERE FOR BETTER RESIZING */
+@media (max-width: 768px) {
+  .map-iframe {
+    height: 550px;
+  }
+  
+  .contact-us-format>div {
+    min-width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-iframe {
+    height: 600px;
+  }
+}

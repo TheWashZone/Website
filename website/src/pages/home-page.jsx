@@ -4,12 +4,11 @@ import banner from '../images/ChatGPT-Soapy-Pavement.png';
 import { Stack } from 'react-bootstrap';
 import '../css/home-page.css';
 
-
 function HomePage() {
   return (
     <>
       <div className="container-fluid p-0 w-100 header-container">
-        <img src={banner} className="header-img" alt="Responsive image" />
+        <img src={banner} className="header-img" alt="banner image" />
       </div>
       <div className="home-format">
         <div className="colored">
@@ -24,9 +23,9 @@ function HomePage() {
           <img src={location} alt="The Wash Zone Image" />
         </div>
         <div className="colored">
-          <div className="subtitle">Memberships</div>
+          <div className="membership-section-title">Memberships</div>
           <div className="membership-container">
-            <div className="boxed membership-item">
+            <div className="boxed membership-item" data-testid="box1">
               <div className="membership-title">Ultimate - $16.50</div>
               <ul>
                 <li className="left-align">1</li>
@@ -36,8 +35,8 @@ function HomePage() {
                 <li className="left-align">5</li>
               </ul>
             </div>
-            <div className="boxed membership-item">
-              <div className="membership-title">Deluxe - $13.50 </div>
+            <div className="boxed membership-item" data-testid="box2">
+              <div className="membership-title">Deluxe - $13.50</div>
               <ul>
                 <li className="left-align">1</li>
                 <li className="left-align">2</li>
@@ -45,7 +44,7 @@ function HomePage() {
                 <li className="left-align">4</li>
               </ul>
             </div>
-            <div className="boxed membership-item">
+            <div className="boxed membership-item" data-testid="box3">
               <div className="membership-title">Basic - $10.00</div>
               <ul>
                 <li className="left-align">1</li>
@@ -53,7 +52,7 @@ function HomePage() {
               </ul>
               <p className="basic-disclaimer">No longer accepting new subscriptions for this wash type</p>
             </div>
-            <div className="boxed membership-item">
+            <div className="boxed membership-item" data-testid="box4">
               <div className="membership-title">Add Ons</div>
               <ul>
                 <li className="left-align">Wax: $0.00</li>
@@ -62,7 +61,7 @@ function HomePage() {
                 <li className="left-align">Hand Wash: $0.00</li>
               </ul>
             </div>
-            <div className="boxed membership-item">
+            <div className="boxed membership-item" data-testid="box5">
               <div className="membership-title">Single Wash</div>
               <ul>
                 <li className="left-align">TEMP: $0.00</li>

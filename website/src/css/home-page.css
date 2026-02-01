@@ -18,7 +18,7 @@
 .boxed {
   border: 2px solid black;
   border-radius: 20px;
-  margin: 20px;
+  margin: 10px;
   overflow-wrap: break-word;
   word-wrap: break-word;
   background-color: aqua;
@@ -40,7 +40,7 @@
 .home-format>div {
   padding: 20px;
   flex: 1;
-  min-width: 500px;
+  min-width: 300px;
 }
 
 .home-format img {
@@ -52,7 +52,6 @@
   position: absolute;
   left: 0;
   right: 0;
-  width: 100vw;
   padding: 0 !important;
   margin: 0 !important;
 }
@@ -105,15 +104,15 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 
 .membership-item {
   font-size: 30px;
   text-wrap: wrap;
   width: 30%;
-  display: block;
   margin: 10px auto;
-  min-width: 400px;
+  min-width: 280px;
   padding: 20px;
 }
 
@@ -131,5 +130,29 @@
   .home-format {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .membership-item {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .home-format>div {
+    padding: 10px;
+    min-width: unset;
+  }
+
+  .boxed {
+    margin: 5px;
+  }
+
+  .membership-item {
+    padding: 10px;
+    width: 85%;
+    min-width: unset;
+    max-width: 350px;
   }
 }

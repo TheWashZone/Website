@@ -17,8 +17,8 @@ function App() {
       <BrowserRouter>
         <div>
           <Navbar bg="primary" className="fixed-top ">
-            <Container>
-              <Navbar.Brand as={Link} to="/" className="text-white">The Wash Zone</Navbar.Brand>
+            <Container fluid>
+              <Navbar.Brand as={Link} to="/" className="text-white navbar-brand">The Wash Zone</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Nav>
                 <Nav.Link as={Link} to="/" className="text-white px-4 d-none d-lg-block">Home</Nav.Link>

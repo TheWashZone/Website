@@ -5,14 +5,7 @@
   text-align: center;
 }
 
-/* @media screen and (min-width: 1000px) {
-  .hamburger-hidden {
-    display: none;
-  }
-} */
-
-/* @media screen and (max-width: 999px) {
-  .navbar-items-hidden {
-    display: none;
-  }
-} */
+.navbar-brand {
+  padding-left: 0;
+  margin-left: 0;
+}

@@ -6,7 +6,7 @@ import HomePage from '../pages/home-page.jsx';
 describe('HomePage Component', () => {
   it('renders HomePage component', () => {
     const { container } = render(<HomePage />);
-    expect(container).toBeInTheDocument();
+    expect(container.firstChild).toBeInTheDocument();
   });
 });
 
@@ -228,5 +228,62 @@ describe ('Memberships Section', () => {
     render(<HomePage />);
     const singleWash4 = screen.getByTestId("singleWash4");
     expect(singleWash4).toBeInTheDocument();
+  })
+});
+
+describe('Hours section', () => {
+  it('finds the hours section title', () => {
+    render(<HomePage />);
+    const hoursTitle = screen.getByText('Hours of Operation');
+    expect(hoursTitle).toBeInTheDocument();
+  })
+
+  // Make sure the box renders
+  it('renders the first box', () => {
+    render(<HomePage />);
+    const hoursBox = screen.getByTestId("hours-box");
+    expect(hoursBox).toBeInTheDocument();
+  })
+
+  it('renders sunday hours', () => {
+    render(<HomePage />);
+    const sundayHours = screen.getByText('Sunday: 9:00 AM - 5:00 PM');
+    expect(sundayHours).toBeInTheDocument();
+  })
+
+  it('renders monday hours', () => {
+    render(<HomePage />);
+    const mondayHours = screen.getByText('Monday: 7:30 AM - 7:00 PM');
+    expect(mondayHours).toBeInTheDocument();
+  })
+
+  it('renders tuesday hours', () => {
+    render(<HomePage />);
+    const tuesdayHours = screen.getByText('Tuesday: 7:30 AM - 7:00 PM');
+    expect(tuesdayHours).toBeInTheDocument();
+  })
+
+  it('renders wednesday hours', () => {
+    render(<HomePage />);
+    const wednesdayHours = screen.getByText('Wednesday: 7:30 AM - 7:00 PM');
+    expect(wednesdayHours).toBeInTheDocument();
+  })
+
+  it('renders thursday hours', () => {
+    render(<HomePage />);
+    const thursdayHours = screen.getByText('Thursday: 7:30 AM - 7:00 PM');
+    expect(thursdayHours).toBeInTheDocument();
+  })
+
+  it('renders friday hours', () => {
+    render(<HomePage />);
+    const fridayHours = screen.getByText('Friday: 7:30 AM - 7:00 PM');
+    expect(fridayHours).toBeInTheDocument();
+  })
+
+  it('renders saturday hours', () => {
+    render(<HomePage />);
+    const saturdayHours = screen.getByText('Saturday: 8:00 AM - 7:00 PM');
+    expect(saturdayHours).toBeInTheDocument();
   })
 });

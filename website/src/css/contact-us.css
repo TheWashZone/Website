@@ -18,29 +18,24 @@
 
 .contact-us-format {
   margin-top: 206px;
-  margin-left: 0;
-  margin-right: 0;
-  width: 100%;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  width: 100vw;
+  max-width: 100vw;
   display: flex;
   flex-wrap: wrap;
 }
 
 .contact-us-format>div {
-  padding: 20px;
   flex: 1;
   min-width: 250px;
   min-height: calc(100vh - 206px);
 }
 
-.contact-us-title {
-  font-size: 36px;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
 .contact-us-info {
   background-color: aqua;
   text-align: left;
+  padding: 40px;
 }
 
 .contact-us-map {
@@ -49,6 +44,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 40px;
+}
+
+.contact-us-title {
+  font-size: 36px;
+  font-weight: bold;
+  /* text-decoration: underline; */
 }
 
 .contact-us-item {
@@ -61,6 +63,11 @@
   width: 100%;
   height: 500px;
   max-width: 100%;
+}
+
+.icon-format {
+  font-size: 30px;
+  padding-right: 20px;
 }
 
 @media (max-width: 768px) {

@@ -5,14 +5,12 @@
   text-align: center;
 }
 
-/* @media screen and (min-width: 1000px) {
-  .hamburger-hidden {
-    display: none;
-  }
-} */
+.navbar-brand {
+  padding-left: 0;
+  margin-left: 0;
+}
 
-/* @media screen and (max-width: 999px) {
-  .navbar-items-hidden {
-    display: none;
-  }
-} */
+.navbar {
+  font-family: 'Open Sans', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}

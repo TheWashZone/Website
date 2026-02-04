@@ -74,7 +74,7 @@ function HomePage() {
         </div>
         <div className="colored2">
           <span className="hours-parent">Hours of Operation</span>
-          <Stack gap={3} className="hours-stack">
+          <Stack gap={3} className="hours-stack" data-testid="hours-box">
             <div className="hours">Sunday: 9:00 AM - 5:00 PM</div>
             <div className="hours">Monday: 7:30 AM - 7:00 PM</div>
             <div className="hours">Tuesday: 7:30 AM - 7:00 PM</div>

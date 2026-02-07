@@ -1,181 +1,107 @@
-.title {
-  margin-top: 50px;
-  font-weight: bold;
-  font-size: 50px;
-}
-
-.subtitle {
-  font-size: 40px;
-  padding-bottom: 20px;
-}
-
-.membership-section-title {
-  font-size: 40px;
-  /* padding-bottom: 20px; */
-  font-weight: bold;
-}
-
-.boxed {
-  border: 2px solid black;
-  border-radius: 20px;
-  margin: 10px;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  background-color: aqua;
-}
-
-.colored {
-  /* background: linear-gradient(135deg, lightblue, #6eb5d4); */
-  background: lightblue;
-}
-
-.colored2 {
-  /* background: linear-gradient(135deg, aqua, #00b8b8); */
-  background: aqua;
-  text-align: center;
-}
-
-.home-format {
-  margin-top: 206px;
-  font-family: 'Open Sans', sans-serif;
-}
-
-.home-format>div {
-  padding: 20px;
-  flex: 1;
-  min-width: 300px;
-}
-
-.home-format img {
-  max-width: 100%;
-  height: auto;
-}
-
-.header-container {
-  position: absolute;
-  left: 0;
-  right: 0;
+.container-fluid {
   padding: 0 !important;
-  margin: 0 !important;
+  width: 100vw !important;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw !important;
 }
 
 .header-img {
-  height: 150px !important;
-  object-fit: cover;
-  margin-top: 56px;
-  width: 100% !important;
-  max-width: none !important;
+  width: 100%;
+  height: auto;
   display: block;
 }
 
-.hours {
-  font-size: 30px;
-  text-align: left;
+.carwash-img {
+    width: 900px;
+    height: auto; 
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.memberships {
-  font-size: 20px;
-  text-align: left;
-  margin-left: 30%;
-  margin-right: 30%;
+.blue-background {
+    background-color: #007BFF; 
+    color: white;
+    padding: 150px;
+    text-align: center;
+    height: 500px;
+    width: 1000px;
+    /* margin-bottom: 20px; */
+}
+
+.blue-background-memberships {
+    background-color: #007BFF; 
+    color: white;
+    text-align: center;
+    height: 600px;
+    width: 1000px;
+    /* margin-bottom: 20px; */
+}
+
+.no-background-hours {
+    text-align: center;
+    height: 500px;
+    width: 1000px;
+}
+
+.title-text {
+    font-size: 64px;
+    font-weight: bold;
+    padding-bottom: 40px;
+}
+
+.address-text {
+    font-size: 36px;
 }
 
 .membership-title {
-  font-size: 35px;
-  /* font-weight: bold; */
-  margin-bottom: 10px;
+    font-size: 48px;
+    font-weight: bold;
+    padding-top: 10px;
 }
 
-.hours-parent {
-  font-size: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.hours-stack {
-  border: black 2px solid;
-  border-radius: 15px;
-  width: fit-content;
-  padding: 50px;
-  margin: 0 auto;
-  background-color: lightblue;
-}
-
-.membership-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+.membership-flex {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 20px;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .membership-item {
-  font-size: 30px;
-  text-wrap: wrap;
-  width: 30%;
-  margin: 10px auto;
-  min-width: 280px;
-  padding: 20px;
+    border: 2px solid white;
+    border-radius: 15px;
+    height: 350x;
+    width: 300px;
 }
 
-.left-align {
-  text-align: left;
+.membership-item-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.basic-disclaimer {
-  font-size: 20px;
-  text-align: center;
-  margin-top: 70px;
-}
-
-@media (max-width: 1000px) {
-  .home-format {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@media (max-width: 700px) {
-  .membership-item {
-    width: 80%;
-  }
-}
-
-@media (max-width: 500px) {
-  .home-format>div {
-    padding: 10px;
-    min-width: unset;
-  }
-
-  .boxed {
-    margin: 5px;
-  }
-
-  .membership-item {
-    padding: 10px;
-    width: 85%;
-    min-width: unset;
-    max-width: 350px;
-  }
-
-  .subtitle {
-    font-size: 30px;
-  }
-
-  .title {
+.hours-item {
+    border: 2px solid black;
+    border-radius: 15px;
+    height: 350x;
+    width: 300px;
+    margin: 0 auto;
     margin-top: 20px;
-  }
+    font-size: 30px;
+    width: 600px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
-  .hours-parent {
-    margin-top: 5px;
-    margin-bottom: 10px;
-  }
+.hours-title {
+    font-size: 48px;
+    font-weight: bold;
+    padding-top: 10px;
+}
 
-  .membership-section-title {
-    margin-top: 5px;
-    margin-bottom: 10px;
-  }
+.hours-section {
+    padding-top: 20px;
+    padding-bottom: 50px;
 }

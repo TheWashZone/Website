@@ -1,0 +1,47 @@
+[1mdiff --git a/package.json b/package.json[m
+[1mindex 8eeb2e6..2521d58 100644[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@ -1,11 +1,41 @@[m
+ {[m
+[32m+[m[32m  "name": "website",[m
+[32m+[m[32m  "private": true,[m
+[32m+[m[32m  "version": "0.0.0",[m
+[32m+[m[32m  "type": "module",[m
+[32m+[m[32m  "scripts": {[m
+[32m+[m[32m    "dev": "vite",[m
+[32m+[m[32m    "build": "vite build",[m
+[32m+[m[32m    "lint": "eslint .",[m
+[32m+[m[32m    "preview": "vite preview",[m
+[32m+[m[32m    "test": "vitest"[m
+[32m+[m[32m  },[m
+[32m+[m[32m  "dependencies": {[m
+[32m+[m[32m    "bootstrap": "^5.3.8",[m
+[32m+[m[32m    "react": "^19.2.0",[m
+[32m+[m[32m    "react-bootstrap": "^2.10.10",[m
+[32m+[m[32m    "react-dom": "^19.2.0",[m
+[32m+[m[32m    "react-router-dom": "^7.12.0"[m
+[32m+[m[32m  },[m
+   "devDependencies": {[m
+[32m+[m[32m    "@eslint/js": "^9.39.1",[m
+     "@testing-library/jest-dom": "^6.9.1",[m
+     "@testing-library/react": "^16.3.1",[m
+[32m+[m[32m    "@testing-library/user-event": "^14.6.1",[m
+[32m+[m[32m    "@types/react": "^19.2.5",[m
+[32m+[m[32m    "@types/react-dom": "^19.2.3",[m
+[32m+[m[32m    "@vitejs/plugin-react": "^5.1.1",[m
+     "@vitest/coverage-v8": "^4.0.16",[m
+     "@vitest/ui": "^4.0.16",[m
+[32m+[m[32m    "eslint": "^9.39.1",[m
+[32m+[m[32m    "eslint-plugin-react-hooks": "^7.0.1",[m
+[32m+[m[32m    "eslint-plugin-react-refresh": "^0.4.24",[m
+[32m+[m[32m    "globals": "^16.5.0",[m
+     "identity-obj-proxy": "^3.0.0",[m
+[31m-    "jsdom": "^27.4.0",[m
+[32m+[m[32m    "jest": "^30.2.0",[m
+[32m+[m[32m    "jest-environment-jsdom": "^30.2.0",[m
+[32m+[m[32m    "rollup": "^4.6.13",[m
+[32m+[m[32m    "vite": "^7.2.4",[m
+     "vitest": "^4.0.16"[m
+   }[m
+ }[m

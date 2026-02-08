@@ -1,61 +1,44 @@
-.container-fluid {
-  padding: 0 !important;
-  width: 100vw !important;
-  position: relative;
-  left: 50%;
-  margin-left: -50vw !important;
+.header-img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.header-img {
-  width: 100%;
-  height: auto;
-  display: block;
+.container-fluid {
+    padding: 0 !important;
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw !important;
 }
 
 .carwash-img {
-    width: 900px;
-    height: auto; 
-    margin-top: 20px;
-    margin-bottom: 20px;
+    width: 100vw;
+    height: auto;
+    margin: 20px auto;
 }
 
 .blue-background {
-    background-color: #007BFF; 
+    background-color: #007BFF;
     color: white;
-    padding: 150px;
+    padding: 25px;
     text-align: center;
-    height: 500px;
-    width: 1000px;
-    /* margin-bottom: 20px; */
+    height: 200px;
+    width: 100vw;
+    margin: 0 auto;
 }
 
-.blue-background-memberships {
-    background-color: #007BFF; 
+    .blue-background-memberships {
+    background-color: #007BFF;
     color: white;
     text-align: center;
-    height: 600px;
-    width: 1000px;
-    /* margin-bottom: 20px; */
-}
-
-.no-background-hours {
-    text-align: center;
-    height: 500px;
-    width: 1000px;
-}
-
-.title-text {
-    font-size: 64px;
-    font-weight: bold;
-    padding-bottom: 40px;
-}
-
-.address-text {
-    font-size: 36px;
+    height: 1200px;
+    width: 100vw;
+    margin: 0 auto;
 }
 
 .membership-title {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: bold;
     padding-top: 10px;
 }
@@ -82,6 +65,12 @@
     margin-bottom: 10px;
 }
 
+.title-text {
+    font-size: 36px;
+    font-weight: bold;
+    padding-bottom: 40px;
+}
+
 .hours-item {
     border: 2px solid black;
     border-radius: 15px;
@@ -89,14 +78,14 @@
     width: 300px;
     margin: 0 auto;
     margin-top: 20px;
-    font-size: 30px;
-    width: 600px;
+    font-size: 18px;
+    width: 300px;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
 .hours-title {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: bold;
     padding-top: 10px;
 }
@@ -104,4 +93,525 @@
 .hours-section {
     padding-top: 20px;
     padding-bottom: 50px;
+}
+
+@media (min-width: 460px) {
+    .carwash-img {
+        width: 100vw;
+        height: auto;
+        margin: 20px auto;
+    }
+
+    .blue-background {
+        background-color: #007BFF;
+        color: white;
+        padding: 25px;
+        text-align: center;
+        height: 200px;
+        width: 100vw;
+        margin: 0 auto;
+    }
+
+    .blue-background-memberships {
+        background-color: #007BFF;
+        color: white;
+        text-align: center;
+        height: 1200px;
+        width: 100vw;
+        margin: 0 auto;
+    }
+
+    .membership-title {
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .membership-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 350x;
+        width: 300px;
+    }
+
+    .membership-item-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 48px;
+        font-weight: bold;
+        padding-bottom: 40px;
+    }
+
+    .hours-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 350x;
+        width: 200px;
+        margin: 0 auto;
+        margin-top: 20px;
+        font-size: 18px;
+        width: 300px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .hours-title {
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .hours-section {
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (min-width: 640px) {
+    .carwash-img {
+        width: 100vw;
+        height: auto;
+        margin: 20px auto;
+    }
+
+    .blue-background {
+        background-color: #007BFF;
+        color: white;
+        padding: 50px;
+        text-align: center;
+        height: 250px;
+        width: 100vw;
+        margin: 0 auto;
+    }
+
+
+    .blue-background-memberships {
+        background-color: #007BFF;
+        color: white;
+        text-align: center;
+        height: 800px;
+        width: 100vw;
+        margin: 0 auto;
+    }
+
+    .membership-title {
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .membership-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 350x;
+        width: 300px;
+    }
+
+    .membership-item-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 48px;
+        font-weight: bold;
+        padding-bottom: 40px;
+    }
+
+    .hours-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 350x;
+        width: 250px;
+        margin: 0 auto;
+        margin-top: 20px;
+        font-size: 24px;
+        width: 400px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .hours-title {
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .hours-section {
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (min-width: 768px) {
+    .carwash-img {
+        width: 500px;
+        height: auto;
+        margin: 20px auto;
+    }
+
+    .blue-background {
+        background-color: #007BFF;
+        color: white;
+        padding: 75px;
+        text-align: center;
+        height: 300px;
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    .blue-background-memberships {
+        background-color: #007BFF;
+        color: white;
+        text-align: center;
+        height: 1200px;
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    .membership-title {
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .membership-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 350x;
+        width: 300px;
+    }
+
+    .membership-item-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 48px;
+        font-weight: bold;
+        padding-bottom: 40px;
+    }
+
+    .hours-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 350x;
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 20px;
+        font-size: 28px;
+        width: 600px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .hours-title {
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .hours-section {
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .carwash-img {
+        width: 600px;
+        height: auto;
+        margin: 20px auto;
+    }
+
+    .blue-background {
+        background-color: #007BFF;
+        color: white;
+        padding: 100px;
+        text-align: center;
+        height: 400px;
+        width: 700px;
+        margin: 0 auto;
+    }
+
+    .blue-background-memberships {
+        background-color: #007BFF;
+        color: white;
+        text-align: center;
+        height: 800px;
+        width: 700px;
+        margin: 0 auto;
+    }
+
+    .membership-title {
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .membership-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 350x;
+        width: 300px;
+    }
+
+    .membership-item-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 48px;
+        font-weight: bold;
+        padding-bottom: 40px;
+    }
+
+    .hours-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 350x;
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 20px;
+        font-size: 28px;
+        width: 600px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .hours-title {
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .hours-section {
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .carwash-img {
+        width: 700px;
+        height: auto;
+        margin: 20px auto;
+    }
+
+    .blue-background {
+        background-color: #007BFF;
+        color: white;
+        padding: 125px;
+        text-align: center;
+        height: 450px;
+        width: 800px;
+        margin: 0 auto;
+    }
+
+    .blue-background-memberships {
+        background-color: #007BFF;
+        color: white;
+        text-align: center;
+        height: 800px;
+        width: 800px;
+        margin: 0 auto;
+    }
+
+    .membership-title {
+        font-size: 48px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .membership-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 350x;
+        width: 300px;
+    }
+
+    .membership-item-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 56px;
+        font-weight: bold;
+        padding-bottom: 40px;
+    }
+
+    .hours-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 350x;
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 20px;
+        font-size: 30px;
+        width: 600px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .hours-title {
+        font-size: 48px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .hours-section {
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .carwash-img {
+        width: 900px;
+        height: auto;
+        margin: 20px auto;
+    }
+
+    .blue-background {
+        background-color: #007BFF;
+        color: white;
+        padding: 150px;
+        text-align: center;
+        height: 500px;
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    .blue-background-memberships {
+        background-color: #007BFF;
+        color: white;
+        text-align: center;
+        height: 600px;
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    .no-background-hours {
+        text-align: center;
+        height: 500px;
+        width: 1000px;
+    }
+
+    .title-text {
+        font-size: 64px;
+        font-weight: bold;
+        padding-bottom: 40px;
+    }
+
+    .address-text {
+        font-size: 36px;
+    }
+
+    .membership-title {
+        font-size: 48px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .membership-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 350x;
+        width: 300px;
+    }
+
+    .membership-item-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .hours-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 350x;
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 20px;
+        font-size: 30px;
+        width: 600px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .hours-title {
+        font-size: 48px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .hours-section {
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
 }

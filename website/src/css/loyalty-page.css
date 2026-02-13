@@ -1,0 +1,489 @@
+/* Dark Orange Theme for The Wash Zone */
+/* Import this AFTER your home-page.css */
+
+:root {
+    --orange-dark: #b85e1e;      /* Dark orange primary */
+    --orange-medium: #c96f2c;     /* Medium orange */
+    --orange-light: #e68a45;      /* Light orange */
+    --orange-soft: #fbe1ce;       /* Soft orange for text */
+    --orange-glow: #ff9f4b;       /* Glowing orange */
+    --brown-dark: #2c1e12;        /* Dark brown for contrast */
+    --cream: #fff3e6;            /* Cream white */
+}
+
+.loyalty-format {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #3a2a1e 0%, #2c1e12 100%);
+}
+
+/* Points Dashboard */
+.points-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.points-circle {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(145deg, #b85e1e, #9a4a18);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(184, 94, 30, 0.3);
+    border: 4px solid #ff9f4b;
+    position: relative;
+}
+
+.points-circle::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 159, 75, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.points-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(255, 159, 75, 0.5);
+}
+
+.points-label {
+    font-size: 18px;
+    color: #fbe1ce;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 5px;
+}
+
+.tier-info {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.tier-badge {
+    background: linear-gradient(135deg, #b85e1e, #9a4a18);
+    color: #ffffff;
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    display: inline-block;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 15px rgba(184, 94, 30, 0.4);
+    border: 1px solid #ff9f4b;
+}
+
+.next-tier {
+    color: #fbe1ce;
+    font-size: 16px;
+    background: rgba(184, 94, 30, 0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* Earn Grid */
+.earn-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 30px 20px;
+    max-width: 1200px;
+}
+
+.earn-item {
+    flex: 1 1 200px;
+    min-width: 180px;
+    text-align: center;
+    padding: 25px 20px;
+    background: linear-gradient(145deg, #b85e1e, #9a4a18) !important;
+    border: 2px solid #ff9f4b !important;
+    transition: all 0.3s ease;
+}
+
+.earn-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(184, 94, 30, 0.5);
+    border-color: #ffffff !important;
+}
+
+.earn-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 8px rgba(255, 159, 75, 0.6));
+}
+
+.earn-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.earn-points {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.earn-description {
+    color: #fbe1ce;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Rewards Container */
+.rewards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 30px 20px;
+    max-width: 1200px;
+}
+
+.reward-item {
+    flex: 1 1 250px;
+    min-width: 220px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(145deg, #3a2a1e, #2c1e12) !important;
+    border: 2px solid #b85e1e !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.reward-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #b85e1e, #ff9f4b, #b85e1e);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.reward-item:hover {
+    border-color: #ff9f4b !important;
+    box-shadow: 0 10px 30px rgba(184, 94, 30, 0.4);
+}
+
+.reward-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff9f4b;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.reward-points {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #b85e1e;
+    background: rgba(184, 94, 30, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.reward-button {
+    background: linear-gradient(135deg, #b85e1e, #9a4a18);
+    color: #ffffff;
+    border: 2px solid #ff9f4b;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.reward-button:hover {
+    background: linear-gradient(135deg, #c96f2c, #b85e1e);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(184, 94, 30, 0.5);
+}
+
+.reward-button:disabled {
+    background: #6c4a34;
+    border-color: #8a6e5a;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Membership Bonus */
+.membership-bonus {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 30px 20px;
+    max-width: 1200px;
+}
+
+.bonus-item {
+    flex: 1 1 250px;
+    min-width: 220px;
+    padding: 25px;
+    background: linear-gradient(145deg, #3a2a1e, #2c1e12) !important;
+    border: 2px solid #b85e1e !important;
+}
+
+.bonus-item:hover {
+    border-color: #ff9f4b !important;
+}
+
+.bonus-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff9f4b;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.bonus-points {
+    font-size: 16px;
+    color: #fbe1ce;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #b85e1e;
+    font-weight: 600;
+}
+
+/* Activity Stack */
+.activity-stack {
+    padding: 30px 20px;
+    width: 100%;
+    max-width: 700px;
+}
+
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: linear-gradient(145deg, #3a2a1e, #2c1e12);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border-left: 6px solid #b85e1e;
+    transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+    transform: translateX(5px);
+    border-left-color: #ff9f4b;
+    background: linear-gradient(145deg, #4a382a, #3a2a1e);
+}
+
+.activity-date {
+    color: #fbe1ce;
+    font-size: 14px;
+    min-width: 100px;
+    font-weight: 600;
+}
+
+.activity-desc {
+    color: #ffffff;
+    font-weight: 600;
+    flex-grow: 1;
+    margin-left: 25px;
+}
+
+.activity-points {
+    color: #ff9f4b;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 0 0 8px rgba(255, 159, 75, 0.3);
+}
+
+.positive-points {
+    color: #4caf50;
+}
+
+.negative-points {
+    color: #ff6b6b;
+}
+
+/* CTA Button - Orange theme */
+.cta-button {
+    background: linear-gradient(135deg, #b85e1e, #9a4a18);
+    color: #ffffff;
+    border: 2px solid #ff9f4b;
+    padding: 14px 35px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 5px 20px rgba(184, 94, 30, 0.3);
+}
+
+.cta-button:hover {
+    background: linear-gradient(135deg, #c96f2c, #b85e1e);
+    border-color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(184, 94, 30, 0.5);
+}
+
+/* Section Titles - Override for orange theme */
+.membership-section-title {
+    color: #ff9f4b !important;
+    font-size: 36px !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+.membership-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #b85e1e, #ff9f4b);
+    border-radius: 2px;
+}
+
+/* Boxed items override */
+.boxed {
+    background: linear-gradient(145deg, #3a2a1e, #2c1e12) !important;
+    border: 2px solid #b85e1e !important;
+    border-radius: 15px !important;
+    transition: all 0.3s ease;
+}
+
+.boxed:hover {
+    border-color: #ff9f4b !important;
+}
+
+/* Left align text */
+.left-align {
+    color: #fbe1ce !important;
+    font-size: 15px;
+    margin-bottom: 8px;
+    list-style-type: none;
+    position: relative;
+    padding-left: 20px;
+}
+
+.left-align::before {
+    content: '✦';
+    color: #ff9f4b;
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .earn-grid, .rewards-container, .membership-bonus {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .earn-item, .reward-item, .bonus-item {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .activity-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .activity-desc {
+        margin-left: 0;
+    }
+    
+    .activity-date {
+        min-width: auto;
+    }
+    
+    .points-circle {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .points-number {
+        font-size: 40px;
+    }
+    
+    .membership-section-title {
+        font-size: 28px !important;
+    }
+}
+
+/* Loading animation for points */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px #b85e1e; }
+    50% { box-shadow: 0 0 20px #ff9f4b; }
+    100% { box-shadow: 0 0 5px #b85e1e; }
+}
+
+.glow-effect {
+    animation: glow 2s infinite;
+}
+
+/* Custom scrollbar for loyalty page */
+.loyalty-format::-webkit-scrollbar {
+    width: 10px;
+}
+
+.loyalty-format::-webkit-scrollbar-track {
+    background: #2c1e12;
+}
+
+.loyalty-format::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #b85e1e, #9a4a18);
+    border-radius: 5px;
+}
+
+.loyalty-format::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #c96f2c, #b85e1e);
+}

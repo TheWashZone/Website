@@ -7,17 +7,8 @@
   display: block;
 }
 
-.colored {
-  background-color: lightblue;
-}
-
-.colored2 {
-  background-color: aqua;
-  text-align: center;
-}
-
 .contact-us-format {
-  margin-top: 206px;
+  /* margin-top: 206px; */
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   width: 100vw;
@@ -34,13 +25,13 @@
 }
 
 .contact-us-info {
-  background-color: aqua;
+  background-color: white;
   text-align: left;
   padding: 40px;
 }
 
 .contact-us-map {
-  background-color: lightblue;
+  background-color: #CFA55B;
   text-align: center;
   display: flex;
   align-items: center;
@@ -69,6 +60,11 @@
 .icon-format {
   font-size: 30px;
   padding-right: 20px;
+}
+
+.message {
+  margin-top: 10px;
+  margin-left: 60px;
 }
 
 @media (max-width: 768px) {

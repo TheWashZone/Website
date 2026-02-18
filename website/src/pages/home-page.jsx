@@ -11,7 +11,7 @@ function HomePage() {
         <img src={banner} className="header-img" alt="banner image" />
       </div>
       <div className="">
-        <div className="blue-background">
+        <div className="orange-background">
           <div className="title-text">
             The Wash Zone
           </div>
@@ -22,7 +22,7 @@ function HomePage() {
         <div>
           <img src={location} alt="The Wash Zone Image" className="carwash-img"/>
         </div>
-        <div className="blue-background-memberships">
+        <div className="orange-background-memberships">
           <div className="membership-title">Memberships</div>
           <div className="membership-flex">
             <div className="membership-item" data-testid="box1">
@@ -83,6 +83,10 @@ function HomePage() {
             <div className="">Friday: 7:30 AM - 7:00 PM</div>
             <div className="">Saturday: 8:00 AM - 7:00 PM</div>
           </Stack>
+          <div className="hours-disclaimer">
+            These hours change seasonally based on daylight hours. 
+            Please check our <a href="https://www.facebook.com/profile.php?id=100054247250715">Facebook</a> to find the official hours.
+          </div>
         </div>
       </div>
     </>

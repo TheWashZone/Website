@@ -16,9 +16,11 @@ function ContactPage() {
           <div className="contact-us-item">
             <i className="bi bi-telephone icon-format"></i> Call us at: 509 876-2455
           </div>
+          <div className="message">
+            If we don't answer please leave us a message
+          </div>
           <div className="contact-us-item">
-            <i className="bi bi-facebook icon-format"></i> Check us out on Facebook at: 
-            <a href="https://www.facebook.com/profile.php?id=100054247250715"> The Wash Zone</a>
+            <i className="bi bi-facebook icon-format"></i> Check us out on Facebook at: <a href="https://www.facebook.com/profile.php?id=100054247250715">The Wash Zone</a>
           </div>
           <div className="contact-us-item">
             <i className="bi bi-geo-alt icon-format"></i> Come visit us at: 1907 E Isaacs Ave, Walla Walla, WA, United States

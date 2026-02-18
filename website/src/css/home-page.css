@@ -18,8 +18,10 @@
     margin: 20px auto;
 }
 
-.blue-background {
-    background-color: #007BFF;
+.orange-background {
+    /* background-color: #007BFF; */
+    /* background-color: #D38E5E !important; */
+    background-color: #CFA55B !important;
     color: white;
     padding: 25px;
     text-align: center;
@@ -28,8 +30,10 @@
     margin: 0 auto;
 }
 
-    .blue-background-memberships {
-    background-color: #007BFF;
+.orange-background-memberships {
+    /* background-color: #007BFF; */
+    /* background-color: #E0A469 !important; */
+    background-color: #CFA55B !important;
     color: white;
     text-align: center;
     height: 1200px;
@@ -84,6 +88,11 @@
     padding-bottom: 20px;
 }
 
+.hours-disclaimer {
+        width: 300px;
+        margin: 10px auto;
+    }
+
 .hours-title {
     font-size: 36px;
     font-weight: bold;
@@ -102,8 +111,8 @@
         margin: 20px auto;
     }
 
-    .blue-background {
-        background-color: #007BFF;
+    .orange-background {
+        /* background-color: #007BFF; */
         color: white;
         padding: 25px;
         text-align: center;
@@ -112,8 +121,8 @@
         margin: 0 auto;
     }
 
-    .blue-background-memberships {
-        background-color: #007BFF;
+    .orange-background-memberships {
+        /* background-color: #007BFF; */
         color: white;
         text-align: center;
         height: 1200px;
@@ -168,6 +177,11 @@
         padding-bottom: 20px;
     }
 
+    .hours-disclaimer {
+        width: 300px;
+        margin: 10px auto;
+    }
+
     .hours-title {
         font-size: 36px;
         font-weight: bold;
@@ -187,8 +201,8 @@
         margin: 20px auto;
     }
 
-    .blue-background {
-        background-color: #007BFF;
+    .orange-background {
+        /* background-color: #007BFF; */
         color: white;
         padding: 50px;
         text-align: center;
@@ -198,8 +212,8 @@
     }
 
 
-    .blue-background-memberships {
-        background-color: #007BFF;
+    .orange-background-memberships {
+        /* background-color: #007BFF; */
         color: white;
         text-align: center;
         height: 800px;
@@ -254,6 +268,11 @@
         padding-bottom: 20px;
     }
 
+    .hours-disclaimer {
+        width: 400px;
+        margin: 10px auto;
+    }
+
     .hours-title {
         font-size: 36px;
         font-weight: bold;
@@ -273,8 +292,8 @@
         margin: 20px auto;
     }
 
-    .blue-background {
-        background-color: #007BFF;
+    .orange-background {
+        /* background-color: #007BFF; */
         color: white;
         padding: 75px;
         text-align: center;
@@ -283,8 +302,8 @@
         margin: 0 auto;
     }
 
-    .blue-background-memberships {
-        background-color: #007BFF;
+    .orange-background-memberships {
+        /* background-color: #007BFF; */
         color: white;
         text-align: center;
         height: 1200px;
@@ -339,6 +358,11 @@
         padding-bottom: 20px;
     }
 
+    .hours-disclaimer {
+        width: 600px;
+        margin: 10px auto;
+    }
+
     .hours-title {
         font-size: 36px;
         font-weight: bold;
@@ -358,8 +382,8 @@
         margin: 20px auto;
     }
 
-    .blue-background {
-        background-color: #007BFF;
+    .orange-background {
+        /* background-color: #007BFF; */
         color: white;
         padding: 100px;
         text-align: center;
@@ -368,8 +392,8 @@
         margin: 0 auto;
     }
 
-    .blue-background-memberships {
-        background-color: #007BFF;
+    .orange-background-memberships {
+        /* background-color: #007BFF; */
         color: white;
         text-align: center;
         height: 800px;
@@ -424,6 +448,11 @@
         padding-bottom: 20px;
     }
 
+    .hours-disclaimer {
+        width: 600px;
+        margin: 10px auto;
+    }
+
     .hours-title {
         font-size: 36px;
         font-weight: bold;
@@ -443,8 +472,8 @@
         margin: 20px auto;
     }
 
-    .blue-background {
-        background-color: #007BFF;
+    .orange-background {
+        /* background-color: #007BFF; */
         color: white;
         padding: 125px;
         text-align: center;
@@ -453,8 +482,8 @@
         margin: 0 auto;
     }
 
-    .blue-background-memberships {
-        background-color: #007BFF;
+    .orange-background-memberships {
+        /* background-color: #007BFF; */
         color: white;
         text-align: center;
         height: 800px;
@@ -509,6 +538,11 @@
         padding-bottom: 20px;
     }
 
+    .hours-disclaimer {
+        width: 600px;
+        margin: 10px auto;
+    }
+
     .hours-title {
         font-size: 48px;
         font-weight: bold;
@@ -528,23 +562,22 @@
         margin: 20px auto;
     }
 
-    .blue-background {
-        background-color: #007BFF;
+    .orange-background {
         color: white;
-        padding: 150px;
+        padding: 125px;
         text-align: center;
         height: 500px;
         width: 1000px;
         margin: 0 auto;
     }
 
-    .blue-background-memberships {
-        background-color: #007BFF;
+    .orange-background-memberships {
         color: white;
         text-align: center;
         height: 600px;
         width: 1000px;
         margin: 0 auto;
+        padding: 20px;
     }
 
     .no-background-hours {
@@ -554,17 +587,17 @@
     }
 
     .title-text {
-        font-size: 64px;
+        font-size: 84px;
         font-weight: bold;
         padding-bottom: 40px;
     }
 
     .address-text {
-        font-size: 36px;
+        font-size: 42px;
     }
 
     .membership-title {
-        font-size: 48px;
+        font-size: 36px;
         font-weight: bold;
         padding-top: 10px;
     }
@@ -582,7 +615,7 @@
         border: 2px solid white;
         border-radius: 15px;
         height: 350x;
-        width: 300px;
+        width: 280px;
     }
 
     .membership-item-title {
@@ -602,6 +635,11 @@
         width: 600px;
         padding-top: 20px;
         padding-bottom: 20px;
+    }
+
+    .hours-disclaimer {
+        width: 600px;
+        margin: 10px auto;
     }
 
     .hours-title {

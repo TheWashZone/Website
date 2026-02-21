@@ -41,6 +41,29 @@
     margin: 0 auto;
 }
 
+.monthly-memberships {
+    background-color: #FF7F50 !important;
+    color: white;
+    text-align: center;
+    height: 1200px;
+    width: 100vw;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.other-options {
+    background-color: #CFA55B !important;
+    color: white;
+    text-align: center;
+    height: 400px;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .membership-title {
     font-size: 36px;
     font-weight: bold;
@@ -99,6 +122,10 @@
     padding-top: 10px;
 }
 
+ul {
+    text-align: left;
+}
+
 .hours-section {
     padding-top: 20px;
     padding-bottom: 50px;
@@ -125,9 +152,30 @@
         /* background-color: #007BFF; */
         color: white;
         text-align: center;
-        height: 1200px;
+        height: 1050px;
         width: 100vw;
         margin: 0 auto;
+    }
+
+    .monthly-memberships {
+        color: white;
+        text-align: center;
+        height: 850px;
+        width: 100vw;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        color: white;
+        text-align: center;
+        height: 850px;
+        width: 100vw;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .membership-title {
@@ -148,7 +196,7 @@
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 350x;
+        height: 200px;
         width: 300px;
     }
 
@@ -216,9 +264,31 @@
         /* background-color: #007BFF; */
         color: white;
         text-align: center;
-        height: 800px;
+        height: 600px;
         width: 100vw;
         margin: 0 auto;
+    }
+
+    .monthly-memberships {
+        /* background-color: #007BFF; */
+        color: white;
+        text-align: center;
+        height: 600px;
+        width: 100vw;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        color: white;
+        text-align: center;
+        height: 600px;
+        width: 100vw;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .membership-title {
@@ -239,7 +309,7 @@
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 350x;
+        height: 200px;
         width: 300px;
     }
 
@@ -258,7 +328,7 @@
     .hours-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 350x;
+        height: 400px;
         width: 250px;
         margin: 0 auto;
         margin-top: 20px;
@@ -306,9 +376,31 @@
         /* background-color: #007BFF; */
         color: white;
         text-align: center;
-        height: 1200px;
+        height: 1100px;
         width: 600px;
         margin: 0 auto;
+    }
+
+    .monthly-memberships {
+        /* background-color: #007BFF; */
+        color: white;
+        text-align: center;
+        height: 900px;
+        width: 600px;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        color: white;
+        text-align: center;
+        height: 900px;
+        width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .membership-title {
@@ -329,7 +421,7 @@
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 350x;
+        height: 200px;
         width: 300px;
     }
 
@@ -348,7 +440,7 @@
     .hours-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 350x;
+        height: 450px;
         width: 300px;
         margin: 0 auto;
         margin-top: 20px;
@@ -396,9 +488,31 @@
         /* background-color: #007BFF; */
         color: white;
         text-align: center;
-        height: 800px;
+        height: 600px;
         width: 700px;
         margin: 0 auto;
+    }
+
+    .monthly-memberships {
+        /* background-color: #007BFF; */
+        color: white;
+        text-align: center;
+        height: 600px;
+        width: 700px;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        color: white;
+        text-align: center;
+        height: 600px;
+        width: 700px;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .membership-title {
@@ -419,7 +533,7 @@
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 350x;
+        height: 200px;
         width: 300px;
     }
 
@@ -438,7 +552,7 @@
     .hours-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 350x;
+        height: 450px;
         width: 300px;
         margin: 0 auto;
         margin-top: 20px;
@@ -486,9 +600,31 @@
         /* background-color: #007BFF; */
         color: white;
         text-align: center;
-        height: 800px;
+        height: 600px;
         width: 800px;
         margin: 0 auto;
+    }
+
+    .monthly-memberships {
+        /* background-color: #007BFF; */
+        color: white;
+        text-align: center;
+        height: 600px;
+        width: 800px;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        color: white;
+        text-align: center;
+        height: 600px;
+        width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .membership-title {
@@ -509,7 +645,7 @@
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 350x;
+        height: 200px;
         width: 300px;
     }
 
@@ -528,7 +664,7 @@
     .hours-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 350x;
+        height: 475px;
         width: 300px;
         margin: 0 auto;
         margin-top: 20px;
@@ -580,6 +716,28 @@
         padding: 20px;
     }
 
+    .monthly-memberships {
+        color: white;
+        text-align: center;
+        height: 400px;
+        width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        color: white;
+        text-align: center;
+        height: 400px;
+        width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
     .no-background-hours {
         text-align: center;
         height: 500px;
@@ -614,7 +772,7 @@
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 350x;
+        height: 200px;
         width: 280px;
     }
 
@@ -627,7 +785,7 @@
     .hours-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 350x;
+        height: 475px;
         width: 300px;
         margin: 0 auto;
         margin-top: 20px;

@@ -36,16 +36,17 @@
     background-color: #CFA55B !important;
     color: white;
     text-align: center;
-    height: 1200px;
+    height: 1050px;
     width: 100vw;
     margin: 0 auto;
 }
 
 .monthly-memberships {
-    background-color: #FF7F50 !important;
-    color: white;
+    /* background-color: #FF7F50 !important; */
+    background-color: white;
+    color: black;
     text-align: center;
-    height: 1200px;
+    height: 800px;
     width: 100vw;
     margin: 0 auto;
     margin-top: 20px;
@@ -53,11 +54,12 @@
 }
 
 .other-options {
-    background-color: #CFA55B !important;
+    /* background-color: #CFA55B !important; */
+    background-color: #FF7F50 !important;
     color: white;
     text-align: center;
-    height: 400px;
-    width: 1000px;
+    height: 850px;
+    width: 100vw;
     margin: 0 auto;
     padding: 20px;
     margin-top: 20px;
@@ -82,8 +84,34 @@
 .membership-item {
     border: 2px solid white;
     border-radius: 15px;
-    height: 350x;
+    height: 200px;
     width: 300px;
+}
+
+.membership-item:hover {
+    background-color: #E3963E;
+}
+
+.other-item {
+    border: 2px solid white;
+    border-radius: 15px;
+    height: 200px;
+    width: 300px;
+}
+
+.other-item:hover {
+    background-color: #B87333;
+}
+
+.monthly-membership-item {
+    border: 2px solid black;
+    border-radius: 15px;
+    height: 200px;
+    width: 300px;
+}
+
+.monthly-membership-item:hover {
+    background-color: #f0f0f0;
 }
 
 .membership-item-title {
@@ -109,6 +137,10 @@
     width: 300px;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.hours-item:hover {
+    background-color: #f0f0f0;
 }
 
 .hours-disclaimer {
@@ -158,9 +190,11 @@ ul {
     }
 
     .monthly-memberships {
-        color: white;
+        /* color: white; */
+        background-color: white;
+        color: black;
         text-align: center;
-        height: 850px;
+        height: 800px;
         width: 100vw;
         margin: 0 auto;
         margin-top: 20px;
@@ -200,6 +234,20 @@ ul {
         width: 300px;
     }
 
+    .other-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 200px;
+        width: 300px;
+    }
+
+    .monthly-membership-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 200px;
+        width: 300px;
+    }
+
     .membership-item-title {
         font-size: 32px;
         font-weight: bold;
@@ -210,6 +258,16 @@ ul {
         font-size: 48px;
         font-weight: bold;
         padding-bottom: 40px;
+    }
+
+    .title-text {
+        font-size: 48px;
+        font-weight: bold;
+        padding-bottom: 30px;
+    }
+
+    .address-text {
+        font-size: 24px;
     }
 
     .hours-item {
@@ -271,9 +329,11 @@ ul {
 
     .monthly-memberships {
         /* background-color: #007BFF; */
-        color: white;
+        /* color: white; */
+        background-color: white;
+        color: black;
         text-align: center;
-        height: 600px;
+        height: 550px;
         width: 100vw;
         margin: 0 auto;
         margin-top: 20px;
@@ -313,6 +373,20 @@ ul {
         width: 300px;
     }
 
+    .other-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 200px;
+        width: 300px;
+    }
+
+    .monthly-membership-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 200px;
+        width: 300px;
+    }
+
     .membership-item-title {
         font-size: 32px;
         font-weight: bold;
@@ -322,7 +396,11 @@ ul {
     .title-text {
         font-size: 48px;
         font-weight: bold;
-        padding-bottom: 40px;
+        padding-bottom: 30px;
+    }
+
+    .address-text {
+        font-size: 30px;
     }
 
     .hours-item {
@@ -376,16 +454,18 @@ ul {
         /* background-color: #007BFF; */
         color: white;
         text-align: center;
-        height: 1100px;
+        height: 1050px;
         width: 600px;
         margin: 0 auto;
     }
 
     .monthly-memberships {
         /* background-color: #007BFF; */
-        color: white;
+        /* color: white; */
+        background-color: white;
+        color: black;
         text-align: center;
-        height: 900px;
+        height: 800px;
         width: 600px;
         margin: 0 auto;
         margin-top: 20px;
@@ -395,7 +475,7 @@ ul {
     .other-options {
         color: white;
         text-align: center;
-        height: 900px;
+        height: 850px;
         width: 600px;
         margin: 0 auto;
         padding: 20px;
@@ -425,6 +505,20 @@ ul {
         width: 300px;
     }
 
+    .other-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 200px;
+        width: 300px;
+    }
+
+    .monthly-membership-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 200px;
+        width: 300px;
+    }
+
     .membership-item-title {
         font-size: 32px;
         font-weight: bold;
@@ -434,7 +528,11 @@ ul {
     .title-text {
         font-size: 48px;
         font-weight: bold;
-        padding-bottom: 40px;
+        padding-bottom: 30px;
+    }
+
+    .address-text {
+        font-size: 30px;
     }
 
     .hours-item {
@@ -495,9 +593,11 @@ ul {
 
     .monthly-memberships {
         /* background-color: #007BFF; */
-        color: white;
+        /* color: white; */
+        background-color: white;
+        color: black;
         text-align: center;
-        height: 600px;
+        height: 550px;
         width: 700px;
         margin: 0 auto;
         margin-top: 20px;
@@ -537,6 +637,20 @@ ul {
         width: 300px;
     }
 
+    .other-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 200px;
+        width: 300px;
+    }
+
+    .monthly-membership-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 200px;
+        width: 300px;
+    }
+
     .membership-item-title {
         font-size: 32px;
         font-weight: bold;
@@ -544,9 +658,13 @@ ul {
     }
 
     .title-text {
-        font-size: 48px;
+        font-size: 56px;
         font-weight: bold;
-        padding-bottom: 40px;
+        padding-bottom: 32px;
+    }
+
+    .address-text {
+        font-size: 30px;
     }
 
     .hours-item {
@@ -607,9 +725,11 @@ ul {
 
     .monthly-memberships {
         /* background-color: #007BFF; */
-        color: white;
+        /* color: white; */
+        background-color: white;
+        color: black;
         text-align: center;
-        height: 600px;
+        height: 575px;
         width: 800px;
         margin: 0 auto;
         margin-top: 20px;
@@ -619,7 +739,7 @@ ul {
     .other-options {
         color: white;
         text-align: center;
-        height: 600px;
+        height: 625px;
         width: 800px;
         margin: 0 auto;
         padding: 20px;
@@ -649,6 +769,20 @@ ul {
         width: 300px;
     }
 
+    .other-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 200px;
+        width: 300px;
+    }
+
+    .monthly-membership-item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 200px;
+        width: 300px;
+    }
+
     .membership-item-title {
         font-size: 32px;
         font-weight: bold;
@@ -656,9 +790,13 @@ ul {
     }
 
     .title-text {
-        font-size: 56px;
+        font-size: 72px;
         font-weight: bold;
-        padding-bottom: 40px;
+        padding-bottom: 36px;
+    }
+
+    .address-text {
+        font-size: 36px;
     }
 
     .hours-item {
@@ -717,7 +855,9 @@ ul {
     }
 
     .monthly-memberships {
-        color: white;
+        /* color: white; */
+        background-color: white;
+        color: black;
         text-align: center;
         height: 400px;
         width: 1000px;
@@ -771,6 +911,20 @@ ul {
 
     .membership-item {
         border: 2px solid white;
+        border-radius: 15px;
+        height: 200px;
+        width: 280px;
+    }
+
+    .other-item {
+        border: 2px solid white;
+        border-radius: 15px;
+        height: 200px;
+        width: 280px;
+    }
+
+    .monthly-membership-item {
+        border: 2px solid black;
         border-radius: 15px;
         height: 200px;
         width: 280px;

@@ -7,20 +7,11 @@ import '../css/home-page.css';
 function HomePage() {
   return (
     <>
-      <div className="container-fluid">
-        <img src={banner} className="header-img" alt="banner image" />
-      </div>
       <div className="">
-        <div className="orange-background">
-          <div className="title-text">
-            The Wash Zone
-          </div>
-          <div className="address-text">
-            1907 E Isaacs Ave, Walla Walla, WA 99362
-          </div>
-        </div>
-        <div>
+        <div className="image-container">
           <img src={location} alt="The Wash Zone Image" className="carwash-img"/>
+          <div className="top-left-title">The Wash Zone</div>
+          <div className="top-left-address">Walla Walla Washington</div>
         </div>
         <div className="orange-background-memberships">
           <div className="membership-title">SINGLE WASHES</div>
@@ -28,7 +19,7 @@ function HomePage() {
             <div className="membership-item" data-testid="box1">
               <div className="membership-item-title">Ultimate - $16.50</div>
               <ul>
-                <li className="membership-item-point" data-testid="ultimate1">WHEEL BRITE</li>
+                <li className="" data-testid="ultimate1">WHEEL BRITE</li>
                 <li className="" data-testid="ultimate2">WASH AND SHINE</li>
                 <li className="" data-testid="ultimate3">TRIPLE FOAM</li>
                 <li className="" data-testid="ultimate4">CLEAR COAT SEALANT</li>

@@ -12,16 +12,68 @@
     margin-left: -50vw !important;
 }
 
+.image-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* .bottom-left-title {
+  position: absolute;
+  bottom: 64px;
+  left: 32px;
+  z-index: 10;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 76px;
+  padding-bottom: 20px;
+}
+
+.bottom-left-address {
+  position: absolute;
+  bottom: 16px;
+  left: 32px;
+  z-index: 10;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 48px;
+  padding-bottom: 20px;
+} */
+
+.top-left-title {
+  position: absolute;
+  bottom: 64px;
+  left: 32px;
+  z-index: 10;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 48px;
+  padding-bottom: 10px;
+}
+
+.top-left-address {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  z-index: 10;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 24px;
+  padding-bottom: 10px;
+}
+
 .carwash-img {
-    width: 100vw;
+    width: 100%;
     height: auto;
     margin: 20px auto;
 }
 
 .orange-background {
-    /* background-color: #007BFF; */
-    /* background-color: #D38E5E !important; */
-    background-color: #CFA55B !important;
+    /* background-color: #F59644 !important; */
     color: white;
     padding: 25px;
     text-align: center;
@@ -31,9 +83,7 @@
 }
 
 .orange-background-memberships {
-    /* background-color: #007BFF; */
-    /* background-color: #E0A469 !important; */
-    background-color: #CFA55B !important;
+    /* background-color: #F59644 !important; */
     color: white;
     text-align: center;
     height: 1050px;
@@ -42,7 +92,6 @@
 }
 
 .monthly-memberships {
-    /* background-color: #FF7F50 !important; */
     background-color: white;
     color: black;
     text-align: center;
@@ -54,14 +103,13 @@
 }
 
 .other-options {
-    /* background-color: #CFA55B !important; */
-    background-color: #FF7F50 !important;
+    /* background-color: #F59644 !important; */
     color: white;
     text-align: center;
     height: 850px;
     width: 100vw;
     margin: 0 auto;
-    padding: 20px;
+    /* padding: 20px; */
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -158,58 +206,46 @@ ul {
     text-align: left;
 }
 
+li {
+    font-size: 18px;
+}
+
 .hours-section {
     padding-top: 20px;
     padding-bottom: 50px;
+    background-color: white;
 }
 
 @media (min-width: 460px) {
-    .carwash-img {
-        width: 100vw;
-        height: auto;
-        margin: 20px auto;
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 24px;
     }
 
-    .orange-background {
-        /* background-color: #007BFF; */
-        color: white;
-        padding: 25px;
+    /* .orange-background {
         text-align: center;
         height: 200px;
         width: 100vw;
-        margin: 0 auto;
-    }
+    } */
 
     .orange-background-memberships {
-        /* background-color: #007BFF; */
-        color: white;
-        text-align: center;
-        height: 1050px;
+        height: 1400px;
         width: 100vw;
-        margin: 0 auto;
     }
 
     .monthly-memberships {
-        /* color: white; */
-        background-color: white;
-        color: black;
-        text-align: center;
-        height: 800px;
+        height: 1100px;
         width: 100vw;
-        margin: 0 auto;
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
     .other-options {
-        color: white;
-        text-align: center;
-        height: 850px;
+        height: 1100px;
         width: 100vw;
-        margin: 0 auto;
-        padding: 20px;
-        margin-top: 20px;
-        margin-bottom: 20px;
     }
 
     .membership-title {
@@ -230,21 +266,21 @@ ul {
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
+        height: 300px;
         width: 300px;
     }
 
     .other-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
+        height: 300px;
         width: 300px;
     }
 
     .monthly-membership-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 200px;
+        height: 300px;
         width: 300px;
     }
 
@@ -271,16 +307,11 @@ ul {
     }
 
     .hours-item {
-        border: 2px solid black;
-        border-radius: 15px;
         height: 350x;
         width: 200px;
-        margin: 0 auto;
         margin-top: 20px;
         font-size: 18px;
         width: 300px;
-        padding-top: 20px;
-        padding-bottom: 20px;
     }
 
     .hours-disclaimer {
@@ -294,65 +325,65 @@ ul {
         padding-top: 10px;
     }
 
-    .hours-section {
-        padding-top: 20px;
-        padding-bottom: 50px;
+    .top-left-title {
+        position: absolute;
+        bottom: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 64px;
+        padding-bottom: 15px;
+    }
+
+    .top-left-address {
+        position: absolute;
+        bottom: 32px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 36px;
+        padding-bottom: 10px;
     }
 }
 
 @media (min-width: 640px) {
-    .carwash-img {
-        width: 100vw;
-        height: auto;
-        margin: 20px auto;
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 24px;
     }
 
-    .orange-background {
-        /* background-color: #007BFF; */
-        color: white;
+    /* .orange-background {
         padding: 50px;
-        text-align: center;
         height: 250px;
         width: 100vw;
-        margin: 0 auto;
-    }
-
+    } */
 
     .orange-background-memberships {
-        /* background-color: #007BFF; */
-        color: white;
-        text-align: center;
-        height: 600px;
+        height: 800px;
         width: 100vw;
-        margin: 0 auto;
     }
 
     .monthly-memberships {
-        /* background-color: #007BFF; */
-        /* color: white; */
-        background-color: white;
-        color: black;
-        text-align: center;
-        height: 550px;
+        height: 800px;
         width: 100vw;
-        margin: 0 auto;
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
     .other-options {
-        color: white;
-        text-align: center;
-        height: 600px;
+        height: 800px;
         width: 100vw;
-        margin: 0 auto;
-        padding: 20px;
-        margin-top: 20px;
-        margin-bottom: 20px;
     }
 
     .membership-title {
-        font-size: 36px;
+        font-size: 48px;
         font-weight: bold;
         padding-top: 10px;
     }
@@ -369,21 +400,21 @@ ul {
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
+        height: 300px;
         width: 300px;
     }
 
     .other-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
+        height: 300px;
         width: 300px;
     }
 
     .monthly-membership-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 200px;
+        height: 300px;
         width: 300px;
     }
 
@@ -404,16 +435,11 @@ ul {
     }
 
     .hours-item {
-        border: 2px solid black;
-        border-radius: 15px;
         height: 400px;
         width: 250px;
-        margin: 0 auto;
         margin-top: 20px;
         font-size: 24px;
         width: 400px;
-        padding-top: 20px;
-        padding-bottom: 20px;
     }
 
     .hours-disclaimer {
@@ -422,69 +448,70 @@ ul {
     }
 
     .hours-title {
-        font-size: 36px;
+        font-size: 48px;
         font-weight: bold;
         padding-top: 10px;
     }
 
-    .hours-section {
-        padding-top: 20px;
-        padding-bottom: 50px;
+    .top-left-title {
+        position: absolute;
+        top: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 64px;
+        padding-bottom: 20px;
+    }
+
+    .top-left-address {
+        position: absolute;
+        top: 156px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 36px;
+        padding-bottom: 20px;
     }
 }
 
 @media (min-width: 768px) {
-    .carwash-img {
-        width: 500px;
-        height: auto;
-        margin: 20px auto;
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 28px;
     }
 
-    .orange-background {
-        /* background-color: #007BFF; */
-        color: white;
+    /* .orange-background {
         padding: 75px;
-        text-align: center;
         height: 300px;
-        width: 600px;
-        margin: 0 auto;
-    }
+        width: 100vw;
+    } */
 
     .orange-background-memberships {
-        /* background-color: #007BFF; */
-        color: white;
-        text-align: center;
-        height: 1050px;
-        width: 600px;
-        margin: 0 auto;
+        height: 900px;
+        width: 100vw;
     }
 
     .monthly-memberships {
-        /* background-color: #007BFF; */
-        /* color: white; */
-        background-color: white;
-        color: black;
-        text-align: center;
-        height: 800px;
-        width: 600px;
-        margin: 0 auto;
+        height: 900px;
+        width: 100vw;
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
     .other-options {
-        color: white;
-        text-align: center;
-        height: 850px;
-        width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        height: 900px;
+        width: 100vw;
     }
 
     .membership-title {
-        font-size: 36px;
+        font-size: 48px;
         font-weight: bold;
         padding-top: 10px;
     }
@@ -501,26 +528,26 @@ ul {
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
-        width: 300px;
+        height: 350px;
+        width: 350px;
     }
 
     .other-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
-        width: 300px;
+        height: 350px;
+        width: 350px;
     }
 
     .monthly-membership-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 200px;
-        width: 300px;
+        height: 350px;
+        width: 350px;
     }
 
     .membership-item-title {
-        font-size: 32px;
+        font-size: 36px;
         font-weight: bold;
         margin-bottom: 10px;
     }
@@ -536,16 +563,11 @@ ul {
     }
 
     .hours-item {
-        border: 2px solid black;
-        border-radius: 15px;
         height: 450px;
         width: 300px;
-        margin: 0 auto;
         margin-top: 20px;
         font-size: 28px;
         width: 600px;
-        padding-top: 20px;
-        padding-bottom: 20px;
     }
 
     .hours-disclaimer {
@@ -554,69 +576,70 @@ ul {
     }
 
     .hours-title {
-        font-size: 36px;
+        font-size: 48px;
         font-weight: bold;
         padding-top: 10px;
     }
 
-    .hours-section {
-        padding-top: 20px;
-        padding-bottom: 50px;
+    .top-left-title {
+        position: absolute;
+        top: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 76px;
+        padding-bottom: 20px;
+    }
+
+    .top-left-address {
+        position: absolute;
+        top: 156px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 48px;
+        padding-bottom: 20px;
     }
 }
 
 @media (min-width: 1024px) {
-    .carwash-img {
-        width: 600px;
-        height: auto;
-        margin: 20px auto;
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 28px;
     }
 
-    .orange-background {
-        /* background-color: #007BFF; */
-        color: white;
+    /* .orange-background {
         padding: 100px;
-        text-align: center;
-        height: 400px;
-        width: 700px;
-        margin: 0 auto;
-    }
+        height: 1000px;
+        width: 100vw;
+    } */
 
     .orange-background-memberships {
-        /* background-color: #007BFF; */
-        color: white;
-        text-align: center;
-        height: 600px;
-        width: 700px;
-        margin: 0 auto;
+        height: 1000px;
+        width: 100vw;
     }
 
     .monthly-memberships {
-        /* background-color: #007BFF; */
-        /* color: white; */
-        background-color: white;
-        color: black;
-        text-align: center;
-        height: 550px;
-        width: 700px;
-        margin: 0 auto;
+        height: 1000px;
+        width: 100vw;
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
     .other-options {
-        color: white;
-        text-align: center;
-        height: 600px;
-        width: 700px;
-        margin: 0 auto;
-        padding: 20px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        height: 1000px;
+        width: 100vw;
     }
 
     .membership-title {
-        font-size: 36px;
+        font-size: 64px;
         font-weight: bold;
         padding-top: 10px;
     }
@@ -633,26 +656,26 @@ ul {
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
-        width: 300px;
+        height: 400px;
+        width: 400px;
     }
 
     .other-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
-        width: 300px;
+        height: 400px;
+        width: 400px;
     }
 
     .monthly-membership-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 200px;
-        width: 300px;
+        height: 400px;
+        width: 400px;
     }
 
     .membership-item-title {
-        font-size: 32px;
+        font-size: 36px;
         font-weight: bold;
         margin-bottom: 10px;
     }
@@ -668,16 +691,11 @@ ul {
     }
 
     .hours-item {
-        border: 2px solid black;
-        border-radius: 15px;
         height: 450px;
         width: 300px;
-        margin: 0 auto;
         margin-top: 20px;
         font-size: 28px;
         width: 600px;
-        padding-top: 20px;
-        padding-bottom: 20px;
     }
 
     .hours-disclaimer {
@@ -686,69 +704,70 @@ ul {
     }
 
     .hours-title {
-        font-size: 36px;
+        font-size: 64px;
         font-weight: bold;
         padding-top: 10px;
     }
 
-    .hours-section {
-        padding-top: 20px;
-        padding-bottom: 50px;
+    .top-left-title {
+        position: absolute;
+        top: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 76px;
+        padding-bottom: 20px;
+        }
+
+    .top-left-address {
+        position: absolute;
+        top: 156px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 48px;
+        padding-bottom: 20px;
     }
 }
 
 @media (min-width: 1280px) {
-    .carwash-img {
-        width: 700px;
-        height: auto;
-        margin: 20px auto;
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 32px;
     }
 
-    .orange-background {
-        /* background-color: #007BFF; */
-        color: white;
+    /* .orange-background {
         padding: 125px;
-        text-align: center;
         height: 450px;
-        width: 800px;
-        margin: 0 auto;
-    }
+        width: 100vw;
+    } */
 
     .orange-background-memberships {
-        /* background-color: #007BFF; */
-        color: white;
-        text-align: center;
-        height: 600px;
-        width: 800px;
-        margin: 0 auto;
+        height: 1200px;
+        width: 100vw;
     }
 
     .monthly-memberships {
-        /* background-color: #007BFF; */
-        /* color: white; */
-        background-color: white;
-        color: black;
-        text-align: center;
-        height: 575px;
-        width: 800px;
-        margin: 0 auto;
+        height: 1200px;
+        width: 100vw;
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
     .other-options {
-        color: white;
-        text-align: center;
-        height: 625px;
-        width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        height: 1200px;
+        width: 100vw;
     }
 
     .membership-title {
-        font-size: 48px;
+        font-size: 64px;
         font-weight: bold;
         padding-top: 10px;
     }
@@ -765,26 +784,26 @@ ul {
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
-        width: 300px;
+        height: 500px;
+        width: 500px;
     }
 
     .other-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
-        width: 300px;
+        height: 500px;
+        width: 500px;
     }
 
     .monthly-membership-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 200px;
-        width: 300px;
+        height: 500px;
+        width: 500px;
     }
 
     .membership-item-title {
-        font-size: 32px;
+        font-size: 48px;
         font-weight: bold;
         margin-bottom: 10px;
     }
@@ -800,16 +819,11 @@ ul {
     }
 
     .hours-item {
-        border: 2px solid black;
-        border-radius: 15px;
         height: 475px;
         width: 300px;
-        margin: 0 auto;
         margin-top: 20px;
         font-size: 30px;
         width: 600px;
-        padding-top: 20px;
-        padding-bottom: 20px;
     }
 
     .hours-disclaimer {
@@ -818,64 +832,69 @@ ul {
     }
 
     .hours-title {
-        font-size: 48px;
+        font-size: 64px;
         font-weight: bold;
         padding-top: 10px;
     }
 
-    .hours-section {
-        padding-top: 20px;
-        padding-bottom: 50px;
+    .top-left-title {
+        position: absolute;
+        top: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 76px;
+        padding-bottom: 20px;
+    }
+
+    .top-left-address {
+        position: absolute;
+        top: 156px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 48px;
+        padding-bottom: 20px;
     }
 }
 
 @media (min-width: 1536px) {
-    .carwash-img {
-        width: 900px;
-        height: auto;
-        margin: 20px auto;
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 32px;
     }
 
-    .orange-background {
-        color: white;
+    /* .orange-background {
         padding: 125px;
-        text-align: center;
         height: 500px;
         width: 1000px;
-        margin: 0 auto;
-    }
+    } */
 
     .orange-background-memberships {
-        color: white;
-        text-align: center;
-        height: 600px;
-        width: 1000px;
-        margin: 0 auto;
-        padding: 20px;
+        height: 1300px;
+        width: 100vw;
+        /* padding: 20px; */
     }
 
     .monthly-memberships {
-        /* color: white; */
-        background-color: white;
-        color: black;
-        text-align: center;
-        height: 400px;
-        width: 1000px;
-        margin: 0 auto;
-        padding: 20px;
+        height: 1300px;
+        /* width: 1000px; */
+        width: 100vw;
+        /* padding: 20px; */
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
     .other-options {
-        color: white;
-        text-align: center;
-        height: 400px;
-        width: 1000px;
-        margin: 0 auto;
-        padding: 20px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        height: 1300px;
+        width: 100vw;
     }
 
     .no-background-hours {
@@ -895,7 +914,7 @@ ul {
     }
 
     .membership-title {
-        font-size: 36px;
+        font-size: 64px;
         font-weight: bold;
         padding-top: 10px;
     }
@@ -912,41 +931,36 @@ ul {
     .membership-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
-        width: 280px;
+        height: 550px;
+        width: 550px;
     }
 
     .other-item {
         border: 2px solid white;
         border-radius: 15px;
-        height: 200px;
-        width: 280px;
+        height: 550px;
+        width: 550px;
     }
 
     .monthly-membership-item {
         border: 2px solid black;
         border-radius: 15px;
-        height: 200px;
-        width: 280px;
+        height: 550px;
+        width: 550px;
     }
 
     .membership-item-title {
-        font-size: 32px;
+        font-size: 48px;
         font-weight: bold;
         margin-bottom: 10px;
     }
 
     .hours-item {
-        border: 2px solid black;
-        border-radius: 15px;
         height: 475px;
         width: 300px;
-        margin: 0 auto;
         margin-top: 20px;
         font-size: 30px;
         width: 600px;
-        padding-top: 20px;
-        padding-bottom: 20px;
     }
 
     .hours-disclaimer {
@@ -955,13 +969,32 @@ ul {
     }
 
     .hours-title {
-        font-size: 48px;
+        font-size: 64px;
         font-weight: bold;
         padding-top: 10px;
     }
 
-    .hours-section {
-        padding-top: 20px;
-        padding-bottom: 50px;
+    .top-left-title {
+        position: absolute;
+        top: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 76px;
+        padding-bottom: 20px;
+    }
+
+    .top-left-address {
+        position: absolute;
+        top: 156px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 48px;
+        padding-bottom: 20px;
     }
 }

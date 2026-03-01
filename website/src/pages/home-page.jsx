@@ -1,5 +1,5 @@
 import location from '../images/temp-washzone-picture.jpg';
-import banner from '../images/ChatGPT-Soapy-Pavement.png';
+// import banner from '../images/ChatGPT-Soapy-Pavement.png';
 // import logo from '../images/TheWashZoneLogo.jpg';
 import { Stack } from 'react-bootstrap';
 import '../css/home-page.css';
@@ -92,14 +92,14 @@ function HomePage() {
             <div className="other-item" data-testid="box1">
               <div className="membership-item-title">PREPAID WASH BOOKS</div>
               <ul>
-                <li className="" data-testid="">Ask an attendent</li>
+                <li className="" data-testid="">Ask an attendant</li>
                 <li className="" data-testid="">There are discounts for purchasing this way</li>
               </ul>
             </div>
             <div className="other-item" data-testid="box2">
               <div className="membership-item-title">BUSINESS ACCOUNTS</div>
               <ul>
-                <li className="" data-testid="deluxe1">Ask an attendent</li>
+                <li className="" data-testid="deluxe1">Ask an attendant</li>
               </ul>
             </div>
             <div className="other-item" data-testid="box3">

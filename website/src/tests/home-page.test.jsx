@@ -1,14 +1,14 @@
-// import { describe, it, expect} from 'vitest';
-// import { render, screen } from '@testing-library/react';
-// import '@testing-library/jest-dom';
-// import HomePage from '../pages/home-page.jsx';
+import { describe, it, expect} from 'vitest';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import HomePage from '../pages/home-page.jsx';
 
-// describe('HomePage Component', () => {
-//   it('renders HomePage component', () => {
-//     const { container } = render(<HomePage />);
-//     expect(container.firstChild).toBeInTheDocument();
-//   });
-// });
+describe('HomePage Component', () => {
+  it('renders HomePage component', () => {
+    const { container } = render(<HomePage />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+});
 
 // describe('Banner Image', () => {
 //   it('renders banner image with correct alt text', () => {

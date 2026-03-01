@@ -1,14 +1,14 @@
-// import { describe, it, expect} from 'vitest';
-// import { render, screen } from '@testing-library/react';
-// import '@testing-library/jest-dom';
-// import ContactPage from '../pages/contact-us.jsx';
+import { describe, it, expect} from 'vitest';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import ContactPage from '../pages/contact-us.jsx';
 
-// describe('Contact Us Page Component', () => {
-//     it('renders the ContactUs component', () => {
-//         const { container } = render(<ContactPage />)
-//         expect(container.firstChild).toBeInTheDocument();
-//     });
-// });
+describe('Contact Us Page Component', () => {
+    it('renders the ContactUs component', () => {
+        const { container } = render(<ContactPage />)
+        expect(container.firstChild).toBeInTheDocument();
+    });
+});
 
 // describe('Banner Image', () => {
 //   it('renders banner image with correct alt text', () => {

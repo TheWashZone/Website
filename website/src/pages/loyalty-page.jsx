@@ -16,7 +16,7 @@ function LoyaltyPage() {
   const [formData, setFormData] = useState({ ...userData });
 
   // User ID protection
-  const [enteredUserId, setEnteredUserId] = useState("");
+  const [_enteredUserId, setEnteredUserId] = useState("");
   const correctUserId = "12345"; // later this comes from backend
 
   // Handle edit button click

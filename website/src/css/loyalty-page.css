@@ -1,489 +1,310 @@
-/* Dark Orange Theme for The Wash Zone */
-/* Import this AFTER your home-page.css */
-
-:root {
-    --orange-dark: #b85e1e;      /* Dark orange primary */
-    --orange-medium: #c96f2c;     /* Medium orange */
-    --orange-light: #e68a45;      /* Light orange */
-    --orange-soft: #fbe1ce;       /* Soft orange for text */
-    --orange-glow: #ff9f4b;       /* Glowing orange */
-    --brown-dark: #2c1e12;        /* Dark brown for contrast */
-    --cream: #fff3e6;            /* Cream white */
+/* Force the loyalty page to be full width */
+.loyalty-layout {
+  font-family: 'Open Sans', sans-serif;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
-.loyalty-format {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(135deg, #3a2a1e 0%, #2c1e12 100%);
+/* Override any Bootstrap constraints */
+.loyalty-layout section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 80px 20px;
 }
 
-/* Points Dashboard */
-.points-dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-    width: 100%;
-    max-width: 800px;
+/* HERO - Full width */
+.loyalty-hero {
+  background-color: #a9c4cf;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
-.points-circle {
-    width: 180px;
-    height: 180px;
-    background: linear-gradient(145deg, #b85e1e, #9a4a18);
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 25px;
-    box-shadow: 0 10px 25px rgba(184, 94, 30, 0.3);
-    border: 4px solid #ff9f4b;
-    position: relative;
+/* Center content inside hero */
+.loyalty-hero h1 {
+  font-size: clamp(32px, 5vw, 60px);
+  font-weight: bold;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.points-circle::after {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: -8px;
-    right: -8px;
-    bottom: -8px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 159, 75, 0.3);
-    animation: pulse 2s infinite;
+.loyalty-hero p {
+  font-size: clamp(18px, 2.5vw, 28px);
+  margin: 15px auto 0;
+  max-width: 1200px;
+  text-align: center;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.5; }
-    100% { transform: scale(1); opacity: 1; }
+/* PROGRESS - Full width */
+.loyalty-progress {
+  background-color: aqua;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
-.points-number {
-    font-size: 48px;
-    font-weight: bold;
-    color: #ffffff;
-    line-height: 1;
-    text-shadow: 0 0 10px rgba(255, 159, 75, 0.5);
+/* Center content inside progress */
+.loyalty-progress h2 {
+  font-size: clamp(25px, 4vw, 45px);
+  font-weight: bold;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.points-label {
-    font-size: 18px;
-    color: #fbe1ce;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-top: 5px;
+.loyalty-progress p {
+  font-size: clamp(18px, 2.5vw, 28px);
+  margin: 15px auto 0;
+  max-width: 1200px;
+  text-align: center;
 }
 
-.tier-info {
-    text-align: center;
-    margin-bottom: 25px;
+/* MEMBERSHIP - Full width */
+.loyalty-membership {
+  background-color: #a9c4cf;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
-.tier-badge {
-    background: linear-gradient(135deg, #b85e1e, #9a4a18);
-    color: #ffffff;
-    padding: 10px 30px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 20px;
-    display: inline-block;
-    margin-bottom: 12px;
-    box-shadow: 0 4px 15px rgba(184, 94, 30, 0.4);
-    border: 1px solid #ff9f4b;
+/* Center content inside membership */
+.loyalty-membership h2 {
+  font-size: clamp(28px, 4vw, 50px);
+  font-weight: bold;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  text-align: center;
 }
 
-.next-tier {
-    color: #fbe1ce;
-    font-size: 16px;
-    background: rgba(184, 94, 30, 0.2);
-    padding: 8px 20px;
-    border-radius: 20px;
-    display: inline-block;
+/* Membership header with edit button */
+.membership-header {
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
-/* Earn Grid */
-.earn-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    padding: 30px 20px;
-    max-width: 1200px;
+.membership-header h2 {
+  margin: 0;
 }
 
-.earn-item {
-    flex: 1 1 200px;
-    min-width: 180px;
-    text-align: center;
-    padding: 25px 20px;
-    background: linear-gradient(145deg, #b85e1e, #9a4a18) !important;
-    border: 2px solid #ff9f4b !important;
-    transition: all 0.3s ease;
+.edit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
-.earn-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(184, 94, 30, 0.5);
-    border-color: #ffffff !important;
+.edit-button:hover {
+  background-color: #0056b3;
 }
 
-.earn-icon {
-    font-size: 48px;
-    margin-bottom: 15px;
-    filter: drop-shadow(0 0 8px rgba(255, 159, 75, 0.6));
+/* Cards container */
+.loyalty-cards {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.earn-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 12px;
-    color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+.loyalty-card {
+  background-color: aqua;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  min-width: 280px;
+  text-align: left;
 }
 
-.earn-points {
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 8px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+.loyalty-card h3 {
+  text-align: center;
+  font-size: clamp(20px, 2.5vw, 35px);
+  margin-bottom: 25px;
 }
 
-.earn-description {
-    color: #fbe1ce;
-    font-size: 15px;
-    font-weight: 500;
+.loyalty-card ul {
+  font-size: clamp(16px, 2vw, 22px);
+  padding-left: 20px;
 }
 
-/* Rewards Container */
-.rewards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    padding: 30px 20px;
-    max-width: 1200px;
+.loyalty-card li {
+  margin-bottom: 15px;
 }
 
-.reward-item {
-    flex: 1 1 250px;
-    min-width: 220px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(145deg, #3a2a1e, #2c1e12) !important;
-    border: 2px solid #b85e1e !important;
-    position: relative;
-    overflow: hidden;
+/* Edit Form Styles */
+.edit-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.reward-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #b85e1e, #ff9f4b, #b85e1e);
-    animation: shimmer 2s infinite;
+.form-group {
+  margin-bottom: 20px;
 }
 
-@keyframes shimmer {
-    0% { background-position: -100% 0; }
-    100% { background-position: 200% 0; }
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
 }
 
-.reward-item:hover {
-    border-color: #ff9f4b !important;
-    box-shadow: 0 10px 30px rgba(184, 94, 30, 0.4);
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-.reward-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #ff9f4b;
-    margin-bottom: 8px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #007bff;
 }
 
-.reward-points {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #b85e1e;
-    background: rgba(184, 94, 30, 0.2);
-    padding: 10px;
-    border-radius: 8px;
+.form-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 30px;
 }
 
-.reward-button {
-    background: linear-gradient(135deg, #b85e1e, #9a4a18);
-    color: #ffffff;
-    border: 2px solid #ff9f4b;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: bold;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 14px;
+.save-button,
+.cancel-button {
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
-.reward-button:hover {
-    background: linear-gradient(135deg, #c96f2c, #b85e1e);
-    border-color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(184, 94, 30, 0.5);
+.save-button {
+  background-color: #28a745;
+  color: white;
 }
 
-.reward-button:disabled {
-    background: #6c4a34;
-    border-color: #8a6e5a;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+.save-button:hover {
+  background-color: #218838;
 }
 
-/* Membership Bonus */
-.membership-bonus {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    padding: 30px 20px;
-    max-width: 1200px;
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
 }
 
-.bonus-item {
-    flex: 1 1 250px;
-    min-width: 220px;
-    padding: 25px;
-    background: linear-gradient(145deg, #3a2a1e, #2c1e12) !important;
-    border: 2px solid #b85e1e !important;
+.cancel-button:hover {
+  background-color: #c82333;
 }
 
-.bonus-item:hover {
-    border-color: #ff9f4b !important;
+/* QR - Full width */
+.loyalty-qr {
+  background-color: aqua;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
-.bonus-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff9f4b;
-    margin-bottom: 8px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+/* Center content inside QR */
+.loyalty-qr h2 {
+  font-size: clamp(25px, 4vw, 45px);
+  font-weight: bold;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.bonus-points {
-    font-size: 16px;
-    color: #fbe1ce;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #b85e1e;
-    font-weight: 600;
+.loyalty-qr p {
+  font-size: clamp(16px, 2vw, 25px);
+  margin: 15px auto;
+  max-width: 1200px;
+  text-align: center;
 }
 
-/* Activity Stack */
-.activity-stack {
-    padding: 30px 20px;
-    width: 100%;
-    max-width: 700px;
+.qr-box {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  background-color: white;
+  border: 3px dashed black;
+  margin: 40px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  position: relative;
 }
 
-.activity-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 25px;
-    background: linear-gradient(145deg, #3a2a1e, #2c1e12);
-    border-radius: 12px;
-    margin-bottom: 10px;
-    border-left: 6px solid #b85e1e;
-    transition: all 0.3s ease;
+.qr-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
 }
 
-.activity-item:hover {
-    transform: translateX(5px);
-    border-left-color: #ff9f4b;
-    background: linear-gradient(145deg, #4a382a, #3a2a1e);
+.qr-user-info {
+  font-size: 14px;
+  color: #666;
+  background-color: #f8f9fa;
+  padding: 8px 15px;
+  border-radius: 20px;
 }
 
-.activity-date {
-    color: #fbe1ce;
-    font-size: 14px;
-    min-width: 100px;
-    font-weight: 600;
+.qr-placeholder {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, #f3f3f3 25%, #e9e9e9 25%, #e9e9e9 50%, #f3f3f3 50%, #f3f3f3 75%, #e9e9e9 75%, #e9e9e9);
+  background-size: 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #333;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #333;
 }
 
-.activity-desc {
-    color: #ffffff;
-    font-weight: 600;
-    flex-grow: 1;
-    margin-left: 25px;
-}
-
-.activity-points {
-    color: #ff9f4b;
-    font-weight: bold;
-    font-size: 16px;
-    text-shadow: 0 0 8px rgba(255, 159, 75, 0.3);
-}
-
-.positive-points {
-    color: #4caf50;
-}
-
-.negative-points {
-    color: #ff6b6b;
-}
-
-/* CTA Button - Orange theme */
-.cta-button {
-    background: linear-gradient(135deg, #b85e1e, #9a4a18);
-    color: #ffffff;
-    border: 2px solid #ff9f4b;
-    padding: 14px 35px;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    box-shadow: 0 5px 20px rgba(184, 94, 30, 0.3);
-}
-
-.cta-button:hover {
-    background: linear-gradient(135deg, #c96f2c, #b85e1e);
-    border-color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(184, 94, 30, 0.5);
-}
-
-/* Section Titles - Override for orange theme */
-.membership-section-title {
-    color: #ff9f4b !important;
-    font-size: 36px !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    position: relative;
-    display: inline-block;
-    padding-bottom: 15px;
-}
-
-.membership-section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #b85e1e, #ff9f4b);
-    border-radius: 2px;
-}
-
-/* Boxed items override */
-.boxed {
-    background: linear-gradient(145deg, #3a2a1e, #2c1e12) !important;
-    border: 2px solid #b85e1e !important;
-    border-radius: 15px !important;
-    transition: all 0.3s ease;
-}
-
-.boxed:hover {
-    border-color: #ff9f4b !important;
-}
-
-/* Left align text */
-.left-align {
-    color: #fbe1ce !important;
-    font-size: 15px;
-    margin-bottom: 8px;
-    list-style-type: none;
-    position: relative;
-    padding-left: 20px;
-}
-
-.left-align::before {
-    content: '✦';
-    color: #ff9f4b;
-    position: absolute;
-    left: 0;
-    font-size: 14px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .earn-grid, .rewards-container, .membership-bonus {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .earn-item, .reward-item, .bonus-item {
-        width: 100%;
-        max-width: 350px;
-    }
-    
-    .activity-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-    
-    .activity-desc {
-        margin-left: 0;
-    }
-    
-    .activity-date {
-        min-width: auto;
-    }
-    
-    .points-circle {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .points-number {
-        font-size: 40px;
-    }
-    
-    .membership-section-title {
-        font-size: 28px !important;
-    }
-}
-
-/* Loading animation for points */
-@keyframes glow {
-    0% { box-shadow: 0 0 5px #b85e1e; }
-    50% { box-shadow: 0 0 20px #ff9f4b; }
-    100% { box-shadow: 0 0 5px #b85e1e; }
-}
-
-.glow-effect {
-    animation: glow 2s infinite;
-}
-
-/* Custom scrollbar for loyalty page */
-.loyalty-format::-webkit-scrollbar {
-    width: 10px;
-}
-
-.loyalty-format::-webkit-scrollbar-track {
-    background: #2c1e12;
-}
-
-.loyalty-format::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #b85e1e, #9a4a18);
-    border-radius: 5px;
-}
-
-.loyalty-format::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #c96f2c, #b85e1e);
+.qr-note {
+  margin-top: 20px;
+  font-style: italic;
+  text-align: center;
 }

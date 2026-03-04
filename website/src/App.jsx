@@ -2,6 +2,7 @@ import HomePage from './pages/home-page.jsx'
 import AboutPage from './pages/about-us.jsx'
 import FrequentlyAskedPage from './pages/frequently-asked.jsx'
 import GiftCardPage from './pages/gift-card.jsx'
+import LoyaltyPage from './pages/loyalty-page.jsx'
 import ContactPage from './pages/contact-us.jsx'
 import './App.css'
 import './css/home-page.css'
@@ -26,6 +27,8 @@ function App() {
                 <Nav.Link as={Link} to="/frequently-asked" className="text-white px-4 d-none d-lg-block">Frequently Asked Questions</Nav.Link>
                 <Nav.Link as={Link} to="/contact-us" className="text-white px-4 d-none d-lg-block">Contact Us</Nav.Link>
                 <Nav.Link as={Link} to="/gift-card" className="text-white px-4 d-none d-lg-block">Gift Cards</Nav.Link>
+                <Nav.Link as={Link} to="/loyalty-page" className="text-white px-4 d-none d-lg-block">Loyalty Program</Nav.Link>
+            
               </Nav>
             </Container>
           </Navbar>
@@ -39,6 +42,7 @@ function App() {
           <Route path="/frequently-asked" element={<FrequentlyAskedPage />} />
           <Route path="/contact-us" element={<ContactPage />} />
           <Route path="/gift-card" element={<GiftCardPage />} />
+          <Route path="/loyalty-page" element={<LoyaltyPage />} />
         </Routes>
       </BrowserRouter>
     </>

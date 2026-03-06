@@ -55,10 +55,66 @@ function GiftCardsPage() {
     }
   ];
   
+  /* Frequently asked questions about gift cards
+  const faqData = [
+    {
+      category: "Gift Card Questions",
+      questions: [
+        {
+          question: "What are BB, DB, and UB?",
+          answer: "These are our prepaid book codes! BB stands for Basic Book, DB for Deluxe Book, and UB for Ultimate Book. Each is a booklet of prepurchased washes that you can use over time."
+        },
+        {
+          question: "Do I save money buying a prepaid book?",
+          answer: "Yes! We offer a little discount when you buy multiple washes at once. The more washes you buy, the more you save!"
+        },
+        {
+          question: "How do I use my prepaid book?",
+          answer: "Simply present your book at the time of your wash. Our staff will track your remaining washes to ensure you get every wash you've paid for."
+        },
+        {
+          question: "Can employees use these?",
+          answer: "Employees receive 1 free wash per week as part of their benefits. This is separate from the prepaid books available to customers."
+        },
+        {
+          question: "Do you wash RVs?",
+          answer: "Yes! We offer RV hand washes priced by the foot. Please check with an attendant for pricing and availability."
+        }
+      ]
+    },
+    {
+      category: "Terms & Policies",
+      questions: [
+        {
+          question: "Do prepaid books expire?",
+          answer: "Our prepaid books are valid for [X] months from the date of purchase. Please check your book for the specific expiration date."
+        },
+        {
+          question: "Can I get a refund on unused washes?",
+          answer: "Prepaid books are non-refundable, but they make great gifts if you can't use them! Please see an attendant if you have concerns about your book."
+        },
+        {
+          question: "Can I share my prepaid book with friends?",
+          answer: "Absolutely! Prepaid books make wonderful gifts and can be used by anyone you share them with."
+        }
+      ]
+    }
+  ]; */
+  
   // Important note about audit trail - this will be displayed as an admin note
   const adminNote = "Note to staff: All prepaid book transactions require an audit trail. Please ensure accurate entry of BB, DB, and UB codes to prevent errors.";
   
   // ===== END EDITABLE CONTENT =====
+  
+  const [openItems, setOpenItems] = useState({});
+  
+  const toggleQuestion = (categoryIndex, questionIndex) => {
+    const key = `${categoryIndex}-${questionIndex}`;
+    setOpenItems(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
   
   return (
     <>
@@ -94,6 +150,38 @@ function GiftCardsPage() {
                     <button className="buy-button">Purchase Book</button>
                   </div>
                 ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* FAQ Section */}
+        <div className="giftcards-faq">
+          <h2>Frequently Asked Questions</h2>
+          
+          {faqData.map((category, categoryIndex) => (
+            <div key={categoryIndex} className="faq-category">
+              <h3 className="faq-category-title">{category.category}</h3>
+              <div className="questions-list">
+                {category.questions.map((item, questionIndex) => {
+                  const key = `faq-${categoryIndex}-${questionIndex}`;
+                  const isOpen = openItems[key];
+                  
+                  return (
+                    <div key={questionIndex} className={`faq-item ${isOpen ? 'open' : ''}`}>
+                      <button
+                        className="faq-question"
+                        onClick={() => toggleQuestion(categoryIndex, questionIndex)}
+                      >
+                        <span>{item.question}</span>
+                        <span className="faq-icon">{isOpen ? '−' : '+'}</span>
+                      </button>
+                      <div className="faq-answer">
+                        <p>{item.answer}</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           ))}

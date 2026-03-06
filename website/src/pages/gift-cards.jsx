@@ -60,7 +60,7 @@ function GiftCardsPage() {
   
   // ===== END EDITABLE CONTENT =====
   
-  /* const [openItems, setOpenItems] = useState({});
+  const [openItems, setOpenItems] = useState({});
   
   const toggleQuestion = (categoryIndex, questionIndex) => {
     const key = `${categoryIndex}-${questionIndex}`;
@@ -68,7 +68,7 @@ function GiftCardsPage() {
       ...prev,
       [key]: !prev[key]
     }));
-  }; */
+  };
   
   return (
     <>

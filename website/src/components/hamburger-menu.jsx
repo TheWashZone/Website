@@ -14,6 +14,7 @@ function HamburgerMenu() {
     { path: "/about-us", label: "About" },
     { path: "/frequently-asked", label: "Frequently Asked" },
     { path: "/contact-us", label: "Contact Us" },
+    { path: "/loyalty-page", label: "Loyalty Program" },
     { path: "/gift-card", label: "Gift Cards" }
   ];
 

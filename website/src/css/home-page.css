@@ -335,12 +335,6 @@ li {
         font-size: 24px;
     }
 
-    /* .orange-background {
-        padding: 50px;
-        height: 250px;
-        width: 100vw;
-    } */
-
     .orange-background-memberships {
         height: 800px;
         width: 100vw;
@@ -385,6 +379,7 @@ li {
         border-radius: 15px;
         height: 300px;
         width: 300px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
     }
 
     .monthly-membership-item {
@@ -392,12 +387,14 @@ li {
         border-radius: 15px;
         height: 300px;
         width: 300px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
     }
 
     .membership-item-title {
         font-size: 32px;
         font-weight: bold;
         margin-bottom: 10px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
     }
 
     .title-text {
@@ -416,6 +413,8 @@ li {
         margin-top: 20px;
         font-size: 24px;
         width: 400px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
     }
 
     .hours-disclaimer {
@@ -463,19 +462,13 @@ li {
         font-size: 28px;
     }
 
-    /* .orange-background {
-        padding: 75px;
-        height: 300px;
-        width: 100vw;
-    } */
-
     .orange-background-memberships {
         height: 900px;
         width: 100vw;
     }
 
     .monthly-memberships {
-        height: 900px;
+        height: 550px;
         width: 100vw;
         margin-top: 20px;
         margin-bottom: 20px;
@@ -502,24 +495,30 @@ li {
     }
 
     .membership-item {
-        border: 2px solid white;
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
         border-radius: 15px;
         height: 350px;
         width: 350px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
     }
 
     .other-item {
-        border: 2px solid white;
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
         border-radius: 15px;
         height: 350px;
         width: 350px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
     }
 
     .monthly-membership-item {
         border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
         border-radius: 15px;
         height: 350px;
         width: 350px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
     }
 
     .membership-item-title {
@@ -544,6 +543,8 @@ li {
         margin-top: 20px;
         font-size: 28px;
         width: 600px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
     }
 
     .hours-disclaimer {
@@ -591,19 +592,13 @@ li {
         font-size: 28px;
     }
 
-    /* .orange-background {
-        padding: 100px;
-        height: 1000px;
-        width: 100vw;
-    } */
-
     .orange-background-memberships {
         height: 1000px;
         width: 100vw;
     }
 
     .monthly-memberships {
-        height: 1000px;
+        height: 600px;
         width: 100vw;
         margin-top: 20px;
         margin-bottom: 20px;
@@ -630,24 +625,30 @@ li {
     }
 
     .membership-item {
-        border: 2px solid white;
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
         border-radius: 15px;
         height: 400px;
         width: 400px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .other-item {
-        border: 2px solid white;
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
         border-radius: 15px;
         height: 400px;
         width: 400px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .monthly-membership-item {
         border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
         border-radius: 15px;
         height: 400px;
         width: 400px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .membership-item-title {
@@ -672,6 +673,8 @@ li {
         margin-top: 20px;
         font-size: 28px;
         width: 600px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .hours-disclaimer {
@@ -716,29 +719,23 @@ li {
     }
     
     li {
-        font-size: 32px;
+        font-size: 28px;
     }
 
-    /* .orange-background {
-        padding: 125px;
-        height: 450px;
-        width: 100vw;
-    } */
-
     .orange-background-memberships {
-        height: 1200px;
+        height: 600px;
         width: 100vw;
     }
 
     .monthly-memberships {
-        height: 1200px;
+        height: 600px;
         width: 100vw;
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
     .other-options {
-        height: 1200px;
+        height: 600px;
         width: 100vw;
     }
 
@@ -758,24 +755,30 @@ li {
     }
 
     .membership-item {
-        border: 2px solid white;
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
         border-radius: 15px;
-        height: 500px;
-        width: 500px;
+        height: 380px;
+        width: 380px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .other-item {
-        border: 2px solid white;
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
         border-radius: 15px;
-        height: 500px;
-        width: 500px;
+        height: 380px;
+        width: 380px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .monthly-membership-item {
         border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
         border-radius: 15px;
-        height: 500px;
-        width: 500px;
+        height: 380px;
+        width: 380px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .membership-item-title {
@@ -800,6 +803,8 @@ li {
         margin-top: 20px;
         font-size: 30px;
         width: 600px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .hours-disclaimer {
@@ -847,29 +852,20 @@ li {
         font-size: 32px;
     }
 
-    /* .orange-background {
-        padding: 125px;
-        height: 500px;
-        width: 1000px;
-    } */
-
     .orange-background-memberships {
-        height: 1300px;
+        height: 650px;
         width: 100vw;
-        /* padding: 20px; */
     }
 
     .monthly-memberships {
         height: 650px;
-        /* width: 1000px; */
         width: 100vw;
-        /* padding: 20px; */
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
     .other-options {
-        height: 1300px;
+        height: 650px;
         width: 100vw;
     }
 
@@ -908,16 +904,18 @@ li {
         border: 2px solid black;
         box-shadow: 6px 6px 12px black;
         border-radius: 15px;
-        height: 550px;
-        width: 550px;
+        height: 450px;
+        width: 450px;
         background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .other-item {
         border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
         border-radius: 15px;
-        height: 550px;
-        width: 550px;
+        height: 450px;
+        width: 450px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .monthly-membership-item {
@@ -941,6 +939,8 @@ li {
         margin-top: 20px;
         font-size: 30px;
         width: 600px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
     }
 
     .hours-disclaimer {

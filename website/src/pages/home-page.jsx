@@ -35,14 +35,14 @@ function HomePage() {
                 <li className="" data-testid="deluxe4">HAND DRY</li>
               </ul>
             </div>
-            <div className="membership-item" data-testid="box3">
+            {/* <div className="membership-item" data-testid="box3">
               <div className="membership-item-title">Basic - $10.00</div>
               <ul>
                 <li className="" data-testid="basic1">WASH AND SHINE</li>
                 <li className="" data-testid="basic2">HAND DRY</li>
               </ul>
               <p className="">No longer accepting new subscriptions for this wash type</p>
-            </div>
+            </div> */}
             <div className="membership-item" data-testid="box4">
               <div className="membership-item-title">Add Ons</div>
               <ul>
@@ -76,14 +76,14 @@ function HomePage() {
                 <li className="" data-testid="deluxe4">HAND DRY</li>
               </ul>
             </div>
-            <div className="monthly-membership-item" data-testid="box3">
+            {/* <div className="monthly-membership-item" data-testid="box3">
               <div className="membership-item-title">Basic - $47.50</div>
               <ul>
                 <li className="" data-testid="basic1">WASH AND SHINE</li>
                 <li className="" data-testid="basic2">HAND DRY</li>
               </ul>
               <p className="">No longer accepting new subscriptions for this wash type</p>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="other-options">

@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { useState } from 'react';
+import * as React from 'react';
 import '../css/gift-cards.css';
 
 function GiftCardsPage() {

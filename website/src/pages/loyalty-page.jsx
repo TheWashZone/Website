@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import '../css/gift-cards.css';
 
 function GiftCardsPage() {

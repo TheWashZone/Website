@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { useState } from 'react';
 import '../css/gift-cards.css';
 
@@ -59,16 +60,6 @@ function GiftCardsPage() {
   const adminNote = "Note to staff: All prepaid book transactions require an audit trail. Please ensure accurate entry of BB, DB, and UB codes to prevent errors.";
   
   // ===== END EDITABLE CONTENT =====
-  
-  const [openItems, setOpenItems] = useState({});
-  
-  const toggleQuestion = (categoryIndex, questionIndex) => {
-    const key = `${categoryIndex}-${questionIndex}`;
-    setOpenItems(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
-  };
   
   return (
     <>

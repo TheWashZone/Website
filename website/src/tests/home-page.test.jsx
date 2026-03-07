@@ -11,21 +11,13 @@ describe('HomePage Component', () => {
   });
 });
 
-// describe('Banner Image', () => {
-//   it('renders banner image with correct alt text', () => {
-//     render(<HomePage />);
-//     const bannerImage = screen.getByAltText('banner image');
-//     expect(bannerImage).toBeInTheDocument();
-//   });
-// });
-
-// describe('The Wash Zone Title', () => {
-//   it('renders the title: "The Wash Zone"', () => {
-//     render(<HomePage />);
-//     const titleElement = screen.getByText('The Wash Zone').closest('.title');
-//     expect(titleElement).toBeInTheDocument();
-//   });
-// });
+describe('The Wash Zone Title', () => {
+  it('renders the title: "The Wash Zone"', () => {
+    render(<HomePage />);
+    const titleElement = screen.getByText('The Wash Zone').closest('.title');
+    expect(titleElement).toBeInTheDocument();
+  });
+});
 
 // describe('The Wash Zone Subtitle', () => {
 //   it('renders the subtitle', () => {

@@ -31,7 +31,7 @@
 }
 
 .contact-us-map {
-  background-color: #CFA55B;
+  background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
   text-align: center;
   display: flex;
   align-items: center;
@@ -40,14 +40,13 @@
 }
 
 .contact-us-title {
-  font-size: 36px;
+  padding-top: 60px;
+  font-size: 48px;
   font-weight: bold;
-  /* font-family: 'Open Sans', sans-serif; */
-  /* text-decoration: underline; */
 }
 
 .contact-us-item {
-  margin-top: 100px;
+  margin-top: 75px;
   font-size: 24px;
 }
 

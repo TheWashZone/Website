@@ -14,10 +14,10 @@ function HomePage() {
           <div className="top-left-address">Walla Walla Washington</div>
         </div>
         <div className="orange-background-memberships">
-          <div className="membership-title">SINGLE WASHES</div>
+          <div className="section-title">SINGLE WASHES</div>
           <div className="membership-flex">
-            <div className="membership-item" data-testid="box1">
-              <div className="membership-item-title">Ultimate - $16.50</div>
+            <div className="item" data-testid="box1">
+              <div className="item-title">Ultimate - $16.50</div>
               <ul>
                 <li className="" data-testid="ultimate1">WHEEL BRITE</li>
                 <li className="" data-testid="ultimate2">WASH AND SHINE</li>
@@ -26,8 +26,8 @@ function HomePage() {
                 <li className="" data-testid="ultimate5">HAND DRY</li>
               </ul>
             </div>
-            <div className="membership-item" data-testid="box2">
-              <div className="membership-item-title">Deluxe - $13.50</div>
+            <div className="item" data-testid="box2">
+              <div className="item-title">Deluxe - $13.50</div>
               <ul>
                 <li className="" data-testid="deluxe1">WASH AND SHINE</li>
                 <li className="" data-testid="deluxe2">FOAMING POLISH</li>
@@ -35,16 +35,8 @@ function HomePage() {
                 <li className="" data-testid="deluxe4">HAND DRY</li>
               </ul>
             </div>
-            {/* <div className="membership-item" data-testid="box3">
-              <div className="membership-item-title">Basic - $10.00</div>
-              <ul>
-                <li className="" data-testid="basic1">WASH AND SHINE</li>
-                <li className="" data-testid="basic2">HAND DRY</li>
-              </ul>
-              <p className="">No longer accepting new subscriptions for this wash type</p>
-            </div> */}
-            <div className="membership-item" data-testid="box4">
-              <div className="membership-item-title">Add Ons</div>
+            <div className="item" data-testid="box4">
+              <div className="item-title">Add Ons</div>
               <ul>
                 <li className="" data-testid="addOn1">WAX: $2.35</li>
                 <li className="" data-testid="addOn2">WHEEL BRITE: $3.25</li>
@@ -55,10 +47,10 @@ function HomePage() {
           </div>
         </div>
         <div className="monthly-memberships">
-          <div className="membership-title">MONTHLY PLANS</div>
+          <div className="section-title">MONTHLY PLANS</div>
           <div className="membership-flex">
-            <div className="monthly-membership-item" data-testid="box1">
-              <div className="membership-item-title">Ultimate - $77.50</div>
+            <div className="item" data-testid="box1">
+              <div className="item-title">Ultimate - $77.50</div>
               <ul>
                 <li className="" data-testid="ultimate1">WHEEL BRITE</li>
                 <li className="" data-testid="ultimate2">WASH AND SHINE</li>
@@ -67,8 +59,8 @@ function HomePage() {
                 <li className="" data-testid="ultimate5">HAND DRY</li>
               </ul>
             </div>
-            <div className="monthly-membership-item" data-testid="box2">
-              <div className="membership-item-title">Deluxe - $62.50</div>
+            <div className="item" data-testid="box2">
+              <div className="item-title">Deluxe - $62.50</div>
               <ul>
                 <li className="" data-testid="deluxe1">WASH AND SHINE</li>
                 <li className="" data-testid="deluxe2">FOAMING POLISH</li>
@@ -76,34 +68,26 @@ function HomePage() {
                 <li className="" data-testid="deluxe4">HAND DRY</li>
               </ul>
             </div>
-            {/* <div className="monthly-membership-item" data-testid="box3">
-              <div className="membership-item-title">Basic - $47.50</div>
-              <ul>
-                <li className="" data-testid="basic1">WASH AND SHINE</li>
-                <li className="" data-testid="basic2">HAND DRY</li>
-              </ul>
-              <p className="">No longer accepting new subscriptions for this wash type</p>
-            </div> */}
           </div>
         </div>
         <div className="other-options">
-          <div className="membership-title">OTHER OPTIONS</div>
+          <div className="section-title">OTHER OPTIONS</div>
           <div className="membership-flex">
-            <div className="other-item" data-testid="box1">
-              <div className="membership-item-title">PREPAID WASH BOOKS</div>
+            <div className="item" data-testid="box1">
+              <div className="item-title">PREPAID WASH BOOKS</div>
               <ul>
                 <li className="" data-testid="">Ask an attendant</li>
                 <li className="" data-testid="">There are discounts for purchasing this way</li>
               </ul>
             </div>
-            <div className="other-item" data-testid="box2">
-              <div className="membership-item-title">BUSINESS ACCOUNTS</div>
+            <div className="item" data-testid="box2">
+              <div className="item-title">BUSINESS ACCOUNTS</div>
               <ul>
                 <li className="" data-testid="deluxe1">Ask an attendant</li>
               </ul>
             </div>
-            <div className="other-item" data-testid="box3">
-              <div className="membership-item-title">RV WASH</div>
+            <div className="item" data-testid="box3">
+              <div className="item-title">RV WASH</div>
               <ul>
                 <li className="" data-testid="basic1">$2.00 per foot</li>
                 <li className="" data-testid="basic1">Call to schedule an appointment</li>

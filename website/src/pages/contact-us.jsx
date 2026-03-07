@@ -5,9 +5,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 function ContactPage() {
   return (
     <>
-      <div className="container-fluid p-0 w-100 header-container">
-        <img src={banner} className="header-img" alt="banner image" />
-      </div>
       <div className="contact-us-format">
         <div className="contact-us-info">
           <div className="contact-us-title">
@@ -17,7 +14,7 @@ function ContactPage() {
             <i className="bi bi-telephone icon-format"></i> Call us at: 509 876-2455
           </div>
           <div className="message">
-            If we don't answer please leave us a message
+            If we aren't able to answer please leave us a message
           </div>
           <div className="contact-us-item">
             <i className="bi bi-facebook icon-format"></i> Check us out on Facebook at: <a href="https://www.facebook.com/profile.php?id=100054247250715">The Wash Zone</a>

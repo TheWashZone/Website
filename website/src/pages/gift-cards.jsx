@@ -1,16 +1,12 @@
-import { useState } from 'react';
 import '../css/gift-cards.css';
 
 function GiftCardsPage() {
-  // Simple useState to satisfy linter
-  const [dummy] = useState(null);
-  
+
   // ===== EDIT YOUR CONTENT BELOW =====
   
   const pageTitle = "Gift Cards & Prepaid Washes";
   const pageSubtitle = "The perfect gift for car lovers - buy multiple washes and save!";
   
-  // Prepaid book options based on your notes
   const prepaidBooks = [
     {
       category: "Prepaid Wash Books",
@@ -58,69 +54,63 @@ function GiftCardsPage() {
     }
   ];
   
-  // Important note about audit trail - this will be displayed as an admin note
   const adminNote = "Note to staff: All prepaid book transactions require an audit trail. Please ensure accurate entry of BB, DB, and UB codes to prevent errors.";
-  
+
   // ===== END EDITABLE CONTENT =====
   
   return (
-    <>
-      <div className="giftcards-page">
-        {/* Hero Section */}
-        <div className="giftcards-hero">
-          <h1>{pageTitle}</h1>
-          <p className="subtitle">{pageSubtitle}</p>
-        </div>
-
-        {/* Prepaid Books Section */}
-        <div className="giftcards-content">
-          {prepaidBooks.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="giftcards-category">
-              <h2 className="category-title">{category.category}</h2>
-              <p className="category-description">{category.description}</p>
-              
-              <div className="books-grid">
-                {category.books.map((book, bookIndex) => (
-                  <div key={bookIndex} className="book-card">
-                    <div className="book-code">{book.code}</div>
-                    <h3 className="book-name">{book.name}</h3>
-                    <p className="book-description">{book.description}</p>
-                    
-                    <div className="book-details">
-                      <div className="book-price">{book.price}</div>
-                      <div className="book-count">{book.washCount}</div>
-                      {book.discount && (
-                        <div className="book-discount">{book.discount}</div>
-                      )}
-                    </div>
-                    
-                    <button className="buy-button">Purchase Book</button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        {/* Employee Info Section */}
-        <div className="giftcards-employee">
-          <h3>Employee Benefits</h3>
-          <p>Team members receive 1 free wash per week. Please see management for details.</p>
-        </div>
-        
-        {/* Admin Note (only visible to staff) - you can conditionally render this based on user role */}
-        <div className="admin-note">
-          <p><strong>⚠️ Admin Note:</strong> {adminNote}</p>
-        </div>
-        
-        {/* Contact Section */}
-        <div className="giftcards-contact">
-          <h3>Questions about our gift cards?</h3>
-          <p>Stop by or give us a call - we're happy to help you choose the perfect prepaid book!</p>
-          <button className="contact-button">Contact Us</button>
-        </div>
+    <div className="giftcards-page">
+      
+      <div className="giftcards-hero">
+        <h1>{pageTitle}</h1>
+        <p className="subtitle">{pageSubtitle}</p>
       </div>
-    </>
+
+      <div className="giftcards-content">
+        {prepaidBooks.map((category, categoryIndex) => (
+          <div key={categoryIndex} className="giftcards-category">
+            <h2 className="category-title">{category.category}</h2>
+            <p className="category-description">{category.description}</p>
+            
+            <div className="books-grid">
+              {category.books.map((book, bookIndex) => (
+                <div key={bookIndex} className="book-card">
+                  <div className="book-code">{book.code}</div>
+                  <h3 className="book-name">{book.name}</h3>
+                  <p className="book-description">{book.description}</p>
+                  
+                  <div className="book-details">
+                    <div className="book-price">{book.price}</div>
+                    <div className="book-count">{book.washCount}</div>
+                    {book.discount && (
+                      <div className="book-discount">{book.discount}</div>
+                    )}
+                  </div>
+                  
+                  <button className="buy-button">Purchase Book</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div className="giftcards-employee">
+        <h3>Employee Benefits</h3>
+        <p>Team members receive 1 free wash per week. Please see management for details.</p>
+      </div>
+      
+      <div className="admin-note">
+        <p><strong>⚠️ Admin Note:</strong> {adminNote}</p>
+      </div>
+      
+      <div className="giftcards-contact">
+        <h3>Questions about our gift cards?</h3>
+        <p>Stop by or give us a call - we're happy to help you choose the perfect prepaid book!</p>
+        <button className="contact-button">Contact Us</button>
+      </div>
+
+    </div>
   );
 }
 

@@ -20,7 +20,7 @@ function AboutPage() {
   const whyChooseUsItems = [
     {
       title: "Membership plan",
-      description: "If you enjoy having a clean car all the time, our flexible and affordable memebership plans are perfect for you."
+      description: "If you enjoy having a clean car all the time, our flexible and affordable membership plans are perfect for you."
     },
     {
       title: "Experienced Team",

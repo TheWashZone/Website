@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/gift-cards.css';
+import '../css/loyalty-page.css';
 
 function GiftCardsPage() {
   // ===== EDIT YOUR CONTENT BELOW =====

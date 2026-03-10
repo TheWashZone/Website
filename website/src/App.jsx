@@ -1,7 +1,7 @@
 import HomePage from './pages/home-page.jsx'
 import AboutPage from './pages/about-us.jsx'
 import FrequentlyAskedPage from './pages/frequently-asked.jsx'
-import GiftCardPage from './pages/gift-card.jsx'
+import GiftCardPage from './pages/gift-cards.jsx'
 import LoyaltyPage from './pages/loyalty-page.jsx'
 import ContactPage from './pages/contact-us.jsx'
 import './App.css'

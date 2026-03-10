@@ -1,181 +1,835 @@
-.title {
-  margin-top: 50px;
-  font-weight: bold;
-  font-size: 50px;
-}
-
-.subtitle {
-  font-size: 40px;
-  padding-bottom: 20px;
-}
-
-.membership-section-title {
-  font-size: 40px;
-  /* padding-bottom: 20px; */
-  font-weight: bold;
-}
-
-.boxed {
-  border: 2px solid black;
-  border-radius: 20px;
-  margin: 10px;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  background-color: aqua;
-}
-
-.colored {
-  /* background: linear-gradient(135deg, lightblue, #6eb5d4); */
-  background: lightblue;
-}
-
-.colored2 {
-  /* background: linear-gradient(135deg, aqua, #00b8b8); */
-  background: aqua;
-  text-align: center;
-}
-
-.home-format {
-  margin-top: 206px;
-  font-family: 'Open Sans', sans-serif;
-}
-
-.home-format>div {
-  padding: 20px;
-  flex: 1;
-  min-width: 300px;
-}
-
-.home-format img {
-  max-width: 100%;
-  height: auto;
-}
-
-.header-container {
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
 .header-img {
-  height: 150px !important;
-  object-fit: cover;
-  margin-top: 56px;
-  width: 100% !important;
-  max-width: none !important;
-  display: block;
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.hours {
-  font-size: 30px;
-  text-align: left;
+.container-fluid {
+    padding: 0 !important;
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw !important;
 }
 
-.memberships {
-  font-size: 20px;
-  text-align: left;
-  margin-left: 30%;
-  margin-right: 30%;
-}
-
-.membership-title {
-  font-size: 35px;
-  /* font-weight: bold; */
-  margin-bottom: 10px;
-}
-
-.hours-parent {
-  font-size: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.hours-stack {
-  border: black 2px solid;
-  border-radius: 15px;
-  width: fit-content;
-  padding: 50px;
-  margin: 0 auto;
-  background-color: lightblue;
-}
-
-.membership-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.membership-item {
-  font-size: 30px;
-  text-wrap: wrap;
-  width: 30%;
-  margin: 10px auto;
-  min-width: 280px;
-  padding: 20px;
-}
-
-.left-align {
-  text-align: left;
-}
-
-.basic-disclaimer {
-  font-size: 20px;
+.image-container {
+  position: relative;
   text-align: center;
-  margin-top: 70px;
+  color: white;
 }
 
-@media (max-width: 1000px) {
-  .home-format {
-    flex-direction: column;
-    align-items: center;
-  }
+.top-left-title {
+  position: absolute;
+  bottom: 64px;
+  left: 32px;
+  z-index: 10;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 48px;
+  padding-bottom: 10px;
 }
 
-@media (max-width: 700px) {
-  .membership-item {
-    width: 80%;
-  }
+.top-left-address {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  z-index: 10;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 24px;
+  padding-bottom: 10px;
 }
 
-@media (max-width: 500px) {
-  .home-format>div {
-    padding: 10px;
-    min-width: unset;
-  }
+.carwash-img {
+    width: 100%;
+    height: auto;
+    margin: 20px auto;
+}
 
-  .boxed {
-    margin: 5px;
-  }
+.orange-background-memberships {
+    color: black;
+    text-align: center;
+    height: 950px;
+    width: 100vw;
+    margin: 0 auto;
+}
 
-  .membership-item {
-    padding: 10px;
-    width: 85%;
-    min-width: unset;
-    max-width: 350px;
-  }
-
-  .subtitle {
-    font-size: 30px;
-  }
-
-  .title {
+.monthly-memberships {
+    background-color: white;
+    color: black;
+    text-align: center;
+    height: 700px;
+    width: 100vw;
+    margin: 0 auto;
     margin-top: 20px;
-  }
+    margin-bottom: 20px;
+}
 
-  .hours-parent {
-    margin-top: 5px;
-    margin-bottom: 10px;
-  }
+.other-options {
+    color: black;
+    text-align: center;
+    height: 950px;
+    width: 100vw;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
-  .membership-section-title {
-    margin-top: 5px;
+.section-title {
+    font-size: 36px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.membership-flex {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 20px;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.item {
+    border: 2px solid black;
+    border-radius: 15px;
+    height: 250px;
+    width: 300px;
+    background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
+}
+
+.item:hover {
+    background-color: #E3963E;
+}
+
+.item-title {
+    font-size: 32px;
+    font-weight: bold;
     margin-bottom: 10px;
-  }
+}
+
+.title-text {
+    font-size: 36px;
+    font-weight: bold;
+    padding-bottom: 40px;
+}
+
+.hours-item {
+    border: 2px solid black;
+    border-radius: 15px;
+    height: 350x;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 18px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
+}
+
+.hours-item:hover {
+    background-color: #f0f0f0;
+}
+
+.hours-disclaimer {
+        width: 300px;
+        margin: 10px auto;
+    }
+
+.hours-title {
+    font-size: 36px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+ul {
+    text-align: left;
+}
+
+li {
+    font-size: 18px;
+}
+
+.hours-section {
+    padding-top: 20px;
+    padding-bottom: 50px;
+    background-color: white;
+}
+
+@media (min-width: 460px) {
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 28px;
+    }
+
+    .orange-background-memberships {
+        height: 1400px;
+        width: 100vw;
+    }
+
+    .monthly-memberships {
+        height: 1000px;
+        width: 100vw;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        height: 1400px;
+        width: 100vw;
+    }
+
+    .section-title {
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .item {
+        border: 2px solid black;
+        border-radius: 15px;
+        height: 400px;
+        width: 400px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
+    }
+
+    .item-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 48px;
+        font-weight: bold;
+        padding-bottom: 40px;
+    }
+
+    .title-text {
+        font-size: 48px;
+        font-weight: bold;
+        padding-bottom: 30px;
+    }
+
+    .address-text {
+        font-size: 24px;
+    }
+
+    .hours-item {
+        height: 450px;
+        width: 500px;
+        margin-top: 20px;
+        font-size: 28px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
+    }
+
+    .hours-disclaimer {
+        width: 300px;
+        margin: 10px auto;
+    }
+
+    .hours-title {
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .top-left-title {
+        position: absolute;
+        bottom: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 64px;
+        padding-bottom: 15px;
+    }
+
+    .top-left-address {
+        position: absolute;
+        bottom: 32px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 36px;
+        padding-bottom: 10px;
+    }
+}
+
+@media (min-width: 640px) {
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 24px;
+    }
+
+    .orange-background-memberships {
+        height: 800px;
+        width: 100vw;
+    }
+
+    .monthly-memberships {
+        height: 500px;
+        width: 100vw;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        height: 800px;
+        width: 100vw;
+    }
+
+    .section-title {
+        font-size: 48px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .item {
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
+        border-radius: 15px;
+        height: 300px;
+        width: 300px;
+    }
+
+    .item-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 48px;
+        font-weight: bold;
+        padding-bottom: 30px;
+    }
+
+    .address-text {
+        font-size: 30px;
+    }
+
+    .hours-item {
+        height: 400px;
+        width: 250px;
+        margin-top: 20px;
+        font-size: 24px;
+        width: 400px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
+    }
+
+    .hours-disclaimer {
+        width: 400px;
+        margin: 10px auto;
+    }
+
+    .hours-title {
+        font-size: 48px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .top-left-title {
+        position: absolute;
+        top: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 64px;
+        padding-bottom: 20px;
+    }
+
+    .top-left-address {
+        position: absolute;
+        top: 156px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 36px;
+        padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 28px;
+    }
+
+    .orange-background-memberships {
+        height: 900px;
+        width: 100vw;
+    }
+
+    .monthly-memberships {
+        height: 550px;
+        width: 100vw;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        height: 900px;
+        width: 100vw;
+    }
+
+    .section-title {
+        font-size: 48px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .item {
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
+        border-radius: 15px;
+        height: 350px;
+        width: 350px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
+    }
+
+    .item-title {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 48px;
+        font-weight: bold;
+        padding-bottom: 30px;
+    }
+
+    .address-text {
+        font-size: 30px;
+    }
+
+    .hours-item {
+        height: 450px;
+        width: 300px;
+        margin-top: 20px;
+        font-size: 28px;
+        width: 600px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);  
+    }
+
+    .hours-disclaimer {
+        width: 600px;
+        margin: 10px auto;
+    }
+
+    .hours-title {
+        font-size: 48px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .top-left-title {
+        position: absolute;
+        top: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 76px;
+        padding-bottom: 20px;
+    }
+
+    .top-left-address {
+        position: absolute;
+        top: 156px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 48px;
+        padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 28px;
+    }
+
+    .orange-background-memberships {
+        height: 1000px;
+        width: 100vw;
+    }
+
+    .monthly-memberships {
+        height: 600px;
+        width: 100vw;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        height: 1000px;
+        width: 100vw;
+    }
+
+    .section-title {
+        font-size: 64px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .item {
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
+        border-radius: 15px;
+        height: 400px;
+        width: 400px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
+    }
+
+    .item-title {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 56px;
+        font-weight: bold;
+        padding-bottom: 32px;
+    }
+
+    .address-text {
+        font-size: 30px;
+    }
+
+    .hours-item {
+        height: 450px;
+        width: 300px;
+        margin-top: 20px;
+        font-size: 28px;
+        width: 600px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
+    }
+
+    .hours-disclaimer {
+        width: 600px;
+        margin: 10px auto;
+    }
+
+    .hours-title {
+        font-size: 64px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .top-left-title {
+        position: absolute;
+        top: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 76px;
+        padding-bottom: 20px;
+        }
+
+    .top-left-address {
+        position: absolute;
+        top: 156px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 48px;
+        padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 1280px) {
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 28px;
+    }
+
+    .orange-background-memberships {
+        height: 600px;
+        width: 100vw;
+    }
+
+    .monthly-memberships {
+        height: 600px;
+        width: 100vw;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        height: 600px;
+        width: 100vw;
+    }
+
+    .section-title {
+        font-size: 64px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .item {
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
+        border-radius: 15px;
+        height: 380px;
+        width: 380px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
+    }
+
+    .item-title {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 72px;
+        font-weight: bold;
+        padding-bottom: 36px;
+    }
+
+    .address-text {
+        font-size: 36px;
+    }
+
+    .hours-item {
+        height: 475px;
+        width: 300px;
+        margin-top: 20px;
+        font-size: 30px;
+        width: 600px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
+    }
+
+    .hours-disclaimer {
+        width: 600px;
+        margin: 10px auto;
+    }
+
+    .hours-title {
+        font-size: 64px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .top-left-title {
+        position: absolute;
+        top: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 76px;
+        padding-bottom: 20px;
+    }
+
+    .top-left-address {
+        position: absolute;
+        top: 156px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 48px;
+        padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 1536px) {
+    ul {
+        margin-left: 20px;
+    }
+    
+    li {
+        font-size: 32px;
+    }
+
+    .orange-background-memberships {
+        height: 650px;
+        width: 100vw;
+    }
+
+    .monthly-memberships {
+        height: 650px;
+        width: 100vw;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .other-options {
+        height: 650px;
+        width: 100vw;
+    }
+
+    .no-background-hours {
+        text-align: center;
+        height: 500px;
+        width: 1000px;
+    }
+
+    .title-text {
+        font-size: 84px;
+        font-weight: bold;
+        padding-bottom: 40px;
+    }
+
+    .address-text {
+        font-size: 42px;
+    }
+
+    .section-title {
+        font-size: 64px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .membership-flex {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .item {
+        border: 2px solid black;
+        box-shadow: 6px 6px 12px black;
+        border-radius: 15px;
+        height: 450px;
+        width: 450px;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
+    }
+
+    .hours-item {
+        height: 475px;
+        width: 300px;
+        margin-top: 20px;
+        font-size: 30px;
+        width: 600px;
+        box-shadow: 6px 6px 12px black;
+        background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);    
+    }
+
+    .hours-disclaimer {
+        width: 600px;
+        margin: 10px auto;
+    }
+
+    .hours-title {
+        font-size: 64px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .top-left-title {
+        position: absolute;
+        top: 64px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 76px;
+        padding-bottom: 20px;
+    }
+
+    .top-left-address {
+        position: absolute;
+        top: 156px;
+        left: 32px;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 48px;
+        padding-bottom: 20px;
+    }
 }

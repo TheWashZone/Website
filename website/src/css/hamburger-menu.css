@@ -6,7 +6,7 @@
   z-index: 1050;
   width: 45px;
   height: 45px;
-  background-color: #007bff;
+  background-color: #F59644;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -27,11 +27,11 @@
 }
 
 .hamburger-btn:hover {
-  background-color: #0056b3;
+  background-color: #F59644;
 }
 
 .hamburger-btn:focus {
-  outline: 2px solid #0056b3;
+  outline: 2px solid #F59644;
   outline-offset: 2px;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .offcanvas-header {
-  background-color: #007bff;
+  background-color: #F59644;
   color: white;
 }
 
@@ -69,7 +69,7 @@
   align-items: center;
   gap: 12px;
   padding: 15px 20px;
-  color: #333;
+  color: black !important;
   text-decoration: none;
   border-radius: 8px;
   margin-bottom: 8px;
@@ -79,17 +79,17 @@
 
 .menu-item:hover {
   background-color: #f0f0f0;
-  color: #007bff;
+  color: white;
   transform: translateX(5px);
 }
 
 .menu-item.active {
-  background-color: #007bff;
+  background-color: #F59644;
   color: white;
 }
 
 .menu-item.active:hover {
-  background-color: #0056b3;
+  background-color: #F59644;
   color: white;
 }
 

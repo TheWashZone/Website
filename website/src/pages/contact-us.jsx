@@ -1,4 +1,3 @@
-import banner from '../images/ChatGPT-Soapy-Pavement.png';
 import '../css/contact-us.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 

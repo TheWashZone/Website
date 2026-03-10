@@ -5,45 +5,37 @@ function AboutPage() {
   
   // Hero Section
   const heroTitle = "About Our Car Wash";
-  const heroSubtitle = "Quality Service Since 2020";
+  const heroSubtitle = "Quality Service Since 1970";
   
   // Our Story Section
   const ourStoryTitle = "Our Story";
-  const ourStoryText = "We started with a simple mission: to provide the best car wash experience in town. What began as a small family business has grown into a trusted name in automotive care. Our commitment to quality and customer satisfaction drives everything we do.";
+  const ourStoryText = "We started with a simple mission: to provide the best car wash experience in town. What began as a small local family business has grown into a trusted name in automotive care. Our commitment to quality and customer satisfaction drives everything we do.";
   
   // Our Mission Section
   const ourMissionTitle = "Our Mission";
-  const ourMissionText = "To deliver exceptional car wash services using eco-friendly products and state-of-the-art equipment, while treating every vehicle with the care it deserves.";
+  const ourMissionText = "To deliver exceptional car wash services to every one of our customers, treating every vehicle with the care it deserves.";
   
   // Why Choose Us Section
   const whyChooseUsTitle = "Why Choose Us?";
   const whyChooseUsItems = [
     {
-      title: "Eco-Friendly Products",
-      description: "We use biodegradable, environmentally safe cleaning solutions that are tough on dirt but gentle on your car and the planet."
+      title: "Membership plan",
+      description: "If you enjoy having a clean car all the time, our flexible and affordable memebership plans are perfect for you."
     },
     {
       title: "Experienced Team",
-      description: "Our trained professionals have years of experience and treat every vehicle with meticulous attention to detail."
+      description: "Our employees have been trained to treat your vehicle with the utmost care and attention to detail."
     },
     {
       title: "Modern Equipment",
-      description: "State-of-the-art washing systems ensure a thorough, scratch-free clean every time."
+      description: "Our washing systems ensure a thorough, scratch-free clean every time that will help protect your car."
     },
     {
       title: "Customer Satisfaction",
       description: "Your satisfaction is our priority. We stand behind our work with a 100% satisfaction guarantee."
     }
   ];
-  
-  // Team Section (Optional - add team member photos later)
-  const teamTitle = "Meet Our Team";
-  const teamMembers = [
-    { name: "John Doe", role: "Owner & Founder", bio: "Passionate about cars and customer service" },
-    { name: "Jane Smith", role: "Operations Manager", bio: "Ensuring quality in every wash" },
-    { name: "Mike Johnson", role: "Lead Technician", bio: "Expert in detailing and care" }
-  ];
-  
+    
   // ===== END EDITABLE CONTENT =====
 
   return (
@@ -77,24 +69,6 @@ function AboutPage() {
                 <div key={index} className="feature-card">
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Team Section */}
-          <section className="about-section team">
-            <h2>{teamTitle}</h2>
-            <div className="team-grid">
-              {teamMembers.map((member, index) => (
-                <div key={index} className="team-member">
-                  <div className="member-photo">
-                    {/* Add team member photo here */}
-                    <div className="photo-placeholder">Photo</div>
-                  </div>
-                  <h3>{member.name}</h3>
-                  <p className="role">{member.role}</p>
-                  <p className="bio">{member.bio}</p>
                 </div>
               ))}
             </div>

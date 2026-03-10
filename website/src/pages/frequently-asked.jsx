@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/faq.css';
 
 function FrequentlyAskedPage() {
   // ===== EDIT YOUR CONTENT BELOW =====
+  
+  const navigate = useNavigate();
   
   const pageTitle = "Frequently Asked Questions";
   const pageSubtitle = "Everything you need to know about our car wash services";
@@ -162,7 +165,7 @@ function FrequentlyAskedPage() {
         <div className="faq-contact">
           <h3>Still have questions?</h3>
           <p>Feel free to contact us directly. We're here to help!</p>
-          <button className="contact-button">Contact Us</button>
+          <button className="contact-button" onClick={() => navigate('/contact-us')}>Contact Us</button>
         </div>
       </div>
     </>

@@ -1,4 +1,5 @@
 /* Gift Cards Page Styles */
+
 .giftcards-page {
     max-width: 1200px;
     margin: 0 auto;
@@ -6,12 +7,14 @@
 }
 
 /* Hero Section */
+
 .giftcards-hero {
     text-align: center;
     padding: 60px 20px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 10px;
+    background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+    border-radius: 15px;
     margin-bottom: 40px;
+    box-shadow: 6px 6px 12px black;
 }
 
 .giftcards-hero h1 {
@@ -22,12 +25,13 @@
 
 .giftcards-hero .subtitle {
     font-size: 1.2rem;
-    color: #666;
+    color: #444;
     max-width: 600px;
     margin: 0 auto;
 }
 
 /* Category Styles */
+
 .giftcards-category {
     margin-bottom: 50px;
 }
@@ -36,17 +40,18 @@
     font-size: 2rem;
     color: #333;
     margin-bottom: 10px;
-    border-bottom: 3px solid #ff6b00;
+    border-bottom: 3px solid #F59644;
     padding-bottom: 10px;
 }
 
 .category-description {
-    color: #666;
+    color: #555;
     margin-bottom: 30px;
     font-size: 1.1rem;
 }
 
 /* Books Grid */
+
 .books-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -54,30 +59,31 @@
     margin-top: 20px;
 }
 
+/* Book Card */
+
 .book-card {
-    background: white;
-    border-radius: 10px;
+    background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+    border-radius: 15px;
     padding: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 6px 6px 12px black;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #eee;
+    border: 2px solid black;
     position: relative;
     overflow: hidden;
 }
 
 .book-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px);
 }
 
 .book-code {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #ff6b00;
+    background: #E3963E;
     color: white;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 6px;
     font-weight: bold;
     font-size: 0.9rem;
 }
@@ -90,13 +96,15 @@
 }
 
 .book-description {
-    color: #666;
+    color: #555;
     margin-bottom: 20px;
     line-height: 1.5;
 }
 
+/* Book Details */
+
 .book-details {
-    background: #f8f9fa;
+    background: white;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -105,77 +113,83 @@
 .book-price {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #ff6b00;
+    color: #333;
     margin-bottom: 5px;
 }
 
 .book-count {
-    color: #666;
+    color: #555;
     font-size: 1rem;
     margin-bottom: 5px;
 }
 
 .book-discount {
-    color: #28a745;
+    color: green;
     font-weight: 600;
     font-size: 1rem;
 }
+
+/* Buy Button */
 
 .buy-button {
     width: 100%;
     padding: 12px;
-    background: #ff6b00;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+    color: black;
+    border: 2px solid black;
+    border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease;
 }
 
 .buy-button:hover {
-    background: #e65c00;
+    background-color: #E3963E;
 }
 
 /* Employee Section */
+
 .giftcards-employee {
-    background: #e3f2fd;
+    background: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     margin: 30px 0;
     text-align: center;
-    border-left: 5px solid #2196f3;
+    border-left: 5px solid #F59644;
+    box-shadow: 6px 6px 12px black;
 }
 
 .giftcards-employee h3 {
-    color: #1976d2;
+    color: #333;
     margin-bottom: 10px;
 }
 
 .giftcards-employee p {
-    color: #555;
+    color: #444;
     margin: 0;
 }
 
 /* Admin Note */
+
 .admin-note {
-    background: #fff3cd;
-    border: 1px solid #ffeeba;
+    background: #fff8e6;
+    border: 1px solid #ffe0a3;
     color: #856404;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 8px;
     margin: 30px 0;
     font-size: 0.95rem;
 }
 
 /* Contact Section */
+
 .giftcards-contact {
     text-align: center;
     padding: 40px;
-    background: linear-gradient(135deg, #ff6b00 0%, #ff8c33 100%);
-    border-radius: 10px;
-    color: white;
+    background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+    border-radius: 15px;
+    color: black;
+    box-shadow: 6px 6px 12px black;
 }
 
 .giftcards-contact h3 {
@@ -186,62 +200,62 @@
 .giftcards-contact p {
     margin-bottom: 25px;
     font-size: 1.1rem;
-    opacity: 0.9;
 }
 
 .contact-button {
     padding: 12px 30px;
     background: white;
-    color: #ff6b00;
-    border: none;
-    border-radius: 5px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #E3963E;
 }
 
 /* Responsive Design */
+
 @media (max-width: 768px) {
+
     .giftcards-hero h1 {
         font-size: 2rem;
     }
-    
+
     .giftcards-hero .subtitle {
         font-size: 1rem;
     }
-    
+
     .category-title {
         font-size: 1.5rem;
     }
-    
+
     .books-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .giftcards-contact {
         padding: 30px 20px;
     }
-    
+
     .giftcards-contact h3 {
         font-size: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
+
     .giftcards-hero {
         padding: 40px 15px;
     }
-    
+
     .book-card {
         padding: 20px;
     }
-    
+
     .book-price {
         font-size: 1.5rem;
     }

@@ -35,6 +35,13 @@ function HomePage() {
                 <li className="" data-testid="deluxe4">HAND DRY</li>
               </ul>
             </div>
+            <div className="item" data-testid="box3">
+              <div className="item-title">Basic - $10.0</div>
+              <ul>
+                <li className="" data-testid="deluxe1">WASH AND SHINE</li>
+                <li className="" data-testid="deluxe2">HAND DRY</li>
+              </ul>
+            </div>
             <div className="item" data-testid="box4">
               <div className="item-title">Add Ons</div>
               <ul>
@@ -43,7 +50,7 @@ function HomePage() {
                 <li className="" data-testid="addOn3">FLOOR MATS: $2.50</li>
                 <li className="" data-testid="addOn4">HAND WASH: $2.00 per foot</li>
               </ul>
-            </div>
+          </div>
           </div>
         </div>
         <div className="monthly-memberships">
@@ -104,7 +111,7 @@ function HomePage() {
             <div className="">Wednesday: 7:30 AM - 7:00 PM</div>
             <div className="">Thursday: 7:30 AM - 7:00 PM</div>
             <div className="">Friday: 7:30 AM - 7:00 PM</div>
-            <div className="">Saturday: 8:00 AM - 7:00 PM</div>
+            <div className="">Saturday: 9:00 AM - 5:00 PM</div>
           </Stack>
           <div className="hours-disclaimer">
             These hours change seasonally based on daylight hours. 

@@ -3,7 +3,7 @@
 .giftcards-page {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 /* Hero Section */
@@ -11,7 +11,8 @@
 .giftcards-hero {
     text-align: center;
     padding: 60px 20px;
-    background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+    /* background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%); */
+    background: white !important;
     border-radius: 15px;
     margin-bottom: 40px;
     box-shadow: 6px 6px 12px black;
@@ -19,18 +20,32 @@
 
 .giftcards-hero h1 {
     font-size: 2.5rem;
-    color: #333;
+    /* color: #333; */
+    color: black;
     margin-bottom: 15px;
 }
 
 .giftcards-hero .subtitle {
     font-size: 1.2rem;
-    color: #444;
+    /* color: #444; */
+    color: black;
     max-width: 600px;
     margin: 0 auto;
 }
 
 /* Category Styles */
+
+.giftcards-section {
+    background: white;
+    border-radius: 15px;
+    margin-top: 25px;
+    margin-bottom: 75px;
+}
+
+.purchased-section {
+    margin-top: 25px;
+    margin-bottom: 75px;
+}
 
 .giftcards-category {
     margin-bottom: 50px;
@@ -38,14 +53,17 @@
 
 .category-title {
     font-size: 2rem;
-    color: #333;
+    /* color: #333; */
+    color: black;
     margin-bottom: 10px;
-    border-bottom: 3px solid #F59644;
+    /* border-bottom: 3px solid #F59644; */
+    border-bottom: none;
     padding-bottom: 10px;
 }
 
 .category-description {
-    color: #555;
+    /* color: #555; */
+    color: black;
     margin-bottom: 30px;
     font-size: 1.1rem;
 }
@@ -90,13 +108,15 @@
 
 .book-name {
     font-size: 1.5rem;
-    color: #333;
+    /* color: #333; */
+    color: black;
     margin-bottom: 10px;
     margin-top: 0;
 }
 
 .book-description {
-    color: #555;
+    /* color: #555; */
+    color: black;
     margin-bottom: 20px;
     line-height: 1.5;
 }
@@ -135,7 +155,7 @@
     width: 100%;
     padding: 12px;
     background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
-    color: black;
+    color: black !important;
     border: 2px solid black;
     border-radius: 8px;
     font-size: 1rem;
@@ -148,7 +168,7 @@
 }
 
 /* Employee Section */
-
+/* 
 .giftcards-employee {
     background: white;
     padding: 20px;
@@ -167,11 +187,11 @@
 .giftcards-employee p {
     color: #444;
     margin: 0;
-}
+} */
 
 /* Admin Note */
 
-.admin-note {
+/* .admin-note {
     background: #fff8e6;
     border: 1px solid #ffe0a3;
     color: #856404;
@@ -179,36 +199,38 @@
     border-radius: 8px;
     margin: 30px 0;
     font-size: 0.95rem;
-}
+} */
 
 /* Contact Section */
 
 .giftcards-contact {
     text-align: center;
     padding: 40px;
-    background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
-    border-radius: 15px;
+    /* background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%); */
+    /* background: white; */
+    /* border-radius: 15px 15px 0px 0px; */
     color: black;
-    box-shadow: 6px 6px 12px black;
+    /* box-shadow: 6px 6px 12px black; */
 }
 
 .giftcards-contact h3 {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     margin-bottom: 15px;
 }
 
 .giftcards-contact p {
     margin-bottom: 25px;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 
 .contact-button {
-    padding: 12px 30px;
-    background: white;
+    padding: 16px 24px;
+    /* background: white; */
+    background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
     color: black;
     border: 2px solid black;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
 }

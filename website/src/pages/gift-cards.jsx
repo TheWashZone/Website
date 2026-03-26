@@ -1,16 +1,45 @@
 import '../css/gift-cards.css';
 
 function GiftCardsPage() {
+  
+  const pageTitle = "Prepaid Wash Books";
+  const pageSubtitle = "Buy multiple washes at once and get a discount";
+  
+  const yourBooks = [
+    {
+      category: "Your Wash Books",
+      // description: "Use your washes",
+      books: [
+        {
+          code: "BB",
+          name: "Basic Book",
+          // price: "$XX.XX",
+          washCount: "X washes",
+        },
+        {
+          code: "DB",
+          name: "Deluxe Book",
+          // description: "Our most popular option with extra cleaning features",
+          // price: "$XX.XX",
+          washCount: "X washes",
+          // discount: "Save $X"
+        },
+        {
+          code: "UB",
+          name: "Ultimate Book",
+          // description: "The complete package for the ultimate shine",
+          // price: "$XX.XX",
+          washCount: "X washes",
+          // discount: "Save $X"
+        }
+      ]
+    },
+  ];
 
-  // ===== EDIT YOUR CONTENT BELOW =====
-  
-  const pageTitle = "Gift Cards & Prepaid Washes";
-  const pageSubtitle = "The perfect gift for car lovers - buy multiple washes and save!";
-  
   const prepaidBooks = [
     {
-      category: "Prepaid Wash Books",
-      description: "Buy multiple washes at once and get a little discount on the total price. Each book is a booklet of prepurchased washes - great for regular customers or as gifts!",
+      category: "Purchase Wash Books",
+      // description: "Buy multiple washes at once and get a little discount on the total price. Each book is a booklet of prepurchased washes - great for regular customers or as gifts!",
       books: [
         {
           code: "BB",
@@ -38,26 +67,8 @@ function GiftCardsPage() {
         }
       ]
     },
-    {
-      category: "Specialty Services",
-      description: "We also offer specialty services for larger vehicles",
-      books: [
-        {
-          code: "RV",
-          name: "RV Hand Wash",
-          description: "Hand wash service for recreational vehicles",
-          price: "By the foot",
-          washCount: "Priced per foot",
-          discount: "Call for quote"
-        }
-      ]
-    }
   ];
-  
-  const adminNote = "Note to staff: All prepaid book transactions require an audit trail. Please ensure accurate entry of BB, DB, and UB codes to prevent errors.";
-
-  // ===== END EDITABLE CONTENT =====
-  
+    
   return (
     <div className="giftcards-page">
       
@@ -66,7 +77,36 @@ function GiftCardsPage() {
         <p className="subtitle">{pageSubtitle}</p>
       </div>
 
-      <div className="giftcards-content">
+      <div className="purchased-section">
+        {yourBooks.map((category, categoryIndex) => (
+          <div key={categoryIndex} className="giftcards-category">
+            <h2 className="category-title">{category.category}</h2>
+            <p className="category-description">{category.description}</p>
+            
+            <div className="books-grid">
+              {category.books.map((book, bookIndex) => (
+                <div key={bookIndex} className="book-card">
+                  <div className="book-code">{book.code}</div>
+                  <h3 className="book-name">{book.name}</h3>
+                  <p className="book-description">{book.description}</p>
+                  
+                  <div className="book-details">
+                    <div className="book-price">{book.price}</div>
+                    <div className="book-count">{book.washCount}</div>
+                    {book.discount && (
+                      <div className="book-discount">{book.discount}</div>
+                    )}
+                  </div>
+                  
+                  <button className="buy-button">Use Wash</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="giftcards-section">
         {prepaidBooks.map((category, categoryIndex) => (
           <div key={categoryIndex} className="giftcards-category">
             <h2 className="category-title">{category.category}</h2>
@@ -95,17 +135,8 @@ function GiftCardsPage() {
         ))}
       </div>
       
-      <div className="giftcards-employee">
-        <h3>Employee Benefits</h3>
-        <p>Team members receive 1 free wash per week. Please see management for details.</p>
-      </div>
-      
-      <div className="admin-note">
-        <p><strong>⚠️ Admin Note:</strong> {adminNote}</p>
-      </div>
-      
       <div className="giftcards-contact">
-        <h3>Questions about our gift cards?</h3>
+        <h3>Questions about our wash books?</h3>
         <p>Stop by or give us a call - we're happy to help you choose the perfect prepaid book!</p>
         <button className="contact-button">Contact Us</button>
       </div>

@@ -51,7 +51,7 @@
 .orange-background-memberships {
     color: black;
     text-align: center;
-    height: 950px;
+    height: 1250px;
     width: 100vw;
     margin: 0 auto;
 }
@@ -136,6 +136,7 @@
 .hours-disclaimer {
         width: 300px;
         margin: 10px auto;
+        font-size: 20px;
     }
 
 .hours-title {
@@ -158,6 +159,15 @@ li {
     background-color: white;
 }
 
+.add-ons {
+    padding-top: 20px;
+    font-size: 40px;
+}
+
+.add-on-item {
+    font-size: 20px;
+}
+
 @media (min-width: 460px) {
     ul {
         margin-left: 20px;
@@ -168,7 +178,7 @@ li {
     }
 
     .orange-background-memberships {
-        height: 1400px;
+        height: 1850px;
         width: 100vw;
     }
 
@@ -620,7 +630,7 @@ li {
     }
 
     .orange-background-memberships {
-        height: 600px;
+        height: 1000px;
         width: 100vw;
     }
 
@@ -732,7 +742,7 @@ li {
     }
 
     .orange-background-memberships {
-        height: 650px;
+        height: 1150px;
         width: 100vw;
     }
 

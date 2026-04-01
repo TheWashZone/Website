@@ -335,10 +335,10 @@
   font-style: italic;
   text-align: center;
 }
-Updated gift-cards.css (matching NEW orange homepage):
 
-css
-.giftcards-page {
+/* Updated gift-cards.css (matching NEW orange homepage): css */
+
+/* .giftcards-page {
   font-family: 'Open Sans', sans-serif;
   width: 100vw;
   position: relative;
@@ -346,10 +346,10 @@ css
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-}
+} */
 
 /* Hero Section */
-.giftcards-hero {
+/* .giftcards-hero {
   background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
   padding: 80px 20px;
   text-align: center;
@@ -368,9 +368,9 @@ css
   font-size: clamp(18px, 2.5vw, 28px);
   margin: 15px auto 0;
   max-width: 1200px;
-}
+} */
 
-/* Content Sections */
+/* Content Sections
 .giftcards-content {
   background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
   padding: 60px 20px;
@@ -399,9 +399,9 @@ css
   max-width: 1000px;
   margin: 0 auto 40px;
   padding: 0 20px;
-}
+} */
 
-/* Books Grid */
+/* 
 .books-grid {
   display: flex;
   justify-content: center;
@@ -494,4 +494,4 @@ css
 .buy-button:hover {
   background: linear-gradient(to bottom right, #218838, #2e9c41);
   transform: translateY(-2px);
-}
+} */

@@ -282,3 +282,99 @@
         font-size: 1.5rem;
     }
 }
+
+
+
+.books-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.book-card {
+  background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 30px;
+  width: 100%;
+  max-width: 350px;
+  min-width: 280px;
+  box-shadow: 6px 6px 12px black;
+  transition: all 0.3s;
+}
+
+.book-card:hover {
+  background: linear-gradient(to bottom right, #E3963E 20%, #EDBF44 100%);
+  transform: translateY(-2px);
+}
+
+.book-code {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.book-name {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.book-description {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  line-height: 1.5;
+}
+
+.book-details {
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 25px;
+  text-align: center;
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.book-price {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.book-count {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.book-discount {
+  font-size: 16px;
+  color: #28a745;
+  font-weight: bold;
+}
+
+.buy-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to bottom right, #28a745, #34ce57);
+  color: white;
+  border: 2px solid black;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 6px 6px 12px black;
+  transition: all 0.3s;
+}
+
+.buy-button:hover {
+  background: linear-gradient(to bottom right, #218838, #2e9c41);
+  transform: translateY(-2px);
+}

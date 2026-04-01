@@ -1,36 +1,92 @@
+import { useNavigate } from 'react-router-dom';
+import { addWashes, removeWash, getBasicWashes, getDeluxeWashes, getUltimateWashes } from '../api/firebase-addbasic'; 
+import { useEffect, useState } from 'react';
 import '../css/gift-cards.css';
 
 function GiftCardsPage() {
-  
+  const navigate = useNavigate();
   const pageTitle = "Prepaid Wash Books";
   const pageSubtitle = "Buy multiple washes at once and get a discount";
+  const [basicWashes, setBasicWashes] = useState(0);
+  const [deluxeWashes, setDeluxeWashes] = useState(0);
+  const [ultimateWashes, setUltimateWashes] = useState(0);
+
+async function handleAddWash(washType, amount) {
+  await addWashes("B001", washType, amount);
+
+  if (washType === "basicWashes") {
+    setBasicWashes((current) => current + amount);
+  } else if (washType === "deluxeWashes") {
+    setDeluxeWashes((current) => current + amount);
+  } else if (washType === "ultimateWashes") {
+    setUltimateWashes((current) => current + amount);
+  }
+}
+
+
+async function handleRemoveWash(washType) {
+  await removeWash("B001", washType);
+
+  if (washType === "basicWashes") {
+    setBasicWashes((current) => Math.max(0, current - 1));
+  } else if (washType === "deluxeWashes") {
+    setDeluxeWashes((current) => Math.max(0, current - 1));
+  } else if (washType === "ultimateWashes") {
+    setUltimateWashes((current) => Math.max(0, current - 1));
+  }
+}
+
+  useEffect(() => {
+    async function loadBasicWashes() {
+      const washes = await getBasicWashes("B001");
+      setBasicWashes(washes);
+    }
+
+    loadBasicWashes();
+  }, []);
+
+  useEffect(() => {
+    async function loadDeluxeWashes() {
+      const washes = await getDeluxeWashes("B001");
+      setDeluxeWashes(washes);
+    }
+
+    loadDeluxeWashes();
+  }, []);
+
+  useEffect(() => {
+    async function loadUltimateWashes() {
+      const washes = await getUltimateWashes("B001");
+      setUltimateWashes(washes);
+    }
+
+    loadUltimateWashes();
+  }, []);
   
   const yourBooks = [
     {
       category: "Your Wash Books",
-      // description: "Use your washes",
       books: [
         {
           code: "BB",
           name: "Basic Book",
-          // price: "$XX.XX",
-          washCount: "X washes",
+          washCount: `${basicWashes} washes`,
+          washType: "basicWashes",
+          buttonText: "Use Basic Wash"
         },
         {
           code: "DB",
           name: "Deluxe Book",
-          // description: "Our most popular option with extra cleaning features",
-          // price: "$XX.XX",
-          washCount: "X washes",
-          // discount: "Save $X"
+          washCount: `${deluxeWashes} washes`,
+          washType: "deluxeWashes",
+          buttonText: "Use Deluxe Wash"
         },
         {
           code: "UB",
           name: "Ultimate Book",
-          // description: "The complete package for the ultimate shine",
-          // price: "$XX.XX",
-          washCount: "X washes",
-          // discount: "Save $X"
+          washCount: `${ultimateWashes} washes`,
+          washType: "ultimateWashes",
+          buttonText: "Use Ultimate Wash"
         }
       ]
     },
@@ -39,31 +95,36 @@ function GiftCardsPage() {
   const prepaidBooks = [
     {
       category: "Purchase Wash Books",
-      // description: "Buy multiple washes at once and get a little discount on the total price. Each book is a booklet of prepurchased washes - great for regular customers or as gifts!",
       books: [
         {
           code: "BB",
           name: "Basic Book",
           description: "Perfect for regular maintenance washes",
-          price: "$XX.XX",
-          washCount: "X washes",
-          discount: "Save $X"
+          price: "$47.50",
+          washCount: "5 washes",
+          discount: "Save $2.50",
+          washType: "basicWashes",
+          buttonText: "Purchase Basic Wash"
         },
         {
           code: "DB",
           name: "Deluxe Book",
           description: "Our most popular option with extra cleaning features",
-          price: "$XX.XX",
-          washCount: "X washes",
-          discount: "Save $X"
+          price: "$62.50",
+          washCount: "5 washes",
+          discount: "Save $5.00",
+          washType: "deluxeWashes",
+          buttonText: "Purchase Deluxe Wash"
         },
         {
           code: "UB",
           name: "Ultimate Book",
           description: "The complete package for the ultimate shine",
-          price: "$XX.XX",
-          washCount: "X washes",
-          discount: "Save $X"
+          price: "$77.50",
+          washCount: "5 washes",
+          discount: "Save $5.00",
+          washType: "ultimateWashes",
+          buttonText: "Purchase Ultimate Wash"
         }
       ]
     },
@@ -98,7 +159,9 @@ function GiftCardsPage() {
                     )}
                   </div>
                   
-                  <button className="buy-button">Use Wash</button>
+                  <button className="buy-button" onClick={() => handleRemoveWash(book.washType)}>
+                    {book.buttonText}
+                  </button>
                 </div>
               ))}
             </div>
@@ -127,7 +190,9 @@ function GiftCardsPage() {
                     )}
                   </div>
                   
-                  <button className="buy-button">Purchase Book</button>
+                  <button className="buy-button" onClick={() => handleAddWash(book.washType, 5)}>
+                    {book.buttonText}
+                  </button>
                 </div>
               ))}
             </div>
@@ -138,9 +203,8 @@ function GiftCardsPage() {
       <div className="giftcards-contact">
         <h3>Questions about our wash books?</h3>
         <p>Stop by or give us a call - we're happy to help you choose the perfect prepaid book!</p>
-        <button className="contact-button">Contact Us</button>
+        <button className="contact-button" onClick={() => navigate('/contact-us')}>Contact Us</button>
       </div>
-
     </div>
   );
 }

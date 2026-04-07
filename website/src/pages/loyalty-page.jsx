@@ -6,7 +6,7 @@ function LoyaltyPage() {
   // ===== EDIT YOUR CONTENT BELOW =====
   
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, /*setIsLoggedIn*/] = useState(false);
 
   // Hero Section
   const heroTitle = "Loyalty Rewards";
@@ -14,7 +14,7 @@ function LoyaltyPage() {
   
   // Wash Progress Section
   const progressTitle = "Your Wash Progress";
-  const progressText = "3 washes until your next free wash!";
+  /* const progressText = "3 washes until your next free wash!"; */
   
   // Membership Details Section
   const membershipTitle = "Membership Details";
@@ -24,7 +24,7 @@ function LoyaltyPage() {
   // ===== END EDITABLE CONTENT =====
 
   // Loyalty data
-  const [userData, setUserData] = useState({
+  const [userData, /*setUserData*/] = useState({
     membershipType: 'Ultimate',
     memberSince: '2024-01-15',
     totalWashes: 7,

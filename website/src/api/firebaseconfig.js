@@ -10,7 +10,9 @@ import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // Use import.meta.env in Vite, fall back to process.env in Jest
-const env = typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env : process.env;
+// const env = typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env : process.env;
+const env = import.meta.env;
+
 
 const firebaseConfig = {
  apiKey: env.VITE_FIREBASE_API_KEY,

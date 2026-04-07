@@ -1,4 +1,4 @@
-import { doc, setDoc, getDoc, updateDoc, deleteDoc, collection, getDocs, query, where, runTransaction, increment } from "firebase/firestore";
+import { doc, getDoc, updateDoc, increment } from "firebase/firestore";
 import { db } from "./firebaseconfig";
 import { auth } from '../api/firebaseconfig';
 import { signInWithEmailAndPassword } from "firebase/auth";

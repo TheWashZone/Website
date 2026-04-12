@@ -135,7 +135,7 @@ function FrequentlyAskedPage() {
         <div className="faq-content">
           {faqData.map((category, categoryIndex) => (
             <div key={categoryIndex} className="faq-category">
-              <h2 className="category-title">{category.category}</h2>
+              <h2 className="category-faq-title">{category.category}</h2>
               <div className="questions-list">
                 {category.questions.map((item, questionIndex) => {
                   const key = `${categoryIndex}-${questionIndex}`;
@@ -165,7 +165,7 @@ function FrequentlyAskedPage() {
         <div className="faq-contact">
           <h3>Still have questions?</h3>
           <p>Feel free to contact us directly. We're here to help!</p>
-          <button className="contact-button" onClick={() => navigate('/contact-us')}>Contact Us</button>
+          <button className="contact-faq-button" onClick={() => navigate('/contact-us')}>Contact Us</button>
         </div>
       </div>
     </>

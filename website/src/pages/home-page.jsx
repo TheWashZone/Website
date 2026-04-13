@@ -36,7 +36,7 @@ function HomePage() {
               </ul>
             </div>
             <div className="item" data-testid="box3">
-              <div className="item-title">Basic - $10.0</div>
+              <div className="item-title">Basic - $10.00</div>
               <ul>
                 <li className="" data-testid="deluxe1">WASH AND SHINE</li>
                 <li className="" data-testid="deluxe2">HAND DRY</li>

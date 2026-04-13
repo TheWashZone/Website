@@ -141,7 +141,7 @@ async function handleRemoveWash(washType) {
       <div className="purchased-section">
         {yourBooks.map((category, categoryIndex) => (
           <div key={categoryIndex} className="giftcards-category">
-            <h2 className="category-title">{category.category}</h2>
+            <h2 className="giftcards-category-title">{category.category}</h2>
             <p className="category-description">{category.description}</p>
             
             <div className="books-grid">
@@ -172,7 +172,7 @@ async function handleRemoveWash(washType) {
       <div className="giftcards-section">
         {prepaidBooks.map((category, categoryIndex) => (
           <div key={categoryIndex} className="giftcards-category">
-            <h2 className="category-title">{category.category}</h2>
+            <h2 className="giftcards-category-title">{category.category}</h2>
             <p className="category-description">{category.description}</p>
             
             <div className="books-grid">

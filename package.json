@@ -10,5 +10,8 @@
     "identity-obj-proxy": "^3.0.0",
     "jsdom": "^27.4.0",
     "vitest": "^4.0.16"
+  },
+  "dependencies": {
+    "firebase": "^12.11.0"
   }
 }

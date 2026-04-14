@@ -1,0 +1,501 @@
+.subscription-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(135deg, #fffaf5 0%, #fff3e8 50%, #ffeedf 100%);
+  overflow-y: auto;
+}
+
+.subscription-form-container {
+  background: #fff;
+  width: 100%;
+  max-width: 950px;
+  padding: 3rem;
+  margin: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: auto;
+}
+
+.subscription-form-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #f6a25f, #f28f3b, #d97522);
+}
+
+.subscription-title {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: 700;
+  color: #5a3415;
+  font-size: 2rem;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+}
+
+.subscription-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.subscription-logo {
+  width: 120px;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(217, 117, 34, 0.18);
+}
+
+.subscription-title::before {
+  content: '';
+  width: 5px;
+  height: 32px;
+  background: linear-gradient(180deg, #f6a25f, #f28f3b);
+  border-radius: 3px;
+  margin-right: 1rem;
+}
+
+.subscription-form {
+  max-width: 100%;
+}
+
+.subscription-form .form-label {
+  color: #4f3928;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+}
+
+.subscription-form .form-control {
+  border: 2px solid #efddcd;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  background-color: #fafbfc;
+  transition: all 0.3s ease;
+}
+
+.subscription-form .form-control:hover {
+  border-color: #e7ccb3;
+  background-color: #fff;
+}
+
+.subscription-form .form-control:focus {
+  border-color: #f28f3b;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(242, 143, 59, 0.12), 0 0 0 0.25rem rgba(242, 143, 59, 0.22);
+}
+
+/* Plan Cards */
+.plan-card {
+  border: 2px solid #efddcd;
+  border-radius: 14px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #fffdfa 0%, #fff6ec 100%);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.plan-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #efddcd;
+  transition: background 0.3s ease;
+}
+
+.plan-card:hover {
+  border-color: #e7ccb3;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(242, 143, 59, 0.18);
+}
+
+.plan-card:hover::before {
+  background: #f28f3b;
+}
+
+.plan-card.active {
+  border-color: #f28f3b;
+  background: linear-gradient(135deg, #fff5ec 0%, #fff1e6 100%);
+  box-shadow: 0 12px 40px rgba(242, 143, 59, 0.22);
+}
+
+.plan-card.active::before {
+  background: linear-gradient(90deg, #f6a25f, #f28f3b);
+  height: 4px;
+}
+
+.plan-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1.2rem;
+}
+
+.plan-card-header h3 {
+  margin: 0;
+  color: #5a3415;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.plan-badge {
+  background: linear-gradient(135deg, #ffe8d3, #ffd8b3);
+  color: #b35a00;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.plan-badge.best {
+  background: linear-gradient(135deg, #f28f3b, #d97522);
+  color: #fff;
+}
+
+.plan-card-price {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #d97522;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.plan-card-price span {
+  font-size: 1rem;
+  color: #8f7a67;
+  font-weight: 500;
+  margin-left: 0.3rem;
+}
+
+.plan-card-features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.plan-card-features li {
+  color: #5f5145;
+  font-size: 0.9rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.plan-card-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #f28f3b;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.plan-card-radio {
+  margin-top: auto;
+  padding-left: 0;
+}
+
+.subscription-plan-row {
+  align-items: stretch;
+}
+
+.subscription-plans-col,
+.subscription-pass-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.subscription-pass-col {
+  padding-top: 3.15rem;
+}
+
+.subscription-plan-grid {
+  flex: 1;
+}
+
+.pass-number-group {
+  border: 2px solid #efddcd;
+  border-radius: 14px;
+  padding: 0.9rem;
+  margin-top: 0;
+  background: linear-gradient(135deg, #fffdfa 0%, #fff6ec 100%);
+}
+
+.pass-number-group .form-label {
+  margin-bottom: 1rem;
+}
+
+.pass-number-group .form-control {
+  min-height: 3.6rem;
+}
+
+.plan-card .form-check-input {
+  width: 1.3em;
+  height: 1.3em;
+  border: 2px solid #e7ccb3;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.plan-card .form-check-input:hover {
+  border-color: #f28f3b;
+}
+
+.plan-card .form-check-input:checked {
+  background-color: #f28f3b;
+  border-color: #f28f3b;
+  box-shadow: 0 0 0 4px rgba(242, 143, 59, 0.2);
+}
+
+/* Form sections with accent */
+.subscription-form > .row {
+  margin-bottom: 1.1rem;
+}
+
+.subscription-form .form-check {
+  padding-left: 1.8rem;
+  position: relative;
+}
+
+.subscription-form .form-check-input {
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid #e7ccb3;
+  cursor: pointer;
+  margin-top: 0.3em;
+  transition: all 0.2s ease;
+}
+
+.subscription-form .form-check-input:hover {
+  border-color: #f28f3b;
+  transform: scale(1.05);
+}
+
+.subscription-form .form-check-input:checked {
+  background-color: #f28f3b;
+  border-color: #f28f3b;
+  box-shadow: 0 0 0 3px rgba(242, 143, 59, 0.15);
+}
+
+.subscription-form .form-check-label {
+  cursor: pointer;
+  color: #4f3928;
+  font-weight: 500;
+  margin-top: 0.2rem;
+  user-select: none;
+}
+
+.subscription-form .form-check-input:checked ~ .form-check-label {
+  color: #f28f3b;
+  font-weight: 600;
+}
+
+.subscription-submit-btn {
+  width: auto;
+  background: linear-gradient(135deg, #f28f3b, #e07e2a);
+  border: none;
+  padding: 0.85rem 2.2rem;
+  font-weight: 700;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(242, 143, 59, 0.25);
+  margin-top: 1rem;
+}
+
+.subscription-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(242, 143, 59, 0.35);
+  background: linear-gradient(135deg, #e07e2a, #cc6f1e);
+}
+
+.subscription-submit-btn:active {
+  transform: translateY(0);
+}
+
+.subscription-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.subscription-terms {
+  border: 2px solid #efddcd;
+  border-left: 5px solid #f28f3b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #fff8ef 0%, #fff3e6 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.subscription-terms::before {
+  content: '⚠';
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  font-size: 1.8rem;
+  opacity: 0.08;
+}
+
+.subscription-terms ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #44566c;
+  list-style-type: disc;
+}
+
+.subscription-terms ul li {
+  margin-bottom: 0.7rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.subscription-terms strong {
+  color: #d97522;
+  font-weight: 700;
+}
+
+.subscription-form .invalid-feedback {
+  display: block;
+  color: #e24c4c;
+  font-size: 0.825rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+.subscription-form .is-invalid {
+  border-color: #e24c4c !important;
+}
+
+.subscription-form .is-invalid:focus {
+  box-shadow: 0 0 0 4px rgba(226, 76, 76, 0.1) !important;
+}
+
+.status-text {
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  font-weight: 600;
+  border-left: 5px solid;
+  animation: slideIn 0.3s ease;
+  margin-top: 1rem;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.status-text.success {
+  color: #b35a00;
+  background-color: #fff8ef;
+  border-left-color: #f28f3b;
+}
+
+.status-text.error {
+  color: #c0392b;
+  background-color: #fff5f5;
+  border-left-color: #c0392b;
+}
+
+.subscription-form .text-muted {
+  color: #8f7a67 !important;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .subscription-form-container {
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .subscription-pass-col {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .subscription-wrapper {
+    padding: 0;
+  }
+
+  .subscription-form-container {
+    padding: 1.5rem;
+  }
+
+  .subscription-header {
+    align-items: flex-start;
+  }
+
+  .subscription-title {
+    font-size: 1.5rem;
+  }
+
+  .subscription-logo {
+    width: 92px;
+  }
+
+  .plan-card {
+    padding: 1.2rem;
+  }
+
+  .plan-card-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .plan-card-price {
+    font-size: 1.8rem;
+  }
+
+  .pass-number-group {
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+
+  .pass-number-group .form-control {
+    min-height: 3rem;
+  }
+
+  .subscription-submit-btn {
+    padding: 0.95rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}

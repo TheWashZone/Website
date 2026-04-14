@@ -3,10 +3,12 @@ import AboutPage from './pages/about-us.jsx'
 import FrequentlyAskedPage from './pages/frequently-asked.jsx'
 import GiftCardPage from './pages/gift-cards.jsx'
 import LoyaltyPage from './pages/loyalty-page.jsx'
+import MonthlySubscriptionPage from './pages/monthly-subscription.jsx'
 import ContactPage from './pages/contact-us.jsx'
 import './App.css'
 import './css/home-page.css'
 import './css/hamburger-menu.css'
+import './css/monthly-subscription.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import HamburgerMenu from './components/hamburger-menu';
@@ -28,6 +30,7 @@ function App() {
                 <Nav.Link as={Link} to="/contact-us" className="text-white px-4 d-none d-lg-block">Contact Us</Nav.Link>
                 <Nav.Link as={Link} to="/gift-card" className="text-white px-4 d-none d-lg-block">Gift Cards</Nav.Link>
                 <Nav.Link as={Link} to="/loyalty-page" className="text-white px-4 d-none d-lg-block">Loyalty Program</Nav.Link>
+                <Nav.Link as={Link} to="/monthly-subscription" className="text-white px-4 d-none d-lg-block">Monthly Subscription</Nav.Link>
             
               </Nav>
             </Container>
@@ -43,6 +46,7 @@ function App() {
           <Route path="/contact-us" element={<ContactPage />} />
           <Route path="/gift-card" element={<GiftCardPage />} />
           <Route path="/loyalty-page" element={<LoyaltyPage />} />
+          <Route path="/monthly-subscription" element={<MonthlySubscriptionPage />} />
         </Routes>
       </BrowserRouter>
     </>

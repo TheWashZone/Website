@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import '../css/monthly-subscription.css';
 import washZoneDesignLogo from '../images/The Wash ZONE logo design.png';
@@ -18,12 +18,35 @@ const EMPTY_FORM = {
   email: '',
   plan: 'deluxe',
   passNumber: '',
+  cardType: '',
+  cardNumber: '',
+  cardExpiry: '',
+  cardCVV: '',
   authorized: false,
   printName: ''
 };
 
 function MonthlySubscriptionPage() {
   const [formData, setFormData] = useState(EMPTY_FORM);
+  const [cardTypeOpen, setCardTypeOpen] = useState(false);
+  const cardTypeRef = useRef(null);
+
+  const CARD_TYPES = [
+    { value: 'visa', label: 'Visa' },
+    { value: 'mastercard', label: 'Mastercard' },
+    { value: 'discover', label: 'Discover' },
+  ];
+
+  const handleCardTypeSelect = (value) => {
+    setFormData(prev => ({ ...prev, cardType: value }));
+    setCardTypeOpen(false);
+  };
+
+  const handleCardTypeBlur = (e) => {
+    if (cardTypeRef.current && !cardTypeRef.current.contains(e.relatedTarget)) {
+      setCardTypeOpen(false);
+    }
+  };
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState('idle');
   const [statusMessage, setStatusMessage] = useState('');
@@ -118,6 +141,10 @@ function MonthlySubscriptionPage() {
         <div className="subscription-header">
           <h2 className="subscription-title">Monthly Pass Registration Form</h2>
           <img className="subscription-logo" src={washZoneDesignLogo} alt="The Wash Zone logo" />
+        </div>
+        <div className="subscription-business-info">
+          <span>📍 1907 E Isaacs Ave, Walla Walla, WA 99362</span>
+          <span>📞 (509) 876-2455</span>
         </div>
 
         <Form className="subscription-form" onSubmit={handleSubmit} noValidate>
@@ -377,6 +404,88 @@ function MonthlySubscriptionPage() {
             </Col>
           </Row>
 
+          {/* Credit Card Info */}
+          <div className="subscription-section-label">Credit Card Information</div>
+          <Row className="mb-3">
+            <Col md={4}>
+              <Form.Group controlId="cardType">
+                <Form.Label>Card Type</Form.Label>
+                <div
+                  className="card-type-dropdown"
+                  ref={cardTypeRef}
+                  onBlur={handleCardTypeBlur}
+                >
+                  <button
+                    type="button"
+                    className={`card-type-trigger ${cardTypeOpen ? 'open' : ''}`}
+                    onClick={() => setCardTypeOpen(o => !o)}
+                  >
+                    {formData.cardType
+                      ? CARD_TYPES.find(c => c.value === formData.cardType)?.label
+                      : 'Choose card type'}
+                    <span className="card-type-arrow">{cardTypeOpen ? '▲' : '▼'}</span>
+                  </button>
+                  {cardTypeOpen && (
+                    <ul className="card-type-options">
+                      {CARD_TYPES.map(ct => (
+                        <li
+                          key={ct.value}
+                          className={`card-type-option ${formData.cardType === ct.value ? 'selected' : ''}`}
+                          onClick={() => handleCardTypeSelect(ct.value)}
+                          tabIndex={0}
+                          onKeyDown={e => e.key === 'Enter' && handleCardTypeSelect(ct.value)}
+                        >
+                          {ct.label}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </Form.Group>
+            </Col>
+            <Col md={8}>
+              <Form.Group controlId="cardNumber">
+                <Form.Label>Card Number</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="cardNumber"
+                  placeholder="XXXX XXXX XXXX XXXX"
+                  maxLength={19}
+                  value={formData.cardNumber}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row className="mb-4">
+            <Col md={6}>
+              <Form.Group controlId="cardExpiry">
+                <Form.Label>Expiration Date</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="cardExpiry"
+                  placeholder="MM/YY"
+                  maxLength={5}
+                  value={formData.cardExpiry}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group controlId="cardCVV">
+                <Form.Label>CVV</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="cardCVV"
+                  placeholder="CVV"
+                  maxLength={4}
+                  value={formData.cardCVV}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
           {/* Terms */}
           <div className="subscription-terms mb-4">
             <ul>
@@ -390,19 +499,17 @@ function MonthlySubscriptionPage() {
           </div>
 
           {/* Authorization */}
-          <Form.Group className="mb-3" controlId="authorized">
+          <Form.Group className="mb-4" controlId="authorized">
             <Form.Check
               type="checkbox"
               name="authorized"
-              label={<span>I authorize my credit card information to be securely stored <span className="text-danger">(required)</span>.</span>}
+              label={<span>I authorize The Wash Zone to charge the above credit card monthly <span className="text-danger">(required)</span>.</span>}
               checked={formData.authorized}
               onChange={handleChange}
               isInvalid={!!errors.authorized}
             />
             {errors.authorized && <div className="text-danger small mt-2">{errors.authorized}</div>}
           </Form.Group>
-
-          <p className="mb-4 fw-bold">I hereby authorize charges to be made on the above credit card monthly.</p>
 
           {/* Print Name */}
           <Form.Group className="mb-4" controlId="printName">

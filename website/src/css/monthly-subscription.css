@@ -47,7 +47,29 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.subscription-business-info {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #8f7a67;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #efddcd;
+  flex-wrap: wrap;
+}
+
+.subscription-section-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #5a3415;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid #efddcd;
 }
 
 .subscription-logo {
@@ -92,10 +114,85 @@
   background-color: #fff;
 }
 
-.subscription-form .form-control:focus {
+.subscription-form .form-control:focus,
+.subscription-form .form-select:focus,
+.card-type-trigger:focus {
   border-color: #f28f3b;
   background-color: #fff;
   box-shadow: 0 0 0 4px rgba(242, 143, 59, 0.12), 0 0 0 0.25rem rgba(242, 143, 59, 0.22);
+}
+
+.card-type-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.card-type-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #efddcd;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  background-color: #fafbfc;
+  color: #4f3928;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  outline: none;
+}
+
+.card-type-trigger:hover,
+.card-type-trigger.open {
+  border-color: #f28f3b;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(242, 143, 59, 0.1);
+}
+
+.card-type-arrow {
+  font-size: 0.7rem;
+  color: #8f7a67;
+  margin-left: 0.5rem;
+}
+
+.card-type-options {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 2px solid #f28f3b;
+  border-radius: 10px;
+  list-style: none;
+  padding: 0.3rem 0;
+  margin: 0;
+  z-index: 100;
+  box-shadow: 0 8px 24px rgba(242, 143, 59, 0.18);
+  overflow: hidden;
+}
+
+.card-type-option {
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  color: #4f3928;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  outline: none;
+}
+
+.card-type-option:hover,
+.card-type-option:focus {
+  background-color: #fff3e8;
+  color: #d97522;
+  font-weight: 600;
+}
+
+.card-type-option.selected {
+  background-color: #ffe8cc;
+  color: #d97522;
+  font-weight: 700;
 }
 
 /* Plan Cards */

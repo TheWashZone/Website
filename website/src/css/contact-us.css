@@ -21,7 +21,8 @@
 .contact-us-format>div {
   flex: 1;
   min-width: 250px;
-  min-height: calc(100vh - 206px);
+  /* min-height: calc(100vh - 206px); */
+  min-height: 100vh;
 }
 
 .contact-us-info {

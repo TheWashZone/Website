@@ -39,7 +39,7 @@
   margin-bottom: 60px;
 }
 
-.category-title {
+.category-faq-title {
   font-size: 1.8rem;
   color: black;
   margin-bottom: 25px;
@@ -145,7 +145,7 @@
   opacity: 0.9;
 }
 
-.contact-button {
+.contact-faq-button {
   background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
   color: black;
   border: none;
@@ -158,12 +158,12 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.contact-button:hover {
+.contact-faq-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
-.contact-button:active {
+.contact-faq-button:active {
   transform: translateY(0);
 }
 
@@ -177,7 +177,7 @@
     font-size: 1rem;
   }
   
-  .category-title {
+  .category-faq-title {
     font-size: 1.5rem;
   }
   

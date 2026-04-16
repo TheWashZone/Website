@@ -4,6 +4,7 @@ import FrequentlyAskedPage from './pages/frequently-asked.jsx'
 import GiftCardPage from './pages/gift-cards.jsx'
 import LoyaltyPage from './pages/loyalty-page.jsx'
 import ContactPage from './pages/contact-us.jsx'
+import LoginPage from './pages/login.jsx'
 import './App.css'
 import './css/home-page.css'
 import './css/hamburger-menu.css'
@@ -42,6 +43,7 @@ function App() {
           <Route path="/contact-us" element={<ContactPage />} />
           <Route path="/gift-card" element={<GiftCardPage />} />
           <Route path="/loyalty-page" element={<LoyaltyPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </>

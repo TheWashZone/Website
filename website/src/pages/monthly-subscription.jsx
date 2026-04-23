@@ -1,8 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { signInAnonymously } from 'firebase/auth';
 import '../css/monthly-subscription.css';
 import washZoneDesignLogo from '../images/The Wash ZONE logo design.png';
 import { Link } from 'react-router-dom';
+import { auth, db } from '../api/firebaseconfig';
 
 const EMPTY_FORM = {
   vehicleYear: '',
@@ -22,31 +25,118 @@ const EMPTY_FORM = {
   printName: ''
 };
 
+const USERS_COLLECTION = 'users';
+
+const PLAN_TO_PREFIX = {
+  basic: 'B',
+  deluxe: 'D',
+  ultimate: 'U'
+};
+
+function normalizePlan(plan) {
+  const value = String(plan || '').trim().toLowerCase();
+  return PLAN_TO_PREFIX[value] ? value : 'deluxe';
+}
+
+async function ensureAuthenticated() {
+  if (!auth.currentUser) {
+    await signInAnonymously(auth);
+  }
+}
+
+function generateId(prefix) {
+  const suffix = Math.floor(Math.random() * 10000)
+    .toString()
+    .padStart(4, '0');
+  return `${prefix}${suffix}`;
+}
+
+async function allocateMemberId(prefix) {
+  for (let i = 0; i < 20; i += 1) {
+    const candidateId = generateId(prefix);
+    const existing = await getDoc(doc(db, USERS_COLLECTION, candidateId));
+    if (!existing.exists()) {
+      return candidateId;
+    }
+  }
+
+  throw new Error('Unable to create a unique subscription ID. Please try again.');
+}
+
+async function createSubscriptionLead(submission) {
+  if (!submission?.name?.trim()) {
+    throw new Error('Name is required.');
+  }
+
+  await ensureAuthenticated();
+
+  const plan = normalizePlan(submission.plan);
+  const tier = PLAN_TO_PREFIX[plan];
+  const memberId = await allocateMemberId(tier);
+
+  const leadData = {
+    name: submission.name.trim(),
+    car: submission.car || '',
+    status: 'payment_needed',
+    notes: '',
+    email: submission.email?.trim() || '',
+    tier,
+    plan,
+    phone: submission.phone?.trim() || '',
+    address: submission.address || '',
+    contactPerson: submission.contactPerson?.trim() || '',
+    vehicleYear: submission.vehicleYear?.trim() || '',
+    vehicleMake: submission.vehicleMake?.trim() || '',
+    vehicleModel: submission.vehicleModel?.trim() || '',
+    vehicleColor: submission.vehicleColor?.trim() || '',
+    authorized: Boolean(submission.authorized),
+    printName: submission.printName?.trim() || '',
+    submittedAt: submission.submittedAt || new Date().toISOString(),
+    paymentStatus: 'pending',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp()
+  };
+
+  await setDoc(doc(db, USERS_COLLECTION, memberId), leadData);
+
+  return {
+    id: memberId,
+    ...leadData
+  };
+}
+
 function MonthlySubscriptionPage() {
   const [formData, setFormData] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState('idle');
   const [statusMessage, setStatusMessage] = useState('');
 
-  const checkoutUrl = useMemo(
-    () => import.meta.env.VITE_CLOVER_SUBSCRIPTION_CHECKOUT_URL || '',
-    []
-  );
+  const isTenDigitPhoneNumber = (value) => value.replace(/\D/g, '').length === 10;
+  const isTwoWordName = (value) => value.trim().split(/\s+/).filter(Boolean).length === 2;
 
   const validate = () => {
     const nextErrors = {};
 
     if (!formData.name.trim()) nextErrors.name = 'Name is required.';
+    if (!formData.contactPerson.trim()) nextErrors.contactPerson = 'Contact person is required.';
     if (!formData.email.trim()) nextErrors.email = 'Email is required.';
     if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) {
       nextErrors.email = 'Enter a valid email address.';
     }
-    if (!formData.phone.trim()) nextErrors.phone = 'Phone is required.';
+    if (!formData.phone.trim()) {
+      nextErrors.phone = 'Phone is required.';
+    } else if (!isTenDigitPhoneNumber(formData.phone)) {
+      nextErrors.phone = 'Enter a 10-digit phone number.';
+    }
     if (!formData.vehicleMake.trim()) nextErrors.vehicleMake = 'Vehicle make is required.';
     if (!formData.vehicleModel.trim()) nextErrors.vehicleModel = 'Vehicle model is required.';
     if (!formData.plan) nextErrors.plan = 'Please select a plan.';
     if (!formData.authorized) nextErrors.authorized = 'Authorization is required.';
-    if (!formData.printName.trim()) nextErrors.printName = 'Print name is required.';
+    if (!formData.printName.trim()) {
+      nextErrors.printName = 'Print name is required.';
+    } else if (!isTwoWordName(formData.printName)) {
+      nextErrors.printName = 'Print name must contain two words.';
+    }
 
     return nextErrors;
   };
@@ -59,15 +149,19 @@ function MonthlySubscriptionPage() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setSubmitStatus('idle');
-    setStatusMessage('');
+    setStatusMessage('Submitting form...');
 
     const nextErrors = validate();
     setErrors(nextErrors);
 
-    if (Object.keys(nextErrors).length > 0) return;
+    if (Object.keys(nextErrors).length > 0) {
+      setSubmitStatus('error');
+      setStatusMessage('Not all filds are completed');
+      return;
+    }
 
     const car = [
       formData.vehicleYear.trim(),
@@ -92,24 +186,17 @@ function MonthlySubscriptionPage() {
       car,
       address,
       submittedAt: new Date().toISOString(),
-      status: 'pending_payment'
+      status: 'payment_needed'
     };
 
     try {
-      const existing = JSON.parse(localStorage.getItem('monthlySubscriptionLeads') || '[]');
-      localStorage.setItem('monthlySubscriptionLeads', JSON.stringify([...existing, submission]));
+      await createSubscriptionLead(submission);
 
       setSubmitStatus('success');
-      setStatusMessage('Form saved. Proceeding to payment...');
-
-      if (checkoutUrl) {
-        window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
-      } else {
-        setStatusMessage('Form saved. Add VITE_CLOVER_SUBSCRIPTION_CHECKOUT_URL in your .env to enable payment redirect.');
-      }
-    } catch {
+      setStatusMessage('Form submitted successfully.');
+    } catch (error) {
       setSubmitStatus('error');
-      setStatusMessage('Unable to save your form right now. Please try again.');
+      setStatusMessage(error?.message || 'Unable to submit your form right now. Please try again.');
     }
   };
 

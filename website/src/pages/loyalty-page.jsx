@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createUser } from '../api/firebase-auth';
-import { createMember } from '../api/firebase-crud';
+import { createMember, findMemberByLoyaltyOrLicense, updateMember } from '../api/firebase-crud';
 import '../css/loyalty-page.css';
 
 function LoyaltyPage() {
@@ -20,7 +20,7 @@ function LoyaltyPage() {
 
   // ===== STATE =====
 
-  const [isLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // null | login | signup
   const [mode, setMode] = useState(null);
@@ -39,7 +39,7 @@ function LoyaltyPage() {
 
   // ===== USER DATA =====
 
-  const [userData] = useState({
+  const [userData, setUserData] = useState({
     membershipType: 'Ultimate',
     memberSince: '2024-01-15',
     totalWashes: 7,
@@ -63,20 +63,36 @@ function LoyaltyPage() {
     e.preventDefault();
 
     console.log("Signup Data:", signupData);
+    // Normalize license plate
+    const normalizedPlate = signupData.licensePlate ? signupData.licensePlate.trim().toUpperCase().replace(/\s+/g, '') : '';
+
+    if (!normalizedPlate) {
+      alert('Please enter a license plate to use as your loyalty number.');
+      return;
+    }
 
     try {
+      // 0) Ensure license is unique
+      const existing = await findMemberByLicense(normalizedPlate);
+      if (existing) {
+        alert('This license plate already has a loyalty account: ' + (existing.loyaltyNumber || existing.car));
+        return;
+      }
+
       // 1) Create Firebase Auth user
       const user = await createUser(signupData.email, signupData.password);
 
       // 2) Create user document in Firestore using uid as id
       const uid = user.uid;
-      // Use licensePlate as `car` field to match existing schema
-      await createMember(uid, signupData.name, signupData.licensePlate || '', 'active', '', signupData.email);
+      await createMember(uid, signupData.name, normalizedPlate, 'active', '', signupData.email);
+
+      // 3) Save loyaltyNumber and phone
+      await updateMember(uid, { loyaltyNumber: normalizedPlate, phone: signupData.phone });
 
       // Clear form and close
       setSignupData({ name: "", phone: "", email: "", password: "", licensePlate: "" });
       setMode(null);
-      alert('Signup successful — your account was created.');
+      alert(`Signup successful — your loyalty number is ${normalizedPlate}`);
     } catch (err) {
       console.error('Signup failed:', err);
       alert('Signup failed: ' + (err.message || 'unknown error'));
@@ -85,10 +101,32 @@ function LoyaltyPage() {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-
     console.log("Login Data:", loginData);
 
-    // Firestore lookup will go here later
+    (async () => {
+      const value = loginData.loyaltyNumber ? loginData.loyaltyNumber.trim().toUpperCase().replace(/\s+/g, '') : '';
+      if (!value) {
+        alert('Please enter a loyalty number (license plate)');
+        return;
+      }
+
+      try {
+        const member = await findMemberByLoyaltyOrLicense(value);
+        if (!member) {
+          alert('No loyalty account found for ' + value);
+          return;
+        }
+
+        // Set logged-in state and user data
+        setUserData(member);
+        setIsLoggedIn(true);
+        setMode(null);
+        alert('Logged in. Welcome, ' + (member.name || 'member'));
+      } catch (err) {
+        console.error('Login lookup failed:', err);
+        alert('Lookup failed: ' + (err.message || 'unknown error'));
+      }
+    })();
   };
 
   return (

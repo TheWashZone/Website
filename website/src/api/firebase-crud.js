@@ -106,6 +106,53 @@ async function getMembersByStatus(status) {
   }
 }
 
+/**
+ * Find a member document by license plate (normalized).
+ * Returns the first matching member or null.
+ */
+async function findMemberByLicense(licensePlate) {
+  try {
+    if (!licensePlate) return null;
+    const normalized = licensePlate.trim().toUpperCase().replace(/\s+/g, "");
+    const q = query(collection(db, "users"), where("car", "==", normalized));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const docSnap = querySnapshot.docs[0];
+      return { id: docSnap.id, ...docSnap.data() };
+    }
+    return null;
+  } catch (error) {
+    console.error("❌ Error finding member by license:", error);
+    throw error;
+  }
+}
+
+/**
+ * Find a member by loyalty number or license plate (normalized).
+ * Returns the first matching member or null.
+ */
+async function findMemberByLoyaltyOrLicense(value) {
+  try {
+    if (!value) return null;
+    const normalized = value.trim().toUpperCase().replace(/\s+/g, "");
+
+    // First try loyaltyNumber field
+    let q = query(collection(db, "users"), where("loyaltyNumber", "==", normalized));
+    let snap = await getDocs(q);
+    if (!snap.empty) return { id: snap.docs[0].id, ...snap.docs[0].data() };
+
+    // Fallback to car field (license plate)
+    q = query(collection(db, "users"), where("car", "==", normalized));
+    snap = await getDocs(q);
+    if (!snap.empty) return { id: snap.docs[0].id, ...snap.docs[0].data() };
+
+    return null;
+  } catch (error) {
+    console.error("❌ Error finding member by loyalty or license:", error);
+    throw error;
+  }
+}
+
 async function updateMember(id, updates) {
   try {
     const docRef = doc(db, "users", id);
@@ -152,6 +199,8 @@ export {
   getMember,
   getAllMembers,
   getMembersByStatus,
+  findMemberByLicense,
+  findMemberByLoyaltyOrLicense,
   updateMember,
   deleteMember
 };

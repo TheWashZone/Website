@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { createUser } from '../api/firebase-auth';
+import { createMember } from '../api/firebase-crud';
 import '../css/loyalty-page.css';
 
 function LoyaltyPage() {
@@ -27,6 +29,7 @@ function LoyaltyPage() {
     name: "",
     phone: "",
     email: "",
+    password: "",
     licensePlate: "",
   });
 
@@ -56,12 +59,28 @@ function LoyaltyPage() {
 
   // ===== FORM SUBMITS =====
 
-  const handleSignupSubmit = (e) => {
+  const handleSignupSubmit = async (e) => {
     e.preventDefault();
 
     console.log("Signup Data:", signupData);
 
-    // Firestore save will go here later
+    try {
+      // 1) Create Firebase Auth user
+      const user = await createUser(signupData.email, signupData.password);
+
+      // 2) Create user document in Firestore using uid as id
+      const uid = user.uid;
+      // Use licensePlate as `car` field to match existing schema
+      await createMember(uid, signupData.name, signupData.licensePlate || '', 'active', '', signupData.email);
+
+      // Clear form and close
+      setSignupData({ name: "", phone: "", email: "", password: "", licensePlate: "" });
+      setMode(null);
+      alert('Signup successful — your account was created.');
+    } catch (err) {
+      console.error('Signup failed:', err);
+      alert('Signup failed: ' + (err.message || 'unknown error'));
+    }
   };
 
   const handleLoginSubmit = (e) => {
@@ -163,7 +182,17 @@ function LoyaltyPage() {
                   })
                 }
               />
-
+              <input
+                type="password"
+                placeholder="Password"
+                value={signupData.password}
+                onChange={(e) =>
+                  setSignupData({
+                    ...signupData,
+                    password: e.target.value
+                  })
+                }
+              />
               <input
                 type="text"
                 placeholder="License Plate"

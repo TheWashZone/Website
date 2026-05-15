@@ -1,4 +1,4 @@
-import { doc, setDoc, getDoc, updateDoc, deleteDoc, collection, getDocs, query, where, runTransaction } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc, deleteDoc, collection, getDocs, query, where, runTransaction, increment } from "firebase/firestore";
 import { db } from "./firebaseconfig";
 
 async function createMember(id, name, car, status, notes, email = '') {
@@ -153,6 +153,77 @@ async function findMemberByLoyaltyOrLicense(value) {
   }
 }
 
+/**
+ * Log a wash for a user. Increments totalWashes and the specific washType counter,
+ * and updates washesUntilFree atomically.
+ * @param {string} id - user id
+ * @param {string} washType - e.g. 'basicWashes' | 'deluxeWashes' | 'ultimateWashes'
+ */
+async function logWash(id, washType = 'basicWashes') {
+  try {
+    const docRef = doc(db, 'users', id);
+    await runTransaction(db, async (tx) => {
+      const snap = await tx.get(docRef);
+      if (!snap.exists()) throw new Error(`User ${id} not found`);
+
+      const data = snap.data();
+      const totalWashes = (data.totalWashes || 0) + 1;
+      let washesUntilFree = typeof data.washesUntilFree === 'number' ? data.washesUntilFree - 1 : (data.washesPerFree || 10) - 1;
+
+      if (washesUntilFree <= 0) {
+        // reset to washesPerFree after earning free wash
+        washesUntilFree = data.washesPerFree || 10;
+      }
+
+      const updates = {
+        totalWashes,
+        washesUntilFree,
+        [washType]: increment(1)
+      };
+
+      tx.update(docRef, updates);
+    });
+    return true;
+  } catch (error) {
+    console.error('❌ Error logging wash:', error);
+    throw error;
+  }
+}
+
+/**
+ * Redeem a free wash if available. Requires washesUntilFree to be equal to washesPerFree
+ * immediately after earning a free wash (depends on your policy). This implementation
+ * allows redemption when washesUntilFree is equal to washesPerFree (i.e., just reset),
+ * or when explicitly 0 depending on how you choose to track. Here we allow redemption
+ * when washesUntilFree === (data.washesPerFree || 10).
+ */
+async function redeemFreeWash(id) {
+  try {
+    const docRef = doc(db, 'users', id);
+    const result = await runTransaction(db, async (tx) => {
+      const snap = await tx.get(docRef);
+      if (!snap.exists()) throw new Error(`User ${id} not found`);
+      const data = snap.data();
+      const washesUntilFree = data.washesUntilFree ?? (data.washesPerFree || 10);
+      const washesPerFree = data.washesPerFree || 10;
+
+      // Determine eligibility: if washesUntilFree === washesPerFree (just earned) or 0
+      if (washesUntilFree !== washesPerFree && washesUntilFree !== 0) {
+        return { redeemed: false, reason: 'No free wash available' };
+      }
+
+      // Redeem: set washesUntilFree back to washesPerFree
+      tx.update(docRef, { washesUntilFree: washesPerFree, redeemedFreeCount: increment(1) });
+      return { redeemed: true };
+    });
+
+    return result;
+  } catch (error) {
+    console.error('❌ Error redeeming free wash:', error);
+    throw error;
+  }
+}
+
 async function updateMember(id, updates) {
   try {
     const docRef = doc(db, "users", id);
@@ -201,6 +272,8 @@ export {
   getMembersByStatus,
   findMemberByLicense,
   findMemberByLoyaltyOrLicense,
+  logWash,
+  redeemFreeWash,
   updateMember,
   deleteMember
 };

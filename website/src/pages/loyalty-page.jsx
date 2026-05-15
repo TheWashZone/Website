@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createUser } from '../api/firebase-auth';
-import { createMember, findMemberByLoyaltyOrLicense, updateMember } from '../api/firebase-crud';
+import { createMember, findMemberByLicense, findMemberByLoyaltyOrLicense, updateMember, getMember, logWash, redeemFreeWash } from '../api/firebase-crud';
 import '../css/loyalty-page.css';
 
 function LoyaltyPage() {
@@ -127,6 +127,36 @@ function LoyaltyPage() {
         alert('Lookup failed: ' + (err.message || 'unknown error'));
       }
     })();
+  };
+
+  const handleLogWash = async () => {
+    if (!isLoggedIn || !userData?.id) return alert('Not logged in');
+    try {
+      await logWash(userData.id, 'basicWashes');
+      const updated = await getMember(userData.id);
+      setUserData(updated);
+      alert('Wash logged');
+    } catch (err) {
+      console.error('Log wash failed:', err);
+      alert('Log wash failed: ' + (err.message || 'unknown error'));
+    }
+  };
+
+  const handleRedeem = async () => {
+    if (!isLoggedIn || !userData?.id) return alert('Not logged in');
+    try {
+      const res = await redeemFreeWash(userData.id);
+      if (res && res.redeemed) {
+        const updated = await getMember(userData.id);
+        setUserData(updated);
+        alert('Free wash redeemed');
+      } else {
+        alert('Cannot redeem free wash: ' + (res?.reason || 'not eligible'));
+      }
+    } catch (err) {
+      console.error('Redeem failed:', err);
+      alert('Redeem failed: ' + (err.message || 'unknown error'));
+    }
   };
 
   return (
@@ -316,6 +346,11 @@ function LoyaltyPage() {
                   wash{userData.washesUntilFree !== 1 ? 'es' : ''}
                 </li>
               </ul>
+
+              <div style={{ display: 'flex', gap: 10, marginTop: 12 }}>
+                <button className="login-button" onClick={handleLogWash}>Log Wash</button>
+                <button className="login-button" onClick={handleRedeem}>Redeem Free Wash</button>
+              </div>
 
             </div>
           ) : (

@@ -1,374 +1,314 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { createUser } from '../api/firebase-auth';
-import { createMember, findMemberByLicense, findMemberByLoyaltyOrLicense, updateMember, getMember, logWash, redeemFreeWash } from '../api/firebase-crud';
+import {
+  createMember,
+  findMemberByLicense,
+  findMemberByLoyaltyOrLicense,
+  updateMember,
+  getMember
+} from '../api/firebase-crud';
+
 import '../css/loyalty-page.css';
 
 function LoyaltyPage() {
-  // ===== PAGE TEXT =====
-
-  const heroTitle = "Loyalty Rewards";
-  const heroSubtitle = "Track your washes and earn free rewards!";
-
-  const progressTitle = "Wash Progress";
-
-  const membershipTitle = "Membership Details";
-  const membershipFillerText =
-    "Log in to view your membership details and track your rewards.";
-
-  const membershipPlaceholderText =
-    "Your membership information will appear here";
-
-  // ===== STATE =====
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // null | login | signup
-  const [mode, setMode] = useState(null);
+  const [authTab, setAuthTab] = useState('signup');
 
   const [signupData, setSignupData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    password: "",
-    licensePlate: "",
+    name: '',
+    phone: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    licensePlate: '',
+    authorized: false,
   });
 
-  const [loginData, setLoginData] = useState({
-    loyaltyNumber: "",
-  });
-
-  // ===== USER DATA =====
+  const [loginData, setLoginData] = useState({ loyaltyNumber: '' });
 
   const [userData, setUserData] = useState({
-    membershipType: 'Ultimate',
-    memberSince: '2024-01-15',
-    totalWashes: 7,
-    washesUntilFree: 3,
+    membershipType: 'Loyalty Rewards',
+    memberSince: 'Today',
+    totalWashes: 0,
+    washesUntilFree: 10,
     washesPerFree: 10
   });
 
-  // ===== BUTTON HANDLERS =====
+  const washesPerFree = Number(userData?.washesPerFree) || 10;
+  const totalWashes = Number(userData?.totalWashes) || 0;
+  const washesUntilFree = Number.isFinite(Number(userData?.washesUntilFree))
+    ? Number(userData?.washesUntilFree)
+    : Math.max(washesPerFree - (totalWashes % washesPerFree), 0);
 
-  const handleLoginClick = () => {
-    setMode("login");
+  const loyaltyProgress = useMemo(() => {
+    const progress = ((washesPerFree - washesUntilFree) / washesPerFree) * 100;
+    return Math.max(0, Math.min(100, progress));
+  }, [washesPerFree, washesUntilFree]);
+
+  const updateSignupField = (event) => {
+    const { name, value, type, checked } = event.target;
+    setSignupData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
   };
 
-  const handleSignupClick = () => {
-    setMode("signup");
+  const resetSignupForm = () => {
+    setSignupData({
+      name: '',
+      phone: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      licensePlate: '',
+      authorized: false,
+    });
   };
 
-  // ===== FORM SUBMITS =====
+  const handleSignupSubmit = async (event) => {
+    event.preventDefault();
 
-  const handleSignupSubmit = async (e) => {
-    e.preventDefault();
+    const normalizedPlate = signupData.licensePlate
+      ? signupData.licensePlate.trim().toUpperCase().replace(/\s+/g, '')
+      : '';
 
-    console.log("Signup Data:", signupData);
-    // Normalize license plate
-    const normalizedPlate = signupData.licensePlate ? signupData.licensePlate.trim().toUpperCase().replace(/\s+/g, '') : '';
+    if (!signupData.name.trim() || !signupData.email.trim() || !signupData.password.trim()) {
+      alert('Please complete name, email, and password.');
+      return;
+    }
+
+    if (signupData.password !== signupData.confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+
+    if (!signupData.phone.trim()) {
+      alert('Please enter a phone number.');
+      return;
+    }
 
     if (!normalizedPlate) {
       alert('Please enter a license plate to use as your loyalty number.');
       return;
     }
 
+    if (!signupData.authorized) {
+      alert('Please authorize the loyalty signup to continue.');
+      return;
+    }
+
     try {
-      // 0) Ensure license is unique
       const existing = await findMemberByLicense(normalizedPlate);
       if (existing) {
         alert('This license plate already has a loyalty account: ' + (existing.loyaltyNumber || existing.car));
         return;
       }
 
-      // 1) Create Firebase Auth user
       const user = await createUser(signupData.email, signupData.password);
-
-      // 2) Create user document in Firestore using uid as id
       const uid = user.uid;
-      await createMember(uid, signupData.name, normalizedPlate, 'active', '', signupData.email);
 
-      // 3) Save loyaltyNumber and phone
-      await updateMember(uid, { loyaltyNumber: normalizedPlate, phone: signupData.phone });
+      await createMember(
+        uid,
+        signupData.name.trim(),
+        normalizedPlate,
+        'active',
+        'Loyalty rewards signup',
+        signupData.email.trim()
+      );
 
-      // Clear form and close
-      setSignupData({ name: "", phone: "", email: "", password: "", licensePlate: "" });
-      setMode(null);
-      alert(`Signup successful — your loyalty number is ${normalizedPlate}`);
+      await updateMember(uid, {
+        loyaltyNumber: normalizedPlate,
+        phone: signupData.phone.trim(),
+        authorized: Boolean(signupData.authorized),
+        washesPerFree: 10,
+        washesUntilFree: 10,
+        totalWashes: 0,
+        membershipType: 'Loyalty Rewards'
+      });
+
+      resetSignupForm();
+      setAuthTab('login');
+
+      alert(`Signup successful. Your loyalty number is ${normalizedPlate}.`);
     } catch (err) {
       console.error('Signup failed:', err);
       alert('Signup failed: ' + (err.message || 'unknown error'));
     }
   };
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    console.log("Login Data:", loginData);
+  const handleLoginSubmit = async (event) => {
+    event.preventDefault();
 
-    (async () => {
-      const value = loginData.loyaltyNumber ? loginData.loyaltyNumber.trim().toUpperCase().replace(/\s+/g, '') : '';
-      if (!value) {
-        alert('Please enter a loyalty number (license plate)');
+    const value = loginData.loyaltyNumber
+      ? loginData.loyaltyNumber.trim().toUpperCase().replace(/\s+/g, '')
+      : '';
+
+    if (!value) {
+      alert('Please enter a loyalty number (license plate).');
+      return;
+    }
+
+    try {
+      const member = await findMemberByLoyaltyOrLicense(value);
+
+      if (!member) {
+        alert('No loyalty account found for ' + value);
         return;
       }
 
-      try {
-        const member = await findMemberByLoyaltyOrLicense(value);
-        if (!member) {
-          alert('No loyalty account found for ' + value);
-          return;
-        }
+      const normalizedMember = {
+        ...member,
+        washesPerFree: Number(member.washesPerFree) || 10,
+        totalWashes: Number(member.totalWashes) || 0,
+        washesUntilFree: Number.isFinite(Number(member.washesUntilFree))
+          ? Number(member.washesUntilFree)
+          : Math.max(10 - ((Number(member.totalWashes) || 0) % 10), 0)
+      };
 
-        // Set logged-in state and user data
-        setUserData(member);
-        setIsLoggedIn(true);
-        setMode(null);
-        alert('Logged in. Welcome, ' + (member.name || 'member'));
-      } catch (err) {
-        console.error('Login lookup failed:', err);
-        alert('Lookup failed: ' + (err.message || 'unknown error'));
-      }
-    })();
-  };
+      setUserData(normalizedMember);
+      setIsLoggedIn(true);
 
-  const handleLogWash = async () => {
-    if (!isLoggedIn || !userData?.id) return alert('Not logged in');
-    try {
-      await logWash(userData.id, 'basicWashes');
-      const updated = await getMember(userData.id);
-      setUserData(updated);
-      alert('Wash logged');
+      alert('Wash logged. Welcome, ' + (member.name || 'member'));
     } catch (err) {
-      console.error('Log wash failed:', err);
-      alert('Log wash failed: ' + (err.message || 'unknown error'));
-    }
-  };
-
-  const handleRedeem = async () => {
-    if (!isLoggedIn || !userData?.id) return alert('Not logged in');
-    try {
-      const res = await redeemFreeWash(userData.id);
-      if (res && res.redeemed) {
-        const updated = await getMember(userData.id);
-        setUserData(updated);
-        alert('Free wash redeemed');
-      } else {
-        alert('Cannot redeem free wash: ' + (res?.reason || 'not eligible'));
-      }
-    } catch (err) {
-      console.error('Redeem failed:', err);
-      alert('Redeem failed: ' + (err.message || 'unknown error'));
+      console.error('Login lookup failed:', err);
+      alert('Lookup failed: ' + (err.message || 'unknown error'));
     }
   };
 
   return (
     <div className="loyalty-page">
+      <section className="loyalty-hero">
+        <p className="hero-kicker">The Wash Zone Perks</p>
+        <h1>LOYALTY REWARDS!!</h1>
+        <p className="subtitle">
+          Wash with us, track your progress, and claim a free wash after every 10 paid washes.
+        </p>
+      </section>
 
-      {/* HERO SECTION */}
-      <div className="loyalty-hero">
-        <h1>{heroTitle}</h1>
-        <p className="subtitle">{heroSubtitle}</p>
-      </div>
+      <section className="loyalty-content">
+        <div className="loyalty-story-panel">
+          <article className="loyalty-program-card">
+            <div className="program-headline-row">
+              <h2>Loyalty Program Details</h2>
+              <span className="program-pill">10 Washes = 1 Free</span>
+            </div>
 
-      {/* MAIN CONTENT */}
-      <div className="loyalty-content">
+            <div className="hero-reward-block">
+              <div className="reward-number">FREE</div>
+              <div className="reward-copy">
+                <p className="program-intro">
+                  Join once, wash often, and unlock your reward. Every paid wash gets you closer to your next free one.
+                </p>
+                <div className="progress-track compact" role="progressbar" aria-valuenow={Math.round(loyaltyProgress)} aria-valuemin={0} aria-valuemax={100}>
+                  <div className="progress-fill" style={{ width: `${loyaltyProgress}%` }} />
+                </div>
+                <div className="progress-copy compact-copy">
+                  {washesUntilFree === 0
+                    ? 'You earned a free wash. Redeem it now.'
+                    : `${washesUntilFree} wash${washesUntilFree === 1 ? '' : 'es'} left until your free wash.`}
+                </div>
+              </div>
+            </div>
 
-        {/* WASH PROGRESS */}
-        <section className="loyalty-section">
+            <div className="program-stat-chips">
+              <div className="stat-chip">
+                <span className="chip-value">1</span>
+                <span className="chip-label">Vehicle Per Account</span>
+              </div>
+              <div className="stat-chip">
+                <span className="chip-value">10</span>
+                <span className="chip-label">Paid Washes Needed</span>
+              </div>
+              <div className="stat-chip">
+                <span className="chip-value">FREE</span>
+                <span className="chip-label">Reward Wash</span>
+              </div>
+            </div>
 
-          <h2>{progressTitle}</h2>
+            <div className="program-steps" aria-label="How loyalty works">
+              <div className="program-step">
+                <span className="step-number">01</span>
+                <h3>Sign Up</h3>
+                <p>Create your loyalty account using your plate as your loyalty number.</p>
+              </div>
+              <div className="program-step">
+                <span className="step-number">02</span>
+                <h3>Wash & Track</h3>
+                <p>Each paid wash counts toward your next free reward.</p>
+              </div>
+              <div className="program-step">
+                <span className="step-number">03</span>
+                <h3>Redeem</h3>
+                <p>After 10 washes, claim your free wash at check-in.</p>
+              </div>
+            </div>
 
-          <p>
-            {userData.washesUntilFree === 0
-              ? "Congratulations! You've earned a free wash!"
-              : `${userData.washesUntilFree} wash${userData.washesUntilFree !== 1 ? 'es' : ''} until your next free wash!`}
-          </p>
+          </article>
+        </div>
 
-          {/* BUTTONS */}
-          <div
-            style={{
-              display: 'flex',
-              gap: '10px',
-              justifyContent: 'center',
-              flexWrap: 'wrap'
-            }}
-          >
+        <article className="loyalty-auth-card">
+          {authTab === 'signup' ? (
+            <form className="loyalty-signup-form" onSubmit={handleSignupSubmit}>
+              <h3>Sign Up For Loyalty</h3>
+
+              <div className="form-grid two-col">
+                <input type="text" name="name" placeholder="Full name" value={signupData.name} onChange={updateSignupField} required />
+                <input type="tel" name="phone" placeholder="Phone" value={signupData.phone} onChange={updateSignupField} required />
+              </div>
+
+              <div className="form-grid two-col">
+                <input type="email" name="email" placeholder="Email" value={signupData.email} onChange={updateSignupField} required />
+                <input type="password" name="password" placeholder="Create password" value={signupData.password} onChange={updateSignupField} required />
+              </div>
+
+              <div className="form-grid two-col">
+                <input type="text" name="licensePlate" placeholder="License plate (loyalty number)" value={signupData.licensePlate} onChange={updateSignupField} required />
+                <input type="password" name="confirmPassword" placeholder="Confirm password" value={signupData.confirmPassword} onChange={updateSignupField} required />
+              </div>
+
+              <label className="checkbox-row">
+                <input type="checkbox" name="authorized" checked={signupData.authorized} onChange={updateSignupField} />
+                I authorize The Wash Zone to process this loyalty signup <span className="text-danger">(required)</span>.
+              </label>
+
+              <button className="submit-button" type="submit">Create Loyalty Account</button>
+            </form>
+          ) : (
+            <form className="loyalty-login-form" onSubmit={handleLoginSubmit}>
+              <h3>Log In To Your Loyalty Account</h3>
+              <p>Use your loyalty number or license plate.</p>
+              <input
+                type="text"
+                placeholder="Enter loyalty number"
+                value={loginData.loyaltyNumber}
+                onChange={(event) => setLoginData({ loyaltyNumber: event.target.value })}
+              />
+              <button className="submit-button" type="submit">Log In</button>
+            </form>
+          )}
+
+          <div className="auth-tabs-bottom" role="tablist" aria-label="Loyalty authentication tabs">
             <button
-              className="login-button"
-              onClick={handleLoginClick}
+              className={authTab === 'login' ? 'tab-button active' : 'tab-button'}
+              onClick={() => setAuthTab('login')}
+              type="button"
+              role="tab"
+              aria-selected={authTab === 'login'}
             >
-              Login
+              Log In
             </button>
-
             <button
-              className="login-button"
-              onClick={handleSignupClick}
+              className={authTab === 'signup' ? 'tab-button active' : 'tab-button'}
+              onClick={() => setAuthTab('signup')}
+              type="button"
+              role="tab"
+              aria-selected={authTab === 'signup'}
             >
               Signup
             </button>
           </div>
-
-          {/* SIGNUP FORM */}
-          {mode === "signup" && (
-            <form
-              className="signup-form"
-              onSubmit={handleSignupSubmit}
-            >
-
-              <h3>Sign Up</h3>
-
-              <input
-                type="text"
-                placeholder="Name"
-                value={signupData.name}
-                onChange={(e) =>
-                  setSignupData({
-                    ...signupData,
-                    name: e.target.value
-                  })
-                }
-              />
-
-              <input
-                type="text"
-                placeholder="Phone"
-                value={signupData.phone}
-                onChange={(e) =>
-                  setSignupData({
-                    ...signupData,
-                    phone: e.target.value
-                  })
-                }
-              />
-
-              <input
-                type="email"
-                placeholder="Email"
-                value={signupData.email}
-                onChange={(e) =>
-                  setSignupData({
-                    ...signupData,
-                    email: e.target.value
-                  })
-                }
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={signupData.password}
-                onChange={(e) =>
-                  setSignupData({
-                    ...signupData,
-                    password: e.target.value
-                  })
-                }
-              />
-              <input
-                type="text"
-                placeholder="License Plate"
-                value={signupData.licensePlate}
-                onChange={(e) =>
-                  setSignupData({
-                    ...signupData,
-                    licensePlate: e.target.value
-                  })
-                }
-              />
-
-              <button
-                type="submit"
-                className="login-button"
-              >
-                Create Loyalty Account
-              </button>
-
-            </form>
-          )}
-
-          {/* LOGIN FORM */}
-          {mode === "login" && (
-            <form
-              className="signup-form"
-              onSubmit={handleLoginSubmit}
-            >
-
-              <h3>Login</h3>
-
-              <input
-                type="text"
-                placeholder="Enter Loyalty Number"
-                value={loginData.loyaltyNumber}
-                onChange={(e) =>
-                  setLoginData({
-                    ...loginData,
-                    loyaltyNumber: e.target.value
-                  })
-                }
-              />
-
-              <button
-                type="submit"
-                className="login-button"
-              >
-                Login
-              </button>
-
-            </form>
-          )}
-
-        </section>
-
-        {/* MEMBERSHIP DETAILS */}
-        <section className="loyalty-section membership">
-
-          <h2>{membershipTitle}</h2>
-
-          {isLoggedIn ? (
-            <div className="membership-content">
-
-              <ul>
-                <li>
-                  <strong>Membership Type:</strong>{" "}
-                  {userData.membershipType}
-                </li>
-
-                <li>
-                  <strong>Member Since:</strong>{" "}
-                  {new Date(userData.memberSince).toLocaleDateString()}
-                </li>
-
-                <li>
-                  <strong>Total Washes:</strong>{" "}
-                  {userData.totalWashes}
-                </li>
-
-                <li>
-                  <strong>Next Free Wash:</strong>{" "}
-                  After {userData.washesUntilFree} more
-                  wash{userData.washesUntilFree !== 1 ? 'es' : ''}
-                </li>
-              </ul>
-
-              <div style={{ display: 'flex', gap: 10, marginTop: 12 }}>
-                <button className="login-button" onClick={handleLogWash}>Log Wash</button>
-                <button className="login-button" onClick={handleRedeem}>Redeem Free Wash</button>
-              </div>
-
-            </div>
-          ) : (
-            <div className="membership-filler">
-
-              <p>{membershipFillerText}</p>
-
-              <div className="filler-placeholder">
-                <p>{membershipPlaceholderText}</p>
-              </div>
-
-            </div>
-          )}
-
-        </section>
-
-      </div>
-
+        </article>
+      </section>
     </div>
   );
 }

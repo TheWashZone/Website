@@ -266,10 +266,19 @@ function LoyaltyPage() {
                 <input type="password" name="confirmPassword" placeholder="Confirm password" value={signupData.confirmPassword} onChange={updateSignupField} required />
               </div>
 
-              <label className="checkbox-row">
-                <input type="checkbox" name="authorized" checked={signupData.authorized} onChange={updateSignupField} />
-                I authorize The Wash Zone to process this loyalty signup <span className="text-danger">(required)</span>.
-              </label>
+              <div className="form-check loyalty-form-check">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  name="authorized"
+                  id="loyalty-authorized"
+                  checked={signupData.authorized}
+                  onChange={updateSignupField}
+                />
+                <label className="form-check-label loyalty-form-check-label" htmlFor="loyalty-authorized">
+                  I authorize The Wash Zone to process this loyalty signup <span className="text-danger">(required)</span>.
+                </label>
+              </div>
 
               <button className="submit-button" type="submit">Create Loyalty Account</button>
             </form>

@@ -392,6 +392,9 @@
 .subscription-form .form-check {
   padding-left: 1.8rem;
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .subscription-form .form-check-input {
@@ -399,8 +402,13 @@
   height: 1.2em;
   border: 2px solid #e7ccb3;
   cursor: pointer;
-  margin-top: 0.3em;
+  margin-top: 0;
   transition: all 0.2s ease;
+  appearance: auto;
+  -webkit-appearance: auto;
+  accent-color: #f28f3b;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .subscription-form .form-check-input:hover {
@@ -412,6 +420,13 @@
   background-color: #f28f3b;
   border-color: #f28f3b;
   box-shadow: 0 0 0 3px rgba(242, 143, 59, 0.15);
+}
+
+.subscription-form .form-check-input:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.4' d='M5 10.5l3 3 7-7'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1em 1em;
 }
 
 .subscription-form .form-check-label {

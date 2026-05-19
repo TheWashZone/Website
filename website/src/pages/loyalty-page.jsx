@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { createUser } from '../api/firebase-auth';
 import {
   createMember,
@@ -178,8 +179,8 @@ function LoyaltyPage() {
   return (
     <div className="loyalty-page">
       <section className="loyalty-hero">
-        <p className="hero-kicker">The Wash Zone Perks</p>
-        <h1>LOYALTY REWARDS!!</h1>
+        <p className="hero-kicker">The Wash Zone Rewards</p>
+        <h1>REWARDS!!</h1>
         <p className="subtitle">
           Wash with us, track your progress, and claim a free wash after every 10 paid washes.
         </p>
@@ -189,7 +190,7 @@ function LoyaltyPage() {
         <div className="loyalty-story-panel">
           <article className="loyalty-program-card">
             <div className="program-headline-row">
-              <h2>Loyalty Program Details</h2>
+              <h2>Rewards Program Details</h2>
               <span className="program-pill">10 Washes = 1 Free</span>
             </div>
 
@@ -225,11 +226,11 @@ function LoyaltyPage() {
               </div>
             </div>
 
-            <div className="program-steps" aria-label="How loyalty works">
+            <div className="program-steps" aria-label="How rewards work">
               <div className="program-step">
                 <span className="step-number">01</span>
                 <h3>Sign Up</h3>
-                <p>Create your loyalty account using your plate as your loyalty number.</p>
+                <p>Create your rewards account using your plate as your reward number.</p>
               </div>
               <div className="program-step">
                 <span className="step-number">02</span>
@@ -249,7 +250,7 @@ function LoyaltyPage() {
         <article className="loyalty-auth-card">
           {authTab === 'signup' ? (
             <form className="loyalty-signup-form" onSubmit={handleSignupSubmit}>
-              <h3>Sign Up For Loyalty</h3>
+              <h3>Sign Up For Rewards</h3>
 
               <div className="form-grid two-col">
                 <input type="text" name="name" placeholder="Full name" value={signupData.name} onChange={updateSignupField} required />
@@ -262,7 +263,7 @@ function LoyaltyPage() {
               </div>
 
               <div className="form-grid two-col">
-                <input type="text" name="licensePlate" placeholder="License plate (loyalty number)" value={signupData.licensePlate} onChange={updateSignupField} required />
+                <input type="text" name="licensePlate" placeholder="License plate (reward number)" value={signupData.licensePlate} onChange={updateSignupField} required />
                 <input type="password" name="confirmPassword" placeholder="Confirm password" value={signupData.confirmPassword} onChange={updateSignupField} required />
               </div>
 
@@ -276,19 +277,19 @@ function LoyaltyPage() {
                   onChange={updateSignupField}
                 />
                 <label className="form-check-label loyalty-form-check-label" htmlFor="loyalty-authorized">
-                  I authorize The Wash Zone to process this loyalty signup <span className="text-danger">(required)</span>.
+                  I authorize The Wash Zone to process this rewards signup <span className="text-danger">(required)</span>.
                 </label>
               </div>
 
-              <button className="submit-button" type="submit">Create Loyalty Account</button>
+              <button className="submit-button" type="submit">Create Rewards Account</button>
             </form>
           ) : (
             <form className="loyalty-login-form" onSubmit={handleLoginSubmit}>
-              <h3>Log In To Your Loyalty Account</h3>
-              <p>Use your loyalty number or license plate.</p>
+              <h3>Log In To Your Rewards Account</h3>
+              <p>Use your reward number or license plate.</p>
               <input
                 type="text"
-                placeholder="Enter loyalty number"
+                placeholder="Enter reward number"
                 value={loginData.loyaltyNumber}
                 onChange={(event) => setLoginData({ loyaltyNumber: event.target.value })}
               />
@@ -296,7 +297,7 @@ function LoyaltyPage() {
             </form>
           )}
 
-          <div className="auth-tabs-bottom" role="tablist" aria-label="Loyalty authentication tabs">
+          <div className="auth-tabs-bottom" role="tablist" aria-label="Rewards authentication tabs">
             <button
               className={authTab === 'login' ? 'tab-button active' : 'tab-button'}
               onClick={() => setAuthTab('login')}
@@ -317,6 +318,13 @@ function LoyaltyPage() {
             </button>
           </div>
         </article>
+
+        <div className="subscription-contact-cta" style={{ marginTop: 18 }}>
+          <p>
+            Please <Link to="/contact-us" className="subscription-contact-link">contact us</Link> or visit our <Link to="/frequently-asked" className="subscription-contact-link">frequently asked questions</Link> for more info.
+          </p>
+        </div>
+
       </section>
     </div>
   );

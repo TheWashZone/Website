@@ -29,7 +29,7 @@ function App() {
                  <Nav.Link as={Link} to="/frequently-asked" className="text-black px-4 d-none d-lg-block fw-bold">FAQ</Nav.Link>
                  <Nav.Link as={Link} to="/contact-us" className="text-black px-4 d-none d-lg-block fw-bold">Contact Us</Nav.Link>
                  <Nav.Link as={Link} to="/gift-card" className="text-black px-4 d-none d-lg-block fw-bold">Gift Cards</Nav.Link>
-                 <Nav.Link as={Link} to="/loyalty-page" className="text-black px-4 d-none d-lg-block fw-bold">Loyalty</Nav.Link>
+                 <Nav.Link as={Link} to="/loyalty-page" className="text-black px-4 d-none d-lg-block fw-bold">Rewards</Nav.Link>
                  <Nav.Link as={Link} to="/monthly-subscription" className="text-black px-4 d-none d-lg-block fw-bold">Monthly Subscription</Nav.Link>
               </Nav>
             </Container>

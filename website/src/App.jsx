@@ -35,7 +35,7 @@ function App() {
             </Container>
           </Navbar>
         </div>
-        <div className="d-lg-none position-relative">
+        <div className="position-relative">
           <HamburgerMenu />
         </div>
         <Routes>

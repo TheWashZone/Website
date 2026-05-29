@@ -59,7 +59,6 @@ async function allocateMemberId(prefix) {
       return candidateId;
     }
   }
-
   throw new Error('Unable to create a unique subscription ID. Please try again.');
 }
 
@@ -99,10 +98,7 @@ async function createSubscriptionLead(submission) {
 
   await setDoc(doc(db, USERS_COLLECTION, memberId), leadData);
 
-  return {
-    id: memberId,
-    ...leadData
-  };
+  return { id: memberId, ...leadData };
 }
 
 function MonthlySubscriptionPage() {
@@ -116,7 +112,6 @@ function MonthlySubscriptionPage() {
 
   const validate = () => {
     const nextErrors = {};
-
     if (!formData.name.trim()) nextErrors.name = 'Name is required.';
     if (!formData.contactPerson.trim()) nextErrors.contactPerson = 'Contact person is required.';
     if (!formData.email.trim()) nextErrors.email = 'Email is required.';
@@ -137,7 +132,6 @@ function MonthlySubscriptionPage() {
     } else if (!isTwoWordName(formData.printName)) {
       nextErrors.printName = 'Print name must contain two words.';
     }
-
     return nextErrors;
   };
 
@@ -159,7 +153,7 @@ function MonthlySubscriptionPage() {
 
     if (Object.keys(nextErrors).length > 0) {
       setSubmitStatus('error');
-      setStatusMessage('Not all filds are completed');
+      setStatusMessage('Not all fields are completed');
       return;
     }
 
@@ -168,18 +162,14 @@ function MonthlySubscriptionPage() {
       formData.vehicleMake.trim(),
       formData.vehicleModel.trim(),
       formData.vehicleColor.trim() ? `(${formData.vehicleColor.trim()})` : ''
-    ]
-      .filter(Boolean)
-      .join(' ');
+    ].filter(Boolean).join(' ');
 
     const address = [
       formData.streetAddress.trim(),
       formData.city.trim(),
       formData.state.trim(),
       formData.zipCode.trim()
-    ]
-      .filter(Boolean)
-      .join(', ');
+    ].filter(Boolean).join(', ');
 
     const submission = {
       ...formData,
@@ -191,7 +181,6 @@ function MonthlySubscriptionPage() {
 
     try {
       await createSubscriptionLead(submission);
-
       setSubmitStatus('success');
       setStatusMessage('Form submitted successfully.');
     } catch (error) {
@@ -202,95 +191,56 @@ function MonthlySubscriptionPage() {
 
   return (
     <div className="subscription-wrapper">
-      <div className="subscription-form-container">
-        <div className="subscription-header">
-          <h2 className="subscription-title">Monthly Pass Registration Form</h2>
-          <img className="subscription-logo" src={washZoneDesignLogo} alt="The Wash Zone logo" />
-        </div>
-      
 
+      {/* Hero */}
+      <section className="subscription-hero">
+        <h1>Monthly Pass Registration</h1>
+        <p className="subtitle">Sign up for unlimited washes — pick your plan and get started today.</p>
+      </section>
+
+      <div className="subscription-header">
+        <h2 className="subscription-title">Registration Form</h2>
+        <img className="subscription-logo" src={washZoneDesignLogo} alt="The Wash Zone logo" />
+      </div>
+
+      <div className="subscription-form-container">
         <Form className="subscription-form" onSubmit={handleSubmit} noValidate>
-            {/* Vehicle */}
-            <Row className="mb-3">
-              <Col md={12}>
-                <Form.Label>Vehicle (year, make, model, color)</Form.Label>
-                <Row className="g-2">
-                  <Col xs={3}>
-                    <Form.Control
-                      type="text"
-                      name="vehicleYear"
-                      placeholder="Year"
-                      value={formData.vehicleYear}
-                      onChange={handleChange}
-                    />
-                  </Col>
-                  <Col xs={3}>
-                    <Form.Control
-                      type="text"
-                      name="vehicleMake"
-                      placeholder="Make"
-                      value={formData.vehicleMake}
-                      onChange={handleChange}
-                      isInvalid={!!errors.vehicleMake}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.vehicleMake}
-                    </Form.Control.Feedback>
-                  </Col>
-                  <Col xs={3}>
-                    <Form.Control
-                      type="text"
-                      name="vehicleModel"
-                      placeholder="Model"
-                      value={formData.vehicleModel}
-                      onChange={handleChange}
-                      isInvalid={!!errors.vehicleModel}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.vehicleModel}
-                    </Form.Control.Feedback>
-                  </Col>
-                  <Col xs={3}>
-                    <Form.Control
-                      type="text"
-                      name="vehicleColor"
-                      placeholder="Color"
-                      value={formData.vehicleColor}
-                      onChange={handleChange}
-                    />
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
+
+          {/* Vehicle */}
+          <Row className="mb-3 g-2">
+            <Col xs={3}>
+              <Form.Label>Year</Form.Label>
+              <Form.Control type="text" name="vehicleYear" placeholder="Year" value={formData.vehicleYear} onChange={handleChange} />
+            </Col>
+            <Col xs={3}>
+              <Form.Label>Make</Form.Label>
+              <Form.Control type="text" name="vehicleMake" placeholder="Make" value={formData.vehicleMake} onChange={handleChange} isInvalid={!!errors.vehicleMake} />
+              <Form.Control.Feedback type="invalid">{errors.vehicleMake}</Form.Control.Feedback>
+            </Col>
+            <Col xs={3}>
+              <Form.Label>Model</Form.Label>
+              <Form.Control type="text" name="vehicleModel" placeholder="Model" value={formData.vehicleModel} onChange={handleChange} isInvalid={!!errors.vehicleModel} />
+              <Form.Control.Feedback type="invalid">{errors.vehicleModel}</Form.Control.Feedback>
+            </Col>
+            <Col xs={3}>
+              <Form.Label>Color</Form.Label>
+              <Form.Control type="text" name="vehicleColor" placeholder="Color" value={formData.vehicleColor} onChange={handleChange} />
+            </Col>
+          </Row>
 
           {/* Name + Contact Person */}
           <Row className="mb-3">
             <Col md={6}>
               <Form.Group controlId="name">
                 <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="name"
-                  placeholder="Full name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  isInvalid={!!errors.name}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.name}
-                </Form.Control.Feedback>
+                <Form.Control type="text" name="name" placeholder="Full name" value={formData.name} onChange={handleChange} isInvalid={!!errors.name} />
+                <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
               </Form.Group>
             </Col>
             <Col md={6}>
               <Form.Group controlId="contactPerson">
                 <Form.Label>Contact Person <span className="text-muted">(if different)</span></Form.Label>
-                <Form.Control
-                  type="text"
-                  name="contactPerson"
-                  placeholder="Contact person"
-                  value={formData.contactPerson}
-                  onChange={handleChange}
-                />
+                <Form.Control type="text" name="contactPerson" placeholder="Contact person" value={formData.contactPerson} onChange={handleChange} />
               </Form.Group>
             </Col>
           </Row>
@@ -298,13 +248,7 @@ function MonthlySubscriptionPage() {
           {/* Street Address */}
           <Form.Group className="mb-3" controlId="streetAddress">
             <Form.Label>Street Address</Form.Label>
-            <Form.Control
-              type="text"
-              name="streetAddress"
-              placeholder="Street address"
-              value={formData.streetAddress}
-              onChange={handleChange}
-            />
+            <Form.Control type="text" name="streetAddress" placeholder="Street address" value={formData.streetAddress} onChange={handleChange} />
           </Form.Group>
 
           {/* City, State, Zip */}
@@ -312,37 +256,19 @@ function MonthlySubscriptionPage() {
             <Col md={5}>
               <Form.Group controlId="city">
                 <Form.Label>City</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="city"
-                  placeholder="City"
-                  value={formData.city}
-                  onChange={handleChange}
-                />
+                <Form.Control type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} />
               </Form.Group>
             </Col>
             <Col md={3}>
               <Form.Group controlId="state">
                 <Form.Label>State</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="state"
-                  placeholder="WA"
-                  value={formData.state}
-                  onChange={handleChange}
-                />
+                <Form.Control type="text" name="state" placeholder="WA" value={formData.state} onChange={handleChange} />
               </Form.Group>
             </Col>
             <Col md={4}>
               <Form.Group controlId="zipCode">
                 <Form.Label>Zip Code</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="zipCode"
-                  placeholder="Zip code"
-                  value={formData.zipCode}
-                  onChange={handleChange}
-                />
+                <Form.Control type="text" name="zipCode" placeholder="Zip code" value={formData.zipCode} onChange={handleChange} />
               </Form.Group>
             </Col>
           </Row>
@@ -352,33 +278,15 @@ function MonthlySubscriptionPage() {
             <Col md={6}>
               <Form.Group controlId="phone">
                 <Form.Label>Phone <span className="text-danger">(required)</span></Form.Label>
-                <Form.Control
-                  type="tel"
-                  name="phone"
-                  placeholder="(509) 555-5555"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  isInvalid={!!errors.phone}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.phone}
-                </Form.Control.Feedback>
+                <Form.Control type="tel" name="phone" placeholder="(509) 555-5555" value={formData.phone} onChange={handleChange} isInvalid={!!errors.phone} />
+                <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
               </Form.Group>
             </Col>
             <Col md={6}>
               <Form.Group controlId="email">
                 <Form.Label>Email <span className="text-muted">(for monthly receipt)</span></Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  placeholder="email@example.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  isInvalid={!!errors.email}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.email}
-                </Form.Control.Feedback>
+                <Form.Control type="email" name="email" placeholder="email@example.com" value={formData.email} onChange={handleChange} isInvalid={!!errors.email} />
+                <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>
@@ -389,12 +297,7 @@ function MonthlySubscriptionPage() {
               <Form.Label className="d-block fw-bold mb-3" style={{ fontSize: '1.1rem' }}>Select Your Plan</Form.Label>
               <Row className="g-3 subscription-plan-grid">
                 <Col md={6}>
-                  <div
-                    className={`plan-card ${formData.plan === 'deluxe' ? 'active' : ''}`}
-                    onClick={() => setFormData({ ...formData, plan: 'deluxe' })}
-                    role="button"
-                    tabIndex="0"
-                  >
+                  <div className={`plan-card ${formData.plan === 'deluxe' ? 'active' : ''}`} onClick={() => setFormData({ ...formData, plan: 'deluxe' })} role="button" tabIndex="0">
                     <div className="plan-card-header">
                       <h3>Deluxe Pass</h3>
                       <div className="plan-badge">Popular</div>
@@ -406,24 +309,11 @@ function MonthlySubscriptionPage() {
                       <li>Clear Coat Sealant</li>
                       <li>Hand Dry</li>
                     </ul>
-                    <Form.Check
-                      type="radio"
-                      id="plan-deluxe"
-                      name="plan"
-                      value="deluxe"
-                      checked={formData.plan === 'deluxe'}
-                      onChange={handleChange}
-                      className="plan-card-radio"
-                    />
+                    <Form.Check type="radio" id="plan-deluxe" name="plan" value="deluxe" checked={formData.plan === 'deluxe'} onChange={handleChange} className="plan-card-radio" />
                   </div>
                 </Col>
                 <Col md={6}>
-                  <div
-                    className={`plan-card ${formData.plan === 'ultimate' ? 'active' : ''}`}
-                    onClick={() => setFormData({ ...formData, plan: 'ultimate' })}
-                    role="button"
-                    tabIndex="0"
-                  >
+                  <div className={`plan-card ${formData.plan === 'ultimate' ? 'active' : ''}`} onClick={() => setFormData({ ...formData, plan: 'ultimate' })} role="button" tabIndex="0">
                     <div className="plan-card-header">
                       <h3>Ultimate Pass</h3>
                       <div className="plan-badge best">Best Value</div>
@@ -436,15 +326,7 @@ function MonthlySubscriptionPage() {
                       <li>Clear Coat Sealant</li>
                       <li>Hand Dry</li>
                     </ul>
-                    <Form.Check
-                      type="radio"
-                      id="plan-ultimate"
-                      name="plan"
-                      value="ultimate"
-                      checked={formData.plan === 'ultimate'}
-                      onChange={handleChange}
-                      className="plan-card-radio"
-                    />
+                    <Form.Check type="radio" id="plan-ultimate" name="plan" value="ultimate" checked={formData.plan === 'ultimate'} onChange={handleChange} className="plan-card-radio" />
                   </div>
                 </Col>
               </Row>
@@ -464,51 +346,47 @@ function MonthlySubscriptionPage() {
 
           {/* Authorization */}
           <Form.Group className="mb-4" controlId="authorized">
-            <Form.Check
-              type="checkbox"
-              name="authorized"
-              label={<span>I authorize The Wash Zone to process this monthly pass request <span className="text-danger">(required)</span>.</span>}
-              checked={formData.authorized}
-              onChange={handleChange}
-              isInvalid={!!errors.authorized}
-            />
+            <div className="subscription-check-row">
+              <input
+                className="subscription-check-input"
+                type="checkbox"
+                name="authorized"
+                id="authorized"
+                checked={formData.authorized}
+                onChange={handleChange}
+              />
+              <label className="subscription-check-label" htmlFor="authorized">
+                I authorize The Wash Zone to process this monthly pass request <span className="text-danger">(required)</span>.
+              </label>
+            </div>
             {errors.authorized && <div className="text-danger small mt-2">{errors.authorized}</div>}
           </Form.Group>
 
           {/* Print Name */}
           <Form.Group className="mb-4" controlId="printName">
             <Form.Label>Print Name</Form.Label>
-            <Form.Control
-              type="text"
-              name="printName"
-              placeholder="Print your full name"
-              value={formData.printName}
-              onChange={handleChange}
-              isInvalid={!!errors.printName}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.printName}
-            </Form.Control.Feedback>
+            <Form.Control type="text" name="printName" placeholder="Print your full name" value={formData.printName} onChange={handleChange} isInvalid={!!errors.printName} />
+            <Form.Control.Feedback type="invalid">{errors.printName}</Form.Control.Feedback>
           </Form.Group>
 
-          <Button
-            variant="primary"
-            type="submit"
-            className="subscription-submit-btn"
-          >
+          <Button variant="primary" type="submit" className="subscription-submit-btn">
             Proceed to Payment
           </Button>
 
           {submitStatus !== 'idle' && (
             <p className={`status-text mt-3 ${submitStatus}`}>{statusMessage}</p>
           )}
-          <div className="subscription-contact-cta">
-            <p>
-              Please <Link to="/contact-us" className="subscription-contact-link">contact us</Link> or visit our <Link to="/frequently-asked" className="subscription-contact-link">frequently asked questions</Link> for more info.
-            </p>
-          </div>
         </Form>
       </div>
+
+      {/* Contact footer */}
+      <footer className="subscription-contact-cta">
+        <div className="subscription-contact-inner">
+          <p>Still have questions? Stop by or give us a call.</p>
+          <Link to="/contact-us" className="subscription-contact-btn">Contact Us</Link>
+        </div>
+      </footer>
+
     </div>
   );
 }

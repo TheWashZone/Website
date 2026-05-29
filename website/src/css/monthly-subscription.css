@@ -5,7 +5,7 @@
 .subscription-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 20px 40px;
 }
 
 /* ── Form container (main card) ── */
@@ -19,14 +19,15 @@
   margin-bottom: 40px;
 }
 
-/* ── Header ── */
+/* ── Header (outside the card) ── */
 
 .subscription-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+  padding: 0 4px;
 }
 
 .subscription-title {
@@ -34,18 +35,6 @@
   font-weight: 700;
   color: black;
   margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.subscription-title::before {
-  content: '';
-  width: 5px;
-  height: 32px;
-  background: black;
-  border-radius: 3px;
-  flex-shrink: 0;
 }
 
 .subscription-logo {
@@ -268,14 +257,15 @@
 
 /* ── Authorization checkbox ── */
 
-.subscription-form .form-check {
+.subscription-check-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding-left: 0;
+  flex-wrap: nowrap;
+  padding-left: 14px;
 }
 
-.subscription-form .form-check-input {
+.subscription-check-input {
   appearance: none;
   -webkit-appearance: none;
   width: 22px;
@@ -291,15 +281,14 @@
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
-  margin-top: 0;
 }
 
-.subscription-form .form-check-input:checked {
+.subscription-check-input:checked {
   background: #28a745;
   border-color: #28a745;
 }
 
-.subscription-form .form-check-input:checked::after {
+.subscription-check-input:checked::after {
   content: '';
   display: block;
   width: 6px;
@@ -310,27 +299,13 @@
   transform: rotate(45deg) translate(-1px, -1px);
 }
 
-/* Don't apply custom checkbox styles to radio buttons */
-.subscription-form .plan-card .form-check-input {
-  appearance: auto;
-  -webkit-appearance: auto;
-  border-radius: 50%;
-}
-
-.subscription-form .plan-card .form-check-input::after {
-  display: none;
-}
-
-.subscription-form .form-check-label {
+.subscription-check-label {
   color: black;
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
   white-space: nowrap;
-}
-
-.subscription-form .form-check-input:checked ~ .form-check-label {
-  color: black;
+  line-height: 1.4;
 }
 
 /* ── Validation ── */
@@ -407,15 +382,49 @@
 
 /* ── Contact CTA ── */
 
-.subscription-contact-cta {
-  margin-top: 20px;
+/* ── Hero ── */
+
+.subscription-hero {
   text-align: center;
+  padding: 60px 20px;
+  background: white !important;
+  border-radius: 15px;
+  margin-bottom: 40px;
+  box-shadow: 6px 6px 12px black;
+}
+
+.subscription-hero h1 {
+  font-size: 4rem;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.subscription-hero .subtitle {
+  font-size: 1.5rem;
+  color: black;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ── Contact CTA footer ── */
+
+.subscription-contact-cta {
+  text-align: center;
+  padding: 40px;
+  color: black;
+}
+
+.subscription-contact-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .subscription-contact-cta p {
-  margin: 0;
+  font-size: 1.5rem;
   color: black;
-  font-size: 1rem;
+  margin: 0;
 }
 
 .subscription-contact-link {
@@ -426,6 +435,26 @@
 
 .subscription-contact-link:hover {
   opacity: 0.7;
+}
+
+.subscription-contact-btn {
+  display: inline-block;
+  padding: 16px 24px;
+  background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+  color: black;
+  border: 2px solid black;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px black;
+}
+
+.subscription-contact-btn:hover {
+  transform: translateY(-2px);
+  color: black;
 }
 
 /* ── Pass number group ── */

@@ -1,0 +1,473 @@
+/* Rewards Page Styles — matches gift-cards style */
+
+.rewards-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Hero ── */
+
+.rewards-hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: white !important;
+  border-radius: 15px;
+  margin-bottom: 40px;
+  box-shadow: 6px 6px 12px black;
+}
+
+.rewards-hero h1 {
+  font-size: 4rem;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.rewards-hero .subtitle {
+  font-size: 1.5rem;
+  color: black;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ── Content grid ── */
+
+.rewards-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 75px;
+}
+
+/* ── Program card (How it works) ── */
+
+.rewards-program-card {
+  background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 6px 6px 12px black;
+  border: 2px solid black;
+}
+
+.rewards-program-card h2 {
+  font-size: 2rem;
+  color: black;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* ── Program steps ── */
+
+.program-steps {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.program-step {
+  background: white;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  min-width: 220px;
+  box-shadow: 6px 6px 12px black;
+  flex: 1 1 220px;
+}
+
+.step-number {
+  display: inline-block;
+  background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+  border: 2px solid black;
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.step-body h3 {
+  font-size: 1.3rem;
+  color: black;
+  margin: 0 0 8px 0;
+}
+
+.step-body p {
+  font-size: 1rem;
+  color: black;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Auth card ── */
+
+.rewards-auth-card {
+  background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 6px 6px 12px black;
+  border: 2px solid black;
+}
+
+.auth-card-header h3 {
+  font-size: 2rem;
+  color: black;
+  margin: 0 0 20px 0;
+}
+
+/* ── Forms ── */
+
+.rewards-auth-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rewards-signup-form,
+.rewards-login-form {
+  display: grid;
+  gap: 12px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.two-col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.rewards-signup-form input:not([type="checkbox"]),
+.rewards-login-form input:not([type="checkbox"]) {
+  width: 100%;
+  min-height: 44px;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: white;
+  color: black;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.rewards-signup-form input:not([type="checkbox"]):focus,
+.rewards-login-form input:not([type="checkbox"]):focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(245, 150, 68, 0.4);
+}
+
+.auth-form-intro {
+  color: black;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Checkbox row */
+
+.form-check.rewards-form-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 28px;
+  flex-wrap: nowrap;
+  width: calc(50% - 5px);
+}
+
+.form-check-input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.form-check-input:checked {
+  background: #28a745;
+  border-color: #28a745;
+}
+
+.form-check-input:checked::after {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 11px;
+  border: 2.5px solid white;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.form-check-label.rewards-form-check-label {
+  color: black;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.form-check-label.rewards-form-check-label .text-danger {
+  color: #dc3545;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .form-check.rewards-form-check {
+    width: 100%;
+  }
+}
+
+/* ── Submit / action buttons ── */
+
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to bottom right, #28a745, #34ce57);
+  color: white;
+  border: 2px solid black;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 6px 6px 12px black;
+  transition: all 0.3s;
+}
+
+.submit-button:hover {
+  background: linear-gradient(to bottom right, #218838, #2e9c41);
+  transform: translateY(-2px);
+}
+
+/* Helper row under forms */
+
+.auth-helper-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: black;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.inline-link-button {
+  background: none;
+  border: none;
+  color: black;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* ── Tab switcher ── */
+
+.auth-tabs-bottom {
+  display: flex;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-button.active {
+  background: white;
+  border-color: black;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.tab-button:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Member preview card (post-login) ── */
+
+.member-preview-card {
+  background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 6px 6px 12px black;
+  display: grid;
+  gap: 12px;
+}
+
+.member-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.member-preview-kicker {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: black;
+}
+
+.member-preview-status {
+  background: white;
+  border: 2px solid black;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: black;
+}
+
+.member-preview-card h3 {
+  font-size: 1.8rem;
+  color: black;
+  margin: 0;
+}
+
+.member-preview-card p {
+  font-size: 1.1rem;
+  color: black;
+  margin: 0;
+}
+
+.member-preview-meter {
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid black;
+}
+
+.member-preview-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #28a745, #34ce57);
+  transition: width 0.35s ease;
+}
+
+.member-preview-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: black;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ── Contact footer ── */
+
+.rewards-contact-footer {
+  text-align: center;
+  padding: 40px;
+  color: black;
+}
+
+.rewards-contact-footer h3,
+.rewards-contact-inner p {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: black;
+}
+
+.rewards-contact-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact-cta-text {
+  font-size: 1.5rem;
+  color: black;
+  margin: 0;
+}
+
+.contact-cta-button {
+  display: inline-block;
+  padding: 16px 24px;
+  background: linear-gradient(to bottom right, #F59644 20%, #FDCF44 100%);
+  color: black;
+  border: 2px solid black;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px black;
+}
+
+.contact-cta-button:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .rewards-hero h1 {
+    font-size: 2rem;
+  }
+
+  .rewards-hero .subtitle {
+    font-size: 1rem;
+  }
+
+  .form-grid.two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .program-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .program-step {
+    max-width: 100%;
+  }
+
+  .auth-card-header h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rewards-hero {
+    padding: 40px 15px;
+  }
+
+  .rewards-program-card,
+  .rewards-auth-card,
+  .member-preview-card {
+    padding: 20px;
+  }
+}

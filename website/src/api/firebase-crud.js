@@ -153,6 +153,30 @@ async function findMemberByLoyaltyOrLicense(value) {
   }
 }
 
+async function findMemberByRewardsOrLicense(value) {
+  return findMemberByLoyaltyOrLicense(value);
+}
+
+function getMemberRewardsId(member) {
+  if (!member) return '';
+  return member.loyaltyNumber || member.car || '';
+}
+
+async function updateMemberRewardsData(id, updates) {
+  if (!updates || typeof updates !== 'object') {
+    return updateMember(id, updates);
+  }
+
+  const { rewardsId, ...rest } = updates;
+  const normalizedUpdates = { ...rest };
+
+  if (typeof rewardsId !== 'undefined') {
+    normalizedUpdates.loyaltyNumber = rewardsId;
+  }
+
+  return updateMember(id, normalizedUpdates);
+}
+
 /**
  * Log a wash for a user. Increments totalWashes and the specific washType counter,
  * and updates washesUntilFree atomically.
@@ -272,8 +296,11 @@ export {
   getMembersByStatus,
   findMemberByLicense,
   findMemberByLoyaltyOrLicense,
+  findMemberByRewardsOrLicense,
+  getMemberRewardsId,
   logWash,
   redeemFreeWash,
+  updateMemberRewardsData,
   updateMember,
   deleteMember
 };

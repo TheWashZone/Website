@@ -2,7 +2,7 @@ import HomePage from './pages/home-page.jsx'
 import AboutPage from './pages/about-us.jsx'
 import FrequentlyAskedPage from './pages/frequently-asked.jsx'
 import GiftCardPage from './pages/gift-cards.jsx'
-import LoyaltyPage from './pages/loyalty-page.jsx'
+import RewardsPage from './pages/rewards-page.jsx'
 import MonthlySubscriptionPage from './pages/monthly-subscription.jsx'
 import ContactPage from './pages/contact-us.jsx'
 import './App.css'
@@ -29,13 +29,13 @@ function App() {
                  <Nav.Link as={Link} to="/frequently-asked" className="text-black px-4 d-none d-lg-block fw-bold">FAQ</Nav.Link>
                  <Nav.Link as={Link} to="/contact-us" className="text-black px-4 d-none d-lg-block fw-bold">Contact Us</Nav.Link>
                  <Nav.Link as={Link} to="/gift-card" className="text-black px-4 d-none d-lg-block fw-bold">Gift Cards</Nav.Link>
-                 <Nav.Link as={Link} to="/loyalty-page" className="text-black px-4 d-none d-lg-block fw-bold">Rewards</Nav.Link>
+                 <Nav.Link as={Link} to="/rewards-page" className="text-black px-4 d-none d-lg-block fw-bold">Rewards</Nav.Link>
                  <Nav.Link as={Link} to="/monthly-subscription" className="text-black px-4 d-none d-lg-block fw-bold">Monthly Subscription</Nav.Link>
               </Nav>
             </Container>
           </Navbar>
         </div>
-        <div className="d-lg-none position-relative">
+        <div className="position-relative">
           <HamburgerMenu />
         </div>
         <Routes>
@@ -44,7 +44,7 @@ function App() {
           <Route path="/frequently-asked" element={<FrequentlyAskedPage />} />
           <Route path="/contact-us" element={<ContactPage />} />
           <Route path="/gift-card" element={<GiftCardPage />} />
-          <Route path="/loyalty-page" element={<LoyaltyPage />} />
+          <Route path="/rewards-page" element={<RewardsPage />} />
           <Route path="/monthly-subscription" element={<MonthlySubscriptionPage />} />
         </Routes>
       </BrowserRouter>

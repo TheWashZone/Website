@@ -35,16 +35,16 @@
   font-weight: 700;
   color: black;
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.subscription-logo {
-  width: 100px;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-  border: 2px solid black;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+.subscription-title::before {
+  display: none;
 }
+
+
 
 /* ── Section label ── */
 
@@ -259,8 +259,8 @@
 
 .subscription-check-row {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-start;
+  gap: 6px;
   flex-wrap: nowrap;
   padding-left: 14px;
 }
@@ -304,8 +304,9 @@
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 1.4;
+  padding-top: 2px;
 }
 
 /* ── Validation ── */

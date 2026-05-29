@@ -127,11 +127,7 @@ function MonthlySubscriptionPage() {
     if (!formData.vehicleModel.trim()) nextErrors.vehicleModel = 'Vehicle model is required.';
     if (!formData.plan) nextErrors.plan = 'Please select a plan.';
     if (!formData.authorized) nextErrors.authorized = 'Authorization is required.';
-    if (!formData.printName.trim()) {
-      nextErrors.printName = 'Print name is required.';
-    } else if (!isTwoWordName(formData.printName)) {
-      nextErrors.printName = 'Print name must contain two words.';
-    }
+
     return nextErrors;
   };
 
@@ -200,7 +196,6 @@ function MonthlySubscriptionPage() {
 
       <div className="subscription-header">
         <h2 className="subscription-title">Registration Form</h2>
-        <img className="subscription-logo" src={washZoneDesignLogo} alt="The Wash Zone logo" />
       </div>
 
       <div className="subscription-form-container">
@@ -277,7 +272,7 @@ function MonthlySubscriptionPage() {
           <Row className="mb-3">
             <Col md={6}>
               <Form.Group controlId="phone">
-                <Form.Label>Phone <span className="text-danger">(required)</span></Form.Label>
+                <Form.Label>Phone</Form.Label>
                 <Form.Control type="tel" name="phone" placeholder="(509) 555-5555" value={formData.phone} onChange={handleChange} isInvalid={!!errors.phone} />
                 <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
               </Form.Group>
@@ -361,17 +356,6 @@ function MonthlySubscriptionPage() {
             </div>
             {errors.authorized && <div className="text-danger small mt-2">{errors.authorized}</div>}
           </Form.Group>
-
-          {/* Print Name */}
-          <Form.Group className="mb-4" controlId="printName">
-            <Form.Label>Print Name</Form.Label>
-            <Form.Control type="text" name="printName" placeholder="Print your full name" value={formData.printName} onChange={handleChange} isInvalid={!!errors.printName} />
-            <Form.Control.Feedback type="invalid">{errors.printName}</Form.Control.Feedback>
-          </Form.Group>
-
-          <Button variant="primary" type="submit" className="subscription-submit-btn">
-            Proceed to Payment
-          </Button>
 
           {submitStatus !== 'idle' && (
             <p className={`status-text mt-3 ${submitStatus}`}>{statusMessage}</p>

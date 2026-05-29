@@ -3,7 +3,6 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { signInAnonymously } from 'firebase/auth';
 import '../css/monthly-subscription.css';
-import washZoneDesignLogo from '../images/The Wash ZONE logo design.png';
 import { Link } from 'react-router-dom';
 import { auth, db } from '../api/firebaseconfig';
 
@@ -108,7 +107,6 @@ function MonthlySubscriptionPage() {
   const [statusMessage, setStatusMessage] = useState('');
 
   const isTenDigitPhoneNumber = (value) => value.replace(/\D/g, '').length === 10;
-  const isTwoWordName = (value) => value.trim().split(/\s+/).filter(Boolean).length === 2;
 
   const validate = () => {
     const nextErrors = {};

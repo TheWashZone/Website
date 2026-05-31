@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { signInAnonymously } from 'firebase/auth';
 import '../css/monthly-subscription.css';
 import { Link } from 'react-router-dom';
@@ -23,8 +23,6 @@ const EMPTY_FORM = {
   authorized: false,
   printName: ''
 };
-
-const USERS_COLLECTION = 'users';
 
 const PLAN_TO_PREFIX = {
   basic: 'B',
@@ -53,7 +51,7 @@ function generateId(prefix) {
 async function allocateMemberId(prefix) {
   for (let i = 0; i < 20; i += 1) {
     const candidateId = generateId(prefix);
-    const existing = await getDoc(doc(db, USERS_COLLECTION, candidateId));
+    const existing = await getDoc(doc(db, 'users', candidateId));
     if (!existing.exists()) {
       return candidateId;
     }
@@ -72,7 +70,7 @@ async function createSubscriptionLead(submission) {
   const tier = PLAN_TO_PREFIX[plan];
   const memberId = await allocateMemberId(tier);
 
-  const leadData = {
+  await setDoc(doc(db, 'users', memberId), {
     name: submission.name.trim(),
     car: submission.car || '',
     status: 'payment_needed',
@@ -88,16 +86,13 @@ async function createSubscriptionLead(submission) {
     vehicleModel: submission.vehicleModel?.trim() || '',
     vehicleColor: submission.vehicleColor?.trim() || '',
     authorized: Boolean(submission.authorized),
-    printName: submission.printName?.trim() || '',
     submittedAt: submission.submittedAt || new Date().toISOString(),
     paymentStatus: 'pending',
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp()
-  };
+  });
 
-  await setDoc(doc(db, USERS_COLLECTION, memberId), leadData);
-
-  return { id: memberId, ...leadData };
+  return memberId;
 }
 
 function MonthlySubscriptionPage() {
@@ -106,23 +101,98 @@ function MonthlySubscriptionPage() {
   const [submitStatus, setSubmitStatus] = useState('idle');
   const [statusMessage, setStatusMessage] = useState('');
 
-  const isTenDigitPhoneNumber = (value) => value.replace(/\D/g, '').length === 10;
+  const isTwoWordName = (value) => value.trim().split(/\s+/).filter(Boolean).length >= 2;
+  const isNumericOnly = (value) => /^\d+$/.test(value.replace(/\s/g, ''));
+  const isAlphanumeric = (value) => /^[a-zA-Z0-9\s,.\-#]+$/.test(value.trim());
+  const hasNoNumbers = (value) => !/\d/.test(value);
+
+  const VALID_STATES = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
 
   const validate = () => {
     const nextErrors = {};
-    if (!formData.name.trim()) nextErrors.name = 'Name is required.';
-    if (!formData.contactPerson.trim()) nextErrors.contactPerson = 'Contact person is required.';
-    if (!formData.email.trim()) nextErrors.email = 'Email is required.';
-    if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) {
-      nextErrors.email = 'Enter a valid email address.';
+    const currentYear = new Date().getFullYear();
+
+    // Vehicle year — required, numeric, logical range
+    if (!formData.vehicleYear.trim()) {
+      nextErrors.vehicleYear = 'Year is required.';
+    } else if (!isNumericOnly(formData.vehicleYear)) {
+      nextErrors.vehicleYear = 'Year must be numeric.';
+    } else if (Number(formData.vehicleYear) < 1900 || Number(formData.vehicleYear) > currentYear + 1) {
+      nextErrors.vehicleYear = `Year must be between 1900 and ${currentYear + 1}.`;
     }
+
+    if (!formData.vehicleMake.trim()) nextErrors.vehicleMake = 'Make is required.';
+    if (!formData.vehicleModel.trim()) nextErrors.vehicleModel = 'Model is required.';
+    if (!formData.vehicleColor.trim()) nextErrors.vehicleColor = 'Color is required.';
+
+    // Name — required, at least two words, no numbers
+    if (!formData.name.trim()) {
+      nextErrors.name = 'Name is required.';
+    } else if (!hasNoNumbers(formData.name)) {
+      nextErrors.name = 'Name cannot contain numbers.';
+    } else if (!isTwoWordName(formData.name)) {
+      nextErrors.name = 'Please enter your first and last name.';
+    }
+
+    // Contact person — only required if different from name, no numbers if filled
+    const contactIsSameAsName =
+      formData.contactPerson.trim().toLowerCase() === formData.name.trim().toLowerCase() ||
+      formData.contactPerson.trim() === '';
+    if (!contactIsSameAsName && formData.contactPerson.trim()) {
+      if (!hasNoNumbers(formData.contactPerson)) {
+        nextErrors.contactPerson = 'Contact person name cannot contain numbers.';
+      }
+    }
+
+    // Street address — required, alphanumeric
+    if (!formData.streetAddress.trim()) {
+      nextErrors.streetAddress = 'Street address is required.';
+    } else if (!isAlphanumeric(formData.streetAddress)) {
+      nextErrors.streetAddress = 'Street address contains invalid characters.';
+    }
+
+    // City — required, no numbers
+    if (!formData.city.trim()) {
+      nextErrors.city = 'City is required.';
+    } else if (!hasNoNumbers(formData.city)) {
+      nextErrors.city = 'City cannot contain numbers.';
+    }
+
+    // State — required, valid 2-letter US abbreviation
+    if (!formData.state.trim()) {
+      nextErrors.state = 'State is required.';
+    } else if (!VALID_STATES.includes(formData.state.trim().toUpperCase())) {
+      nextErrors.state = 'Enter a valid 2-letter state (e.g. WA).';
+    }
+
+    // Zip code — required, numeric, exactly 5 digits
+    if (!formData.zipCode.trim()) {
+      nextErrors.zipCode = 'Zip code is required.';
+    } else if (!isNumericOnly(formData.zipCode)) {
+      nextErrors.zipCode = 'Zip code must be numeric.';
+    } else if (formData.zipCode.replace(/\D/g, '').length !== 5) {
+      nextErrors.zipCode = 'Zip code must be 5 digits.';
+    }
+
+    // Phone — required, 10 digits, not obviously fake
     if (!formData.phone.trim()) {
       nextErrors.phone = 'Phone is required.';
-    } else if (!isTenDigitPhoneNumber(formData.phone)) {
-      nextErrors.phone = 'Enter a 10-digit phone number.';
+    } else {
+      const digits = formData.phone.replace(/\D/g, '');
+      if (digits.length !== 10) {
+        nextErrors.phone = 'Enter a valid 10-digit phone number.';
+      } else if (digits === '0000000000' || digits === '1234567890') {
+        nextErrors.phone = 'Enter a valid phone number.';
+      }
     }
-    if (!formData.vehicleMake.trim()) nextErrors.vehicleMake = 'Vehicle make is required.';
-    if (!formData.vehicleModel.trim()) nextErrors.vehicleModel = 'Vehicle model is required.';
+
+    // Email — required, valid format
+    if (!formData.email.trim()) {
+      nextErrors.email = 'Email is required.';
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      nextErrors.email = 'Enter a valid email address.';
+    }
+
     if (!formData.plan) nextErrors.plan = 'Please select a plan.';
     if (!formData.authorized) nextErrors.authorized = 'Authorization is required.';
 
@@ -140,14 +210,14 @@ function MonthlySubscriptionPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setSubmitStatus('idle');
-    setStatusMessage('Submitting form...');
+    setStatusMessage('');
 
     const nextErrors = validate();
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
       setSubmitStatus('error');
-      setStatusMessage('Not all fields are completed');
+      setStatusMessage('Some fields are missing.');
       return;
     }
 
@@ -203,7 +273,8 @@ function MonthlySubscriptionPage() {
           <Row className="mb-3 g-2">
             <Col xs={3}>
               <Form.Label>Year</Form.Label>
-              <Form.Control type="text" name="vehicleYear" placeholder="Year" value={formData.vehicleYear} onChange={handleChange} />
+              <Form.Control type="text" name="vehicleYear" placeholder="Year" value={formData.vehicleYear} onChange={handleChange} isInvalid={!!errors.vehicleYear} />
+              <Form.Control.Feedback type="invalid">{errors.vehicleYear}</Form.Control.Feedback>
             </Col>
             <Col xs={3}>
               <Form.Label>Make</Form.Label>
@@ -217,7 +288,8 @@ function MonthlySubscriptionPage() {
             </Col>
             <Col xs={3}>
               <Form.Label>Color</Form.Label>
-              <Form.Control type="text" name="vehicleColor" placeholder="Color" value={formData.vehicleColor} onChange={handleChange} />
+              <Form.Control type="text" name="vehicleColor" placeholder="Color" value={formData.vehicleColor} onChange={handleChange} isInvalid={!!errors.vehicleColor} />
+              <Form.Control.Feedback type="invalid">{errors.vehicleColor}</Form.Control.Feedback>
             </Col>
           </Row>
 
@@ -233,7 +305,8 @@ function MonthlySubscriptionPage() {
             <Col md={6}>
               <Form.Group controlId="contactPerson">
                 <Form.Label>Contact Person <span className="text-muted">(if different)</span></Form.Label>
-                <Form.Control type="text" name="contactPerson" placeholder="Contact person" value={formData.contactPerson} onChange={handleChange} />
+                <Form.Control type="text" name="contactPerson" placeholder="Contact person" value={formData.contactPerson} onChange={handleChange} isInvalid={!!errors.contactPerson} />
+                <Form.Control.Feedback type="invalid">{errors.contactPerson}</Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>
@@ -241,7 +314,8 @@ function MonthlySubscriptionPage() {
           {/* Street Address */}
           <Form.Group className="mb-3" controlId="streetAddress">
             <Form.Label>Street Address</Form.Label>
-            <Form.Control type="text" name="streetAddress" placeholder="Street address" value={formData.streetAddress} onChange={handleChange} />
+            <Form.Control type="text" name="streetAddress" placeholder="Street address" value={formData.streetAddress} onChange={handleChange} isInvalid={!!errors.streetAddress} />
+            <Form.Control.Feedback type="invalid">{errors.streetAddress}</Form.Control.Feedback>
           </Form.Group>
 
           {/* City, State, Zip */}
@@ -249,19 +323,22 @@ function MonthlySubscriptionPage() {
             <Col md={5}>
               <Form.Group controlId="city">
                 <Form.Label>City</Form.Label>
-                <Form.Control type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} />
+                <Form.Control type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} isInvalid={!!errors.city} />
+                <Form.Control.Feedback type="invalid">{errors.city}</Form.Control.Feedback>
               </Form.Group>
             </Col>
             <Col md={3}>
               <Form.Group controlId="state">
                 <Form.Label>State</Form.Label>
-                <Form.Control type="text" name="state" placeholder="WA" value={formData.state} onChange={handleChange} />
+                <Form.Control type="text" name="state" placeholder="WA" value={formData.state} onChange={handleChange} isInvalid={!!errors.state} />
+                <Form.Control.Feedback type="invalid">{errors.state}</Form.Control.Feedback>
               </Form.Group>
             </Col>
             <Col md={4}>
               <Form.Group controlId="zipCode">
                 <Form.Label>Zip Code</Form.Label>
-                <Form.Control type="text" name="zipCode" placeholder="Zip code" value={formData.zipCode} onChange={handleChange} />
+                <Form.Control type="text" name="zipCode" placeholder="Zip code" value={formData.zipCode} onChange={handleChange} isInvalid={!!errors.zipCode} />
+                <Form.Control.Feedback type="invalid">{errors.zipCode}</Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>
@@ -354,6 +431,10 @@ function MonthlySubscriptionPage() {
             </div>
             {errors.authorized && <div className="text-danger small mt-2">{errors.authorized}</div>}
           </Form.Group>
+
+          <button className="subscription-submit-btn" type="submit">
+            Submit
+          </button>
 
           {submitStatus !== 'idle' && (
             <p className={`status-text mt-3 ${submitStatus}`}>{statusMessage}</p>

@@ -106,10 +106,6 @@ async function getMembersByStatus(status) {
   }
 }
 
-/**
- * Find a member document by license plate (normalized).
- * Returns the first matching member or null.
- */
 async function findMemberByLicense(licensePlate) {
   try {
     if (!licensePlate) return null;
@@ -127,21 +123,15 @@ async function findMemberByLicense(licensePlate) {
   }
 }
 
-/**
- * Find a member by loyalty number or license plate (normalized).
- * Returns the first matching member or null.
- */
 async function findMemberByLoyaltyOrLicense(value) {
   try {
     if (!value) return null;
     const normalized = value.trim().toUpperCase().replace(/\s+/g, "");
 
-    // First try loyaltyNumber field
     let q = query(collection(db, "users"), where("loyaltyNumber", "==", normalized));
     let snap = await getDocs(q);
     if (!snap.empty) return { id: snap.docs[0].id, ...snap.docs[0].data() };
 
-    // Fallback to car field (license plate)
     q = query(collection(db, "users"), where("car", "==", normalized));
     snap = await getDocs(q);
     if (!snap.empty) return { id: snap.docs[0].id, ...snap.docs[0].data() };
@@ -155,6 +145,43 @@ async function findMemberByLoyaltyOrLicense(value) {
 
 async function findMemberByRewardsOrLicense(value) {
   return findMemberByLoyaltyOrLicense(value);
+}
+
+/**
+ * Finds a member by their real email or real phone number stored in Firestore.
+ * Searches email field first, then phone field (digits only for consistent matching).
+ * @param {string} value - Raw email or phone input from the user
+ * @returns {Promise<Object|null>} Member data or null if not found
+ */
+async function findMemberByEmailOrPhone(value) {
+  try {
+    if (!value) return null;
+    const trimmed = value.trim().toLowerCase();
+    const digitsOnly = trimmed.replace(/\D/g, '');
+
+    // 1. Search by email field
+    const emailQuery = query(collection(db, "users"), where("email", "==", trimmed));
+    const emailSnap = await getDocs(emailQuery);
+    if (!emailSnap.empty) {
+      const d = emailSnap.docs[0];
+      return { id: d.id, ...d.data() };
+    }
+
+    // 2. Search by phone field (digits only for consistent matching)
+    if (digitsOnly) {
+      const phoneQuery = query(collection(db, "users"), where("phone", "==", digitsOnly));
+      const phoneSnap = await getDocs(phoneQuery);
+      if (!phoneSnap.empty) {
+        const d = phoneSnap.docs[0];
+        return { id: d.id, ...d.data() };
+      }
+    }
+
+    return null;
+  } catch (error) {
+    console.error("❌ Error finding member by email or phone:", error);
+    throw error;
+  }
 }
 
 function getMemberRewardsId(member) {
@@ -177,12 +204,6 @@ async function updateMemberRewardsData(id, updates) {
   return updateMember(id, normalizedUpdates);
 }
 
-/**
- * Log a wash for a user. Increments totalWashes and the specific washType counter,
- * and updates washesUntilFree atomically.
- * @param {string} id - user id
- * @param {string} washType - e.g. 'basicWashes' | 'deluxeWashes' | 'ultimateWashes'
- */
 async function logWash(id, washType = 'basicWashes') {
   try {
     const docRef = doc(db, 'users', id);
@@ -195,7 +216,6 @@ async function logWash(id, washType = 'basicWashes') {
       let washesUntilFree = typeof data.washesUntilFree === 'number' ? data.washesUntilFree - 1 : (data.washesPerFree || 10) - 1;
 
       if (washesUntilFree <= 0) {
-        // reset to washesPerFree after earning free wash
         washesUntilFree = data.washesPerFree || 10;
       }
 
@@ -214,13 +234,6 @@ async function logWash(id, washType = 'basicWashes') {
   }
 }
 
-/**
- * Redeem a free wash if available. Requires washesUntilFree to be equal to washesPerFree
- * immediately after earning a free wash (depends on your policy). This implementation
- * allows redemption when washesUntilFree is equal to washesPerFree (i.e., just reset),
- * or when explicitly 0 depending on how you choose to track. Here we allow redemption
- * when washesUntilFree === (data.washesPerFree || 10).
- */
 async function redeemFreeWash(id) {
   try {
     const docRef = doc(db, 'users', id);
@@ -231,12 +244,10 @@ async function redeemFreeWash(id) {
       const washesUntilFree = data.washesUntilFree ?? (data.washesPerFree || 10);
       const washesPerFree = data.washesPerFree || 10;
 
-      // Determine eligibility: if washesUntilFree === washesPerFree (just earned) or 0
       if (washesUntilFree !== washesPerFree && washesUntilFree !== 0) {
         return { redeemed: false, reason: 'No free wash available' };
       }
 
-      // Redeem: set washesUntilFree back to washesPerFree
       tx.update(docRef, { washesUntilFree: washesPerFree, redeemedFreeCount: increment(1) });
       return { redeemed: true };
     });
@@ -297,6 +308,7 @@ export {
   findMemberByLicense,
   findMemberByLoyaltyOrLicense,
   findMemberByRewardsOrLicense,
+  findMemberByEmailOrPhone,
   getMemberRewardsId,
   logWash,
   redeemFreeWash,

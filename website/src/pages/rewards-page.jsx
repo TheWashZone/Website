@@ -1,31 +1,106 @@
-import React, { useMemo, useState } from 'react';
+import { useState, useMemo } from 'react';
+import { doc, getDoc, setDoc, serverTimestamp, collection, query, where, getDocs } from 'firebase/firestore';
+import { signInAnonymously } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import { createUser } from '../api/firebase-auth';
-import {
-  createMember,
-  findMemberByLicense,
-  findMemberByRewardsOrLicense,
-  getMemberRewardsId,
-  updateMemberRewardsData,
-} from '../api/firebase-crud';
+import { auth, db } from '../api/firebaseconfig';
 
 import '../css/rewards-page.css';
+
+const USERS_COLLECTION = 'users';
+const REWARDS_ID_PREFIX = 'R';
+
+async function ensureAuthenticated() {
+  if (!auth.currentUser) {
+    await signInAnonymously(auth);
+  }
+}
+
+async function findMemberByEmailOrPhone(value) {
+  const trimmed = value.trim().toLowerCase();
+  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+  const field = isEmail ? 'email' : 'phone';
+  const searchValue = isEmail ? trimmed : trimmed.replace(/\D/g, '');
+
+  const q = query(
+    collection(db, 'users'),
+    where(field, '==', searchValue)
+  );
+  const snapshot = await getDocs(q);
+  if (snapshot.empty) return null;
+  const docSnap = snapshot.docs[0];
+  return { id: docSnap.id, ...docSnap.data() };
+}
+
+function generateId(prefix) {
+  const suffix = Math.floor(Math.random() * 10000)
+    .toString()
+    .padStart(4, '0');
+  return `${prefix}${suffix}`;
+}
+
+async function allocateRewardsId(prefix) {
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    const candidateId = generateId(prefix);
+    const existing = await getDoc(doc(db, USERS_COLLECTION, candidateId));
+    if (!existing.exists()) {
+      return candidateId;
+    }
+  }
+  throw new Error('Unable to create a unique rewards ID. Please try again.');
+}
+
+async function createRewardsAccount(submission) {
+  if (!submission?.name?.trim()) {
+    throw new Error('Name is required.');
+  }
+
+  await ensureAuthenticated();
+
+  const memberId = submission.memberId || await allocateRewardsId(REWARDS_ID_PREFIX);
+  const rewardsData = {
+    name: submission.name.trim(),
+    status: 'active',
+    notes: 'Rewards signup via website',
+    email: submission.email?.trim().toLowerCase() || '',
+    phone: submission.phone?.trim() || '',
+    authEmail: submission.authEmail,
+    contactMethod: submission.contactMethod,
+    rewardsId: memberId,
+    loyaltyNumber: memberId,
+    membershipType: 'Rewards',
+    memberSince: submission.memberSince || new Date().toISOString().split('T')[0],
+    totalWashes: 0,
+    washesPerFree: 10,
+    washesUntilFree: 10,
+    authorized: Boolean(submission.authorized),
+    submittedAt: submission.submittedAt || new Date().toISOString(),
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  };
+
+  await setDoc(doc(db, USERS_COLLECTION, memberId), rewardsData);
+
+  return { id: memberId, ...rewardsData };
+}
 
 function RewardsPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authTab, setAuthTab] = useState('signup');
+  const [submitStatus, setSubmitStatus] = useState('idle');
+  const [statusMessage, setStatusMessage] = useState('');
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [signupData, setSignupData] = useState({
     name: '',
-    phone: '',
-    email: '',
+    emailOrPhone: '',
     password: '',
     confirmPassword: '',
-    licensePlate: '',
     authorized: false,
   });
 
-  const [loginData, setLoginData] = useState({ rewardsId: '' });
+  const [loginData, setLoginData] = useState({ emailOrPhone: '' });
 
   const [userData, setUserData] = useState({
     membershipType: 'Rewards',
@@ -47,131 +122,178 @@ function RewardsPage() {
   }, [washesPerFree, washesUntilFree]);
 
   const rewardsSteps = [
-    {
-      number: '01',
-      title: 'Join',
-      copy: 'Create your rewards account and use your rewards ID as your membership ID.',
-    },
-    {
-      number: '02',
-      title: 'Earn',
-      copy: 'Every paid wash adds another stamp and moves you toward a free wash.',
-    },
-    {
-      number: '03',
-      title: 'Redeem',
-      copy: 'On the 10th wash, the reward is ready to claim at the register.',
-    },
+    { number: '01', title: 'Join', copy: 'Create your rewards account and use your rewards ID as your membership ID.' },
+    { number: '02', title: 'Earn', copy: 'Every paid wash adds another stamp and moves you toward a free wash.' },
+    { number: '03', title: 'Redeem', copy: 'On the 10th wash, the reward is ready to claim at the register.' },
   ];
+
+  // ── Validators ──
+  const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const normalizePhone = (value) => value.replace(/\D/g, '');
+  const isTwoWordName = (value) => value.trim().split(/\s+/).filter(Boolean).length >= 2;
+  const hasNoNumbers = (value) => !/\d/.test(value);
+  const isFakePhone = (digits) => digits === '0000000000' || digits === '1234567890';
+  const buildAuthEmail = (value) =>
+    isEmail(value) ? value.trim().toLowerCase() : `${normalizePhone(value)}@washzone.com`;
 
   const updateSignupField = (event) => {
     const { name, value, type, checked } = event.target;
-    setSignupData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
+    setSignupData((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const resetSignupForm = () => {
-    setSignupData({
-      name: '',
-      phone: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      licensePlate: '',
-      authorized: false,
-    });
+    setSignupData({ name: '', emailOrPhone: '', password: '', confirmPassword: '', authorized: false });
+    setSubmitStatus('idle');
+    setStatusMessage('');
+    setErrors({});
+  };
+
+  const validateSignup = () => {
+    const nextErrors = {};
+    const { name, emailOrPhone, password, confirmPassword, authorized } = signupData;
+
+    // Name — required, two words, no numbers
+    if (!name.trim()) {
+      nextErrors.name = 'Name is required.';
+    } else if (!hasNoNumbers(name)) {
+      nextErrors.name = 'Name cannot contain numbers.';
+    } else if (!isTwoWordName(name)) {
+      nextErrors.name = 'Please enter your first and last name.';
+    }
+
+    // Email or phone — required, valid format
+    if (!emailOrPhone.trim()) {
+      nextErrors.emailOrPhone = 'Email or phone is required.';
+    } else if (!isEmail(emailOrPhone)) {
+      const digits = normalizePhone(emailOrPhone);
+      if (digits.length !== 10) {
+        nextErrors.emailOrPhone = 'Enter a valid email or 10-digit phone number.';
+      } else if (isFakePhone(digits)) {
+        nextErrors.emailOrPhone = 'Enter a valid phone number.';
+      }
+    }
+
+    // Password — required, min 6 chars
+    if (!password.trim()) {
+      nextErrors.password = 'Password is required.';
+    } else if (password.length < 6) {
+      nextErrors.password = 'Password must be at least 6 characters.';
+    }
+
+    // Confirm password — required, must match
+    if (!confirmPassword.trim()) {
+      nextErrors.confirmPassword = 'Please confirm your password.';
+    } else if (password !== confirmPassword) {
+      nextErrors.confirmPassword = 'Passwords do not match.';
+    }
+
+    if (!authorized) nextErrors.authorized = 'Authorization is required.';
+
+    return nextErrors;
   };
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
+    setSubmitStatus('idle');
+    setStatusMessage('');
 
-    const normalizedPlate = signupData.licensePlate
-      ? signupData.licensePlate.trim().toUpperCase().replace(/\s+/g, '')
-      : '';
+    const nextErrors = validateSignup();
+    setErrors(nextErrors);
 
-    if (!signupData.name.trim() || !signupData.email.trim() || !signupData.password.trim()) {
-      alert('Please complete name, email, and password.');
+    if (Object.keys(nextErrors).length > 0) {
+      setSubmitStatus('error');
+      setStatusMessage('');
       return;
     }
 
-    if (signupData.password !== signupData.confirmPassword) {
-      alert('Passwords do not match.');
-      return;
-    }
+    const { name, emailOrPhone, password, authorized } = signupData;
+    const contactValue = emailOrPhone.trim();
+    const normalizedPhone = normalizePhone(contactValue);
+    const contactMethod = isEmail(contactValue) ? 'email' : 'phone';
+    const authEmail = buildAuthEmail(contactValue);
 
-    if (!signupData.phone.trim()) {
-      alert('Please enter a phone number.');
-      return;
-    }
-
-    if (!normalizedPlate) {
-      alert('Please enter your rewards ID.');
-      return;
-    }
-
-    if (!signupData.authorized) {
-      alert('Please authorize the rewards signup to continue.');
-      return;
-    }
-
+    setIsSubmitting(true);
     try {
-      const existing = await findMemberByLicense(normalizedPlate);
-      if (existing) {
-        alert('This rewards ID already has an account: ' + getMemberRewardsId(existing));
-        return;
-      }
-
-      const user = await createUser(signupData.email, signupData.password);
-      const uid = user.uid;
-
-      await createMember(
-        uid,
-        signupData.name.trim(),
-        normalizedPlate,
-        'active',
-        'Rewards signup',
-        signupData.email.trim()
-      );
-
-      await updateMemberRewardsData(uid, {
-        rewardsId: normalizedPlate,
-        phone: signupData.phone.trim(),
-        authorized: Boolean(signupData.authorized),
-        washesPerFree: 10,
-        washesUntilFree: 10,
-        totalWashes: 0,
-        membershipType: 'Rewards',
+      console.log('Step 1: ensureAuthenticated');
+      await ensureAuthenticated();
+      console.log('Step 2: findMemberByEmailOrPhone', contactValue);
+      const existingMember = await findMemberByEmailOrPhone(contactValue);
+      console.log('Step 3: createRewardsAccount', existingMember);
+      const rewardsAccount = await createRewardsAccount({
+        memberId: existingMember?.id,
+        name,
+        email: isEmail(contactValue) ? contactValue.toLowerCase() : '',
+        phone: isEmail(contactValue) ? '' : normalizedPhone,
+        authEmail,
+        contactMethod,
+        authorized,
+        submittedAt: new Date().toISOString(),
       });
+      console.log('Step 4: createUser', authEmail);
+      await createUser(authEmail, password);
+      console.log('Step 5: done');
 
       resetSignupForm();
+      setSubmitStatus('success');
+      setStatusMessage(`Account created successfully! Your rewards ID is ${rewardsAccount.id}.`);
       setAuthTab('login');
-
-      alert(`Signup successful. Your rewards ID is ${normalizedPlate}.`);
     } catch (err) {
       console.error('Signup failed:', err);
-      alert('Signup failed: ' + (err.message || 'unknown error'));
+      if (err.code === 'auth/email-already-in-use') {
+        setSubmitStatus('error');
+        setStatusMessage('An account with this email or phone already exists. Please log in instead.');
+        setAuthTab('login');
+      } else if (err.code === 'auth/weak-password') {
+        setSubmitStatus('error');
+        setStatusMessage('Password must be at least 6 characters.');
+      } else if (err.code === 'auth/invalid-email') {
+        setSubmitStatus('error');
+        setStatusMessage('Please enter a valid email address.');
+      } else {
+        setSubmitStatus('error');
+        setStatusMessage(err.message || 'Signup failed. Please try again.');
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
+    setSubmitStatus('idle');
+    setStatusMessage('');
 
-    const value = loginData.rewardsId
-      ? loginData.rewardsId.trim().toUpperCase().replace(/\s+/g, '')
-      : '';
+    const value = loginData.emailOrPhone.trim();
 
     if (!value) {
-      alert('Please enter your rewards ID.');
+      setSubmitStatus('error');
+      setStatusMessage('');
       return;
     }
 
-    try {
-      const member = await findMemberByRewardsOrLicense(value);
+    // Validate format
+    if (!isEmail(value)) {
+      const digits = normalizePhone(value);
+      if (digits.length !== 10) {
+        setSubmitStatus('error');
+        setStatusMessage('Enter a valid email or 10-digit phone number.');
+        return;
+      }
+      if (isFakePhone(digits)) {
+        setSubmitStatus('error');
+        setStatusMessage('Enter a valid phone number.');
+        return;
+      }
+    }
 
+    setIsSubmitting(true);
+    try {
+      await ensureAuthenticated();
+      const member = await findMemberByEmailOrPhone(value);
       if (!member) {
-        alert('No rewards account found for ' + value);
+        setSubmitStatus('error');
+        setStatusMessage('No rewards account found for ' + value);
         return;
       }
 
@@ -186,18 +308,26 @@ function RewardsPage() {
 
       setUserData(normalizedMember);
       setIsLoggedIn(true);
-
-      alert('Wash logged. Welcome, ' + (member.name || 'member'));
+      setSubmitStatus('success');
+      setStatusMessage('Welcome back, ' + (member.name || 'member') + '!');
     } catch (err) {
       console.error('Login lookup failed:', err);
-      alert('Lookup failed: ' + (err.message || 'unknown error'));
+      setSubmitStatus('error');
+      setStatusMessage(err.message || 'Lookup failed. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
+  };
+
+  const switchTab = (tab) => {
+    setAuthTab(tab);
+    setSubmitStatus('idle');
+    setStatusMessage('');
   };
 
   return (
     <div className="rewards-page">
 
-      {/* Hero */}
       <section className="rewards-hero">
         <h1>Rewards Program</h1>
         <p className="subtitle">
@@ -207,7 +337,6 @@ function RewardsPage() {
 
       <section className="rewards-content">
 
-        {/* How it works */}
         <article className="rewards-program-card">
           <h2>Rewards Program Details</h2>
           <div className="program-steps" aria-label="How rewards work">
@@ -223,7 +352,6 @@ function RewardsPage() {
           </div>
         </article>
 
-        {/* Auth card */}
         <article className="rewards-auth-card">
           <div className="auth-card-header">
             <h3>{authTab === 'signup' ? 'Create your account' : 'Welcome back'}</h3>
@@ -231,89 +359,109 @@ function RewardsPage() {
 
           <div className="rewards-auth-panel">
             {authTab === 'signup' ? (
-              <form className="rewards-signup-form" onSubmit={handleSignupSubmit}>
+              <form className="rewards-signup-form" onSubmit={handleSignupSubmit} noValidate>
                 <div className="form-grid two-col">
-                  <input type="text" name="name" placeholder="Full name" value={signupData.name} onChange={updateSignupField} required />
-                  <input type="tel" name="phone" placeholder="Phone" value={signupData.phone} onChange={updateSignupField} required />
-                </div>
-
-                <div className="form-grid two-col">
-                  <input type="email" name="email" placeholder="Email" value={signupData.email} onChange={updateSignupField} required />
-                  <input type="password" name="password" placeholder="Create password" value={signupData.password} onChange={updateSignupField} required />
-                </div>
-
-                <div className="form-grid two-col">
-                  <input type="text" name="licensePlate" placeholder="Rewards ID" value={signupData.licensePlate} onChange={updateSignupField} required />
-                  <input type="password" name="confirmPassword" placeholder="Confirm password" value={signupData.confirmPassword} onChange={updateSignupField} required />
+                  <div>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Full name"
+                      value={signupData.name}
+                      onChange={updateSignupField}
+                      className={errors.name ? 'is-invalid' : ''}
+                    />
+                    {errors.name && <div className="field-error">{errors.name}</div>}
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="emailOrPhone"
+                      placeholder="Email / Phone"
+                      value={signupData.emailOrPhone}
+                      onChange={updateSignupField}
+                      className={errors.emailOrPhone ? 'is-invalid' : ''}
+                    />
+                    {errors.emailOrPhone && <div className="field-error">{errors.emailOrPhone}</div>}
+                  </div>
                 </div>
 
                 <div className="form-grid two-col">
                   <div>
-                    <div className="form-check rewards-form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        name="authorized"
-                        id="rewards-authorized"
-                        checked={signupData.authorized}
-                        onChange={updateSignupField}
-                      />
-                      <label className="form-check-label rewards-form-check-label" htmlFor="rewards-authorized">
-                        I authorize The Wash Zone to process this rewards signup <span className="text-danger">(required)</span>.
-                      </label>
-                    </div>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Create password"
+                      value={signupData.password}
+                      onChange={updateSignupField}
+                      className={errors.password ? 'is-invalid' : ''}
+                    />
+                    {errors.password && <div className="field-error">{errors.password}</div>}
                   </div>
-                  <div />
+                  <div>
+                    <input
+                      type="password"
+                      name="confirmPassword"
+                      placeholder="Confirm password"
+                      value={signupData.confirmPassword}
+                      onChange={updateSignupField}
+                      className={errors.confirmPassword ? 'is-invalid' : ''}
+                    />
+                    {errors.confirmPassword && <div className="field-error">{errors.confirmPassword}</div>}
+                  </div>
                 </div>
 
-                <button className="submit-button" type="submit">Create Rewards Account</button>
+                <div className="form-check rewards-form-check">
+                  <input
+                    className={`form-check-input ${errors.authorized ? 'is-invalid' : ''}`}
+                    type="checkbox"
+                    name="authorized"
+                    id="rewards-authorized"
+                    checked={signupData.authorized}
+                    onChange={updateSignupField}
+                  />
+                  <label className="form-check-label rewards-form-check-label" htmlFor="rewards-authorized">
+                    I authorize The Wash Zone to process this rewards signup <span className="text-danger">(required)</span>.
+                  </label>
+                </div>
+                {errors.authorized && <div className="field-error">{errors.authorized}</div>}
 
-                
+                <button className="submit-button" type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? 'Creating account...' : 'Create Rewards Account'}
+                </button>
+
+                <div className="auth-helper-row">
+                  <span>Already have an account?</span>
+                  <button className="inline-link-button" type="button" onClick={() => switchTab('login')}>
+                    Log in here
+                  </button>
+                </div>
+
               </form>
             ) : (
-              <form className="rewards-login-form" onSubmit={handleLoginSubmit}>
-                <p className="auth-form-intro">Use your rewards ID to find your account.</p>
+              <form className="rewards-login-form" onSubmit={handleLoginSubmit} noValidate>
+                <p className="auth-form-intro">Use your email or phone number to find your account.</p>
                 <input
                   type="text"
-                  placeholder="Enter rewards ID"
-                  value={loginData.rewardsId}
-                  onChange={(event) => setLoginData({ rewardsId: event.target.value })}
+                  placeholder="Email / Phone"
+                  value={loginData.emailOrPhone}
+                  onChange={(event) => setLoginData({ emailOrPhone: event.target.value })}
                 />
-                <button className="submit-button" type="submit">Log In</button>
+                <button className="submit-button" type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? 'Looking up...' : 'Log In'}
+                </button>
 
                 <div className="auth-helper-row">
                   <span>Need a new account?</span>
-                  <button className="inline-link-button" type="button" onClick={() => setAuthTab('signup')}>
+                  <button className="inline-link-button" type="button" onClick={() => switchTab('signup')}>
                     Sign up here
                   </button>
                 </div>
+
               </form>
             )}
-
-            <div className="auth-tabs-bottom" role="tablist" aria-label="Rewards authentication tabs">
-              <button
-                className={authTab === 'login' ? 'tab-button active' : 'tab-button'}
-                onClick={() => setAuthTab('login')}
-                type="button"
-                role="tab"
-                aria-selected={authTab === 'login'}
-              >
-                Log In
-              </button>
-              <button
-                className={authTab === 'signup' ? 'tab-button active' : 'tab-button'}
-                onClick={() => setAuthTab('signup')}
-                type="button"
-                role="tab"
-                aria-selected={authTab === 'signup'}
-              >
-                Sign Up
-              </button>
-            </div>
           </div>
         </article>
 
-        {/* Member dashboard (shown after login) */}
         {isLoggedIn && (
           <aside className="member-preview-card" aria-live="polite">
             <div className="member-preview-header">
@@ -337,7 +485,6 @@ function RewardsPage() {
 
       </section>
 
-      {/* Contact footer */}
       <footer className="rewards-contact-footer" role="contentinfo">
         <div className="rewards-contact-inner">
           <p className="contact-cta-text">Questions about our rewards? Stop by or give us a call.</p>

@@ -101,7 +101,6 @@ function LoyaltyPage() {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    console.log("Login Data:", loginData);
 
     (async () => {
       const value = loginData.loyaltyNumber ? loginData.loyaltyNumber.trim().toUpperCase().replace(/\s+/g, '') : '';

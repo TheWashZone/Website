@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createUser } from '../api/firebase-auth';
+import { createUser, signIn } from '../api/firebase-auth';
 import { createMember, findMemberByLicense, findMemberByLoyaltyOrLicense, updateMember, getMember, logWash, redeemFreeWash } from '../api/firebase-crud';
 import '../css/loyalty-page.css';
 
@@ -35,6 +35,7 @@ function LoyaltyPage() {
 
   const [loginData, setLoginData] = useState({
     loyaltyNumber: "",
+    password: "",
   });
 
   // ===== USER DATA =====
@@ -115,6 +116,13 @@ function LoyaltyPage() {
           alert('No loyalty account found for ' + value);
           return;
         }
+
+        if (!member.email) {
+          alert('This account cannot log in online yet.');
+          return;
+        }
+
+        await signIn(member.email, loginData.password);
 
         // Set logged-in state and user data
         setUserData(member);
@@ -299,6 +307,17 @@ function LoyaltyPage() {
                   setLoginData({
                     ...loginData,
                     loyaltyNumber: e.target.value
+                  })
+                }
+              />
+              <input
+                type="password"
+                placeholder="Enter Password"
+                value={loginData.password}
+                onChange={(e) =>
+                  setLoginData({
+                    ...loginData,
+                    password: e.target.value
                   })
                 }
               />

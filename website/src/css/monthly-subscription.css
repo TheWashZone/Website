@@ -6,10 +6,36 @@
   width: 100vw;
   padding: 0;
   margin: 0;
-  background: linear-gradient(135deg, #fffaf5 0%, #fff3e8 50%, #ffeedf 100%);
+  background: linear-gradient(
+    90deg,
+    #f59644 0%,
+    #fdcf44 14%,
+    #fff6ec 35%,
+    #fff6ec 65%,
+    #fdcf44 86%,
+    #f59644 100%
+  );
   overflow-y: auto;
 }
+.subscription-contact-cta {
+  margin-top: 1.5rem;
+  text-align: center;
+}
 
+.subscription-contact-cta p {
+  margin: 0;
+  color: #5f5145;
+}
+
+.subscription-contact-link {
+  color: #d97522;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.subscription-contact-link:hover {
+  color: #b9621d;
+}
 .subscription-form-container {
   background: #fff;
   width: 100%;
@@ -48,19 +74,6 @@
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 0.5rem;
-}
-
-.subscription-business-info {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  font-size: 0.85rem;
-  color: #8f7a67;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #efddcd;
-  flex-wrap: wrap;
 }
 
 .subscription-section-label {

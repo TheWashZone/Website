@@ -138,6 +138,18 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Signup/Login Input Fields */
+
+.signup-form input {
+  background-color: white;
+  color: black;
+  border: 2px solid #ccc;
+}
+
+.signup-form input::placeholder {
+  color: #666;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .loyalty-hero h1 {

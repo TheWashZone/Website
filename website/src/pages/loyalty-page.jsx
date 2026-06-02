@@ -62,7 +62,6 @@ function LoyaltyPage() {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Signup Data:", signupData);
     // Normalize license plate
     const normalizedPlate = signupData.licensePlate ? signupData.licensePlate.trim().toUpperCase().replace(/\s+/g, '') : '';
 

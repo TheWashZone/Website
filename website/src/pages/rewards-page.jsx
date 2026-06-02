@@ -87,8 +87,6 @@ async function createRewardsAccount(submission) {
 function RewardsPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authTab, setAuthTab] = useState('signup');
-  const [submitStatus, setSubmitStatus] = useState('idle');
-  const [statusMessage, setStatusMessage] = useState('');
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 

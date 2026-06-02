@@ -22,10 +22,7 @@ async function findMemberByEmailOrPhone(value) {
   const field = isEmail ? 'email' : 'phone';
   const searchValue = isEmail ? trimmed : trimmed.replace(/\D/g, '');
 
-  const q = query(
-    collection(db, 'users'),
-    where(field, '==', searchValue)
-  );
+  const q = query(collection(db, 'users'), where(field, '==', searchValue));
   const snapshot = await getDocs(q);
   if (snapshot.empty) return null;
   const docSnap = snapshot.docs[0];
@@ -33,9 +30,7 @@ async function findMemberByEmailOrPhone(value) {
 }
 
 function generateId(prefix) {
-  const suffix = Math.floor(Math.random() * 10000)
-    .toString()
-    .padStart(4, '0');
+  const suffix = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
   return `${prefix}${suffix}`;
 }
 
@@ -43,17 +38,13 @@ async function allocateRewardsId(prefix) {
   for (let attempt = 0; attempt < 20; attempt += 1) {
     const candidateId = generateId(prefix);
     const existing = await getDoc(doc(db, USERS_COLLECTION, candidateId));
-    if (!existing.exists()) {
-      return candidateId;
-    }
+    if (!existing.exists()) return candidateId;
   }
   throw new Error('Unable to create a unique rewards ID. Please try again.');
 }
 
 async function createRewardsAccount(submission) {
-  if (!submission?.name?.trim()) {
-    throw new Error('Name is required.');
-  }
+  if (!submission?.name?.trim()) throw new Error('Name is required.');
 
   await ensureAuthenticated();
 
@@ -80,7 +71,6 @@ async function createRewardsAccount(submission) {
   };
 
   await setDoc(doc(db, USERS_COLLECTION, memberId), rewardsData);
-
   return { id: memberId, ...rewardsData };
 }
 
@@ -89,6 +79,7 @@ function RewardsPage() {
   const [authTab, setAuthTab] = useState('signup');
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formMessage, setFormMessage] = useState({ text: '', type: '' }); // 'error' | 'success'
 
   const [signupData, setSignupData] = useState({
     name: '',
@@ -125,7 +116,6 @@ function RewardsPage() {
     { number: '03', title: 'Redeem', copy: 'On the 10th wash, the reward is ready to claim at the register.' },
   ];
 
-  // ── Validators ──
   const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   const normalizePhone = (value) => value.replace(/\D/g, '');
   const isTwoWordName = (value) => value.trim().split(/\s+/).filter(Boolean).length >= 2;
@@ -142,8 +132,7 @@ function RewardsPage() {
 
   const resetSignupForm = () => {
     setSignupData({ name: '', emailOrPhone: '', password: '', confirmPassword: '', authorized: false });
-    setSubmitStatus('idle');
-    setStatusMessage('');
+    setFormMessage({ text: '', type: '' });
     setErrors({});
   };
 
@@ -151,7 +140,6 @@ function RewardsPage() {
     const nextErrors = {};
     const { name, emailOrPhone, password, confirmPassword, authorized } = signupData;
 
-    // Name — required, two words, no numbers
     if (!name.trim()) {
       nextErrors.name = 'Name is required.';
     } else if (!hasNoNumbers(name)) {
@@ -160,7 +148,6 @@ function RewardsPage() {
       nextErrors.name = 'Please enter your first and last name.';
     }
 
-    // Email or phone — required, valid format
     if (!emailOrPhone.trim()) {
       nextErrors.emailOrPhone = 'Email or phone is required.';
     } else if (!isEmail(emailOrPhone)) {
@@ -172,14 +159,12 @@ function RewardsPage() {
       }
     }
 
-    // Password — required, min 6 chars
     if (!password.trim()) {
       nextErrors.password = 'Password is required.';
     } else if (password.length < 6) {
       nextErrors.password = 'Password must be at least 6 characters.';
     }
 
-    // Confirm password — required, must match
     if (!confirmPassword.trim()) {
       nextErrors.confirmPassword = 'Please confirm your password.';
     } else if (password !== confirmPassword) {
@@ -193,17 +178,11 @@ function RewardsPage() {
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
-    setSubmitStatus('idle');
-    setStatusMessage('');
+    setFormMessage({ text: '', type: '' });
 
     const nextErrors = validateSignup();
     setErrors(nextErrors);
-
-    if (Object.keys(nextErrors).length > 0) {
-      setSubmitStatus('error');
-      setStatusMessage('');
-      return;
-    }
+    if (Object.keys(nextErrors).length > 0) return;
 
     const { name, emailOrPhone, password, authorized } = signupData;
     const contactValue = emailOrPhone.trim();
@@ -213,11 +192,8 @@ function RewardsPage() {
 
     setIsSubmitting(true);
     try {
-      console.log('Step 1: ensureAuthenticated');
       await ensureAuthenticated();
-      console.log('Step 2: findMemberByEmailOrPhone', contactValue);
       const existingMember = await findMemberByEmailOrPhone(contactValue);
-      console.log('Step 3: createRewardsAccount', existingMember);
       const rewardsAccount = await createRewardsAccount({
         memberId: existingMember?.id,
         name,
@@ -228,29 +204,22 @@ function RewardsPage() {
         authorized,
         submittedAt: new Date().toISOString(),
       });
-      console.log('Step 4: createUser', authEmail);
       await createUser(authEmail, password);
-      console.log('Step 5: done');
 
       resetSignupForm();
-      setSubmitStatus('success');
-      setStatusMessage(`Account created successfully! Your rewards ID is ${rewardsAccount.id}.`);
+      setFormMessage({ text: `Account created successfully! Your rewards ID is ${rewardsAccount.id}.`, type: 'success' });
       setAuthTab('login');
     } catch (err) {
       console.error('Signup failed:', err);
       if (err.code === 'auth/email-already-in-use') {
-        setSubmitStatus('error');
-        setStatusMessage('An account with this email or phone already exists. Please log in instead.');
+        setFormMessage({ text: 'An account with this email or phone already exists. Please log in instead.', type: 'error' });
         setAuthTab('login');
       } else if (err.code === 'auth/weak-password') {
-        setSubmitStatus('error');
-        setStatusMessage('Password must be at least 6 characters.');
+        setFormMessage({ text: 'Password must be at least 6 characters.', type: 'error' });
       } else if (err.code === 'auth/invalid-email') {
-        setSubmitStatus('error');
-        setStatusMessage('Please enter a valid email address.');
+        setFormMessage({ text: 'Please enter a valid email address.', type: 'error' });
       } else {
-        setSubmitStatus('error');
-        setStatusMessage(err.message || 'Signup failed. Please try again.');
+        setFormMessage({ text: err.message || 'Signup failed. Please try again.', type: 'error' });
       }
     } finally {
       setIsSubmitting(false);
@@ -259,28 +228,23 @@ function RewardsPage() {
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
-    setSubmitStatus('idle');
-    setStatusMessage('');
+    setFormMessage({ text: '', type: '' });
 
     const value = loginData.emailOrPhone.trim();
 
     if (!value) {
-      setSubmitStatus('error');
-      setStatusMessage('');
+      setFormMessage({ text: 'Please enter your email or phone number.', type: 'error' });
       return;
     }
 
-    // Validate format
     if (!isEmail(value)) {
       const digits = normalizePhone(value);
       if (digits.length !== 10) {
-        setSubmitStatus('error');
-        setStatusMessage('Enter a valid email or 10-digit phone number.');
+        setFormMessage({ text: 'Enter a valid email or 10-digit phone number.', type: 'error' });
         return;
       }
       if (isFakePhone(digits)) {
-        setSubmitStatus('error');
-        setStatusMessage('Enter a valid phone number.');
+        setFormMessage({ text: 'Enter a valid phone number.', type: 'error' });
         return;
       }
     }
@@ -290,8 +254,7 @@ function RewardsPage() {
       await ensureAuthenticated();
       const member = await findMemberByEmailOrPhone(value);
       if (!member) {
-        setSubmitStatus('error');
-        setStatusMessage('No rewards account found for ' + value);
+        setFormMessage({ text: 'No rewards account found for ' + value, type: 'error' });
         return;
       }
 
@@ -306,12 +269,10 @@ function RewardsPage() {
 
       setUserData(normalizedMember);
       setIsLoggedIn(true);
-      setSubmitStatus('success');
-      setStatusMessage('Welcome back, ' + (member.name || 'member') + '!');
+      setFormMessage({ text: 'Welcome back, ' + (member.name || 'member') + '!', type: 'success' });
     } catch (err) {
       console.error('Login lookup failed:', err);
-      setSubmitStatus('error');
-      setStatusMessage(err.message || 'Lookup failed. Please try again.');
+      setFormMessage({ text: err.message || 'Lookup failed. Please try again.', type: 'error' });
     } finally {
       setIsSubmitting(false);
     }
@@ -319,8 +280,8 @@ function RewardsPage() {
 
   const switchTab = (tab) => {
     setAuthTab(tab);
-    setSubmitStatus('idle');
-    setStatusMessage('');
+    setFormMessage({ text: '', type: '' });
+    setErrors({});
   };
 
   return (
@@ -434,6 +395,11 @@ function RewardsPage() {
                   </button>
                 </div>
 
+                {formMessage.text && (
+                  <div className={`form-message form-message--${formMessage.type}`} role="alert">
+                    {formMessage.text}
+                  </div>
+                )}
               </form>
             ) : (
               <form className="rewards-login-form" onSubmit={handleLoginSubmit} noValidate>
@@ -455,6 +421,11 @@ function RewardsPage() {
                   </button>
                 </div>
 
+                {formMessage.text && (
+                  <div className={`form-message form-message--${formMessage.type}`} role="alert">
+                    {formMessage.text}
+                  </div>
+                )}
               </form>
             )}
           </div>

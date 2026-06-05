@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../api/firebaseconfig.js";
@@ -19,11 +19,9 @@ function signInWithGoogle() {
 
 function LoginPage() {
   const navigate = useNavigate();
-  // const [user, setUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
       if (user) navigate('/');
     });
     return unsubscribe;

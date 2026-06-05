@@ -19,7 +19,7 @@ function signInWithGoogle() {
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

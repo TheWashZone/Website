@@ -31,8 +31,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// Only connect to emulator in development mode
-if (env.DEV) {
+const useEmulators = env.VITE_USE_FIREBASE_EMULATORS === 'true';
+
+// Only connect to emulators when explicitly enabled.
+if (useEmulators) {
   connectAuthEmulator(auth, "http://localhost:9099");
   connectFirestoreEmulator(db, "127.0.0.1", 8080);
 }

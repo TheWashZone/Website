@@ -455,6 +455,196 @@
   color: black;
 }
 
+@media print {
+  @page {
+    size: letter portrait;
+    margin: 0.35in;
+  }
+
+  html,
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 10pt;
+    line-height: 1.2;
+  }
+
+  .subscription-wrapper {
+    max-width: none;
+    padding: 0;
+  }
+
+  .subscription-hero,
+  .subscription-form-container,
+  .subscription-contact-cta {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .subscription-hero {
+    padding: 12px 0 14px;
+    margin-bottom: 12px;
+  }
+
+  .subscription-hero h1 {
+    font-size: 24pt;
+    margin-bottom: 6px;
+  }
+
+  .subscription-hero .subtitle {
+    font-size: 11pt;
+    max-width: none;
+    margin: 0;
+  }
+
+  .subscription-header {
+    margin-bottom: 8px;
+    padding: 0;
+  }
+
+  .subscription-title {
+    font-size: 16pt;
+  }
+
+  .subscription-form-container {
+    padding: 12px;
+    margin-bottom: 0;
+  }
+
+  .subscription-form-container,
+  .subscription-hero,
+  .subscription-terms,
+  .plan-card,
+  .subscription-contact-cta {
+    background: white !important;
+  }
+
+  .subscription-submit-btn,
+  .subscription-contact-cta,
+  .status-text {
+    display: none !important;
+  }
+
+  .subscription-form .row {
+    --bs-gutter-x: 0.75rem;
+    --bs-gutter-y: 0.5rem;
+  }
+
+  .subscription-form .form-label {
+    font-size: 9pt;
+    margin-bottom: 0.25rem;
+  }
+
+  .subscription-form .form-control {
+    min-height: 30px;
+    padding: 4px 8px;
+    font-size: 9pt;
+    border-width: 1px;
+  }
+
+  .subscription-form .text-muted {
+    font-size: 8pt;
+  }
+
+  .subscription-plan-row {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .subscription-plan-grid {
+    gap: 0.5rem !important;
+  }
+
+  .plan-card {
+    padding: 10px;
+    border-width: 1px;
+  }
+
+  .plan-card-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-card-header h3 {
+    font-size: 11pt;
+  }
+
+  .plan-badge {
+    padding: 2px 6px;
+    font-size: 7pt;
+  }
+
+  .plan-card-price {
+    font-size: 16pt;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-card-features {
+    gap: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-card-features li {
+    font-size: 8.5pt;
+  }
+
+  .subscription-terms {
+    padding: 10px;
+    margin-bottom: 8px;
+    border-width: 1px;
+  }
+
+  .subscription-terms ul li {
+    font-size: 8.5pt;
+    margin-bottom: 4px;
+  }
+
+  .subscription-check-row {
+    padding-left: 0;
+    gap: 4px;
+  }
+
+  .subscription-check-input {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+  }
+
+  .subscription-check-label {
+    font-size: 9pt;
+    line-height: 1.25;
+  }
+
+  .subscription-form .form-control,
+  .plan-card,
+  .subscription-terms,
+  .subscription-check-input,
+  .subscription-contact-btn {
+    box-shadow: none !important;
+  }
+
+  .subscription-form .form-control,
+  .plan-card,
+  .subscription-terms,
+  .subscription-contact-btn,
+  .subscription-hero,
+  .subscription-form-container {
+    border-color: #000 !important;
+  }
+
+  .subscription-wrapper,
+  .subscription-form-container,
+  .subscription-hero,
+  .subscription-terms {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .subscription-form .mb-3,
+  .subscription-form .mb-4 {
+    margin-bottom: 0.5rem !important;
+  }
+}
+
 /* ── Pass number group ── */
 
 .pass-number-group {

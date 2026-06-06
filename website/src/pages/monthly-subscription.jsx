@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { signInAnonymously } from 'firebase/auth';
+import { Form, Row, Col } from 'react-bootstrap';
 import '../css/monthly-subscription.css';
 import { Link } from 'react-router-dom';
-import { auth, db } from '../api/firebaseconfig';
 
 const EMPTY_FORM = {
   vehicleYear: '',
@@ -23,77 +20,6 @@ const EMPTY_FORM = {
   authorized: false,
   printName: ''
 };
-
-const PLAN_TO_PREFIX = {
-  basic: 'B',
-  deluxe: 'D',
-  ultimate: 'U'
-};
-
-function normalizePlan(plan) {
-  const value = String(plan || '').trim().toLowerCase();
-  return PLAN_TO_PREFIX[value] ? value : 'deluxe';
-}
-
-async function ensureAuthenticated() {
-  if (!auth.currentUser) {
-    await signInAnonymously(auth);
-  }
-}
-
-function generateId(prefix) {
-  const suffix = Math.floor(Math.random() * 10000)
-    .toString()
-    .padStart(4, '0');
-  return `${prefix}${suffix}`;
-}
-
-async function allocateMemberId(prefix) {
-  for (let i = 0; i < 20; i += 1) {
-    const candidateId = generateId(prefix);
-    const existing = await getDoc(doc(db, 'users', candidateId));
-    if (!existing.exists()) {
-      return candidateId;
-    }
-  }
-  throw new Error('Unable to create a unique subscription ID. Please try again.');
-}
-
-async function createSubscriptionLead(submission) {
-  if (!submission?.name?.trim()) {
-    throw new Error('Name is required.');
-  }
-
-  await ensureAuthenticated();
-
-  const plan = normalizePlan(submission.plan);
-  const tier = PLAN_TO_PREFIX[plan];
-  const memberId = await allocateMemberId(tier);
-
-  await setDoc(doc(db, 'users', memberId), {
-    name: submission.name.trim(),
-    car: submission.car || '',
-    status: 'payment_needed',
-    notes: '',
-    email: submission.email?.trim() || '',
-    tier,
-    plan,
-    phone: submission.phone?.trim() || '',
-    address: submission.address || '',
-    contactPerson: submission.contactPerson?.trim() || '',
-    vehicleYear: submission.vehicleYear?.trim() || '',
-    vehicleMake: submission.vehicleMake?.trim() || '',
-    vehicleModel: submission.vehicleModel?.trim() || '',
-    vehicleColor: submission.vehicleColor?.trim() || '',
-    authorized: Boolean(submission.authorized),
-    submittedAt: submission.submittedAt || new Date().toISOString(),
-    paymentStatus: 'pending',
-    createdAt: serverTimestamp(),
-    updatedAt: serverTimestamp()
-  });
-
-  return memberId;
-}
 
 function MonthlySubscriptionPage() {
   const [formData, setFormData] = useState(EMPTY_FORM);
@@ -221,36 +147,10 @@ function MonthlySubscriptionPage() {
       return;
     }
 
-    const car = [
-      formData.vehicleYear.trim(),
-      formData.vehicleMake.trim(),
-      formData.vehicleModel.trim(),
-      formData.vehicleColor.trim() ? `(${formData.vehicleColor.trim()})` : ''
-    ].filter(Boolean).join(' ');
+    setSubmitStatus('success');
+    setStatusMessage('Form is ready to print.');
 
-    const address = [
-      formData.streetAddress.trim(),
-      formData.city.trim(),
-      formData.state.trim(),
-      formData.zipCode.trim()
-    ].filter(Boolean).join(', ');
-
-    const submission = {
-      ...formData,
-      car,
-      address,
-      submittedAt: new Date().toISOString(),
-      status: 'payment_needed'
-    };
-
-    try {
-      await createSubscriptionLead(submission);
-      setSubmitStatus('success');
-      setStatusMessage('Form submitted successfully.');
-    } catch (error) {
-      setSubmitStatus('error');
-      setStatusMessage(error?.message || 'Unable to submit your form right now. Please try again.');
-    }
+    window.print();
   };
 
   return (
@@ -433,7 +333,7 @@ function MonthlySubscriptionPage() {
           </Form.Group>
 
           <button className="subscription-submit-btn" type="submit">
-            Submit
+            Print Form
           </button>
 
           {submitStatus !== 'idle' && (

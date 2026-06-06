@@ -1,20 +1,13 @@
 import { useState, useMemo } from 'react';
 import { doc, getDoc, setDoc, serverTimestamp, collection, query, where, getDocs } from 'firebase/firestore';
-import { signInAnonymously } from 'firebase/auth';
 import { Link } from 'react-router-dom';
-import { createUser } from '../api/firebase-auth';
-import { auth, db } from '../api/firebaseconfig';
+import { createUser, signIn } from '../api/firebase-auth';
+import { db } from '../api/firebaseconfig';
 
 import '../css/rewards-page.css';
 
 const USERS_COLLECTION = 'users';
 const REWARDS_ID_PREFIX = 'R';
-
-async function ensureAuthenticated() {
-  if (!auth.currentUser) {
-    await signInAnonymously(auth);
-  }
-}
 
 async function findMemberByEmailOrPhone(value) {
   const trimmed = value.trim().toLowerCase();
@@ -45,9 +38,6 @@ async function allocateRewardsId(prefix) {
 
 async function createRewardsAccount(submission) {
   if (!submission?.name?.trim()) throw new Error('Name is required.');
-
-  await ensureAuthenticated();
-
   const memberId = submission.memberId || await allocateRewardsId(REWARDS_ID_PREFIX);
   const rewardsData = {
     name: submission.name.trim(),
@@ -89,7 +79,7 @@ function RewardsPage() {
     authorized: false,
   });
 
-  const [loginData, setLoginData] = useState({ emailOrPhone: '' });
+  const [loginData, setLoginData] = useState({ emailOrPhone: '', password: '' });
 
   const [userData, setUserData] = useState({
     membershipType: 'Rewards',
@@ -133,6 +123,11 @@ function RewardsPage() {
   const resetSignupForm = () => {
     setSignupData({ name: '', emailOrPhone: '', password: '', confirmPassword: '', authorized: false });
     setFormMessage({ text: '', type: '' });
+    setErrors({});
+  };
+
+  const resetLoginForm = () => {
+    setLoginData({ emailOrPhone: '', password: '' });
     setErrors({});
   };
 
@@ -192,7 +187,7 @@ function RewardsPage() {
 
     setIsSubmitting(true);
     try {
-      await ensureAuthenticated();
+      await createUser(authEmail, password);
       const existingMember = await findMemberByEmailOrPhone(contactValue);
       const rewardsAccount = await createRewardsAccount({
         memberId: existingMember?.id,
@@ -204,7 +199,6 @@ function RewardsPage() {
         authorized,
         submittedAt: new Date().toISOString(),
       });
-      await createUser(authEmail, password);
 
       resetSignupForm();
       setFormMessage({ text: `Account created successfully! Your rewards ID is ${rewardsAccount.id}.`, type: 'success' });
@@ -231,9 +225,15 @@ function RewardsPage() {
     setFormMessage({ text: '', type: '' });
 
     const value = loginData.emailOrPhone.trim();
+    const password = loginData.password.trim();
 
     if (!value) {
       setFormMessage({ text: 'Please enter your email or phone number.', type: 'error' });
+      return;
+    }
+
+    if (!password) {
+      setFormMessage({ text: 'Please enter your password.', type: 'error' });
       return;
     }
 
@@ -251,7 +251,8 @@ function RewardsPage() {
 
     setIsSubmitting(true);
     try {
-      await ensureAuthenticated();
+      const authEmail = buildAuthEmail(value);
+      await signIn(authEmail, password);
       const member = await findMemberByEmailOrPhone(value);
       if (!member) {
         setFormMessage({ text: 'No rewards account found for ' + value, type: 'error' });
@@ -270,6 +271,7 @@ function RewardsPage() {
       setUserData(normalizedMember);
       setIsLoggedIn(true);
       setFormMessage({ text: 'Welcome back, ' + (member.name || 'member') + '!', type: 'success' });
+      resetLoginForm();
     } catch (err) {
       console.error('Login lookup failed:', err);
       setFormMessage({ text: err.message || 'Lookup failed. Please try again.', type: 'error' });
@@ -403,15 +405,21 @@ function RewardsPage() {
               </form>
             ) : (
               <form className="rewards-login-form" onSubmit={handleLoginSubmit} noValidate>
-                <p className="auth-form-intro">Use your email or phone number to find your account.</p>
+                <p className="auth-form-intro">Use your email or phone number and password to sign in.</p>
                 <input
                   type="text"
                   placeholder="Email / Phone"
                   value={loginData.emailOrPhone}
-                  onChange={(event) => setLoginData({ emailOrPhone: event.target.value })}
+                  onChange={(event) => setLoginData((prev) => ({ ...prev, emailOrPhone: event.target.value }))}
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={loginData.password}
+                  onChange={(event) => setLoginData((prev) => ({ ...prev, password: event.target.value }))}
                 />
                 <button className="submit-button" type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? 'Looking up...' : 'Log In'}
+                  {isSubmitting ? 'Signing in...' : 'Log In'}
                 </button>
 
                 <div className="auth-helper-row">

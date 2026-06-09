@@ -1,42 +1,45 @@
-import { doc, getDoc, updateDoc, increment } from "firebase/firestore";
+import { doc, getDoc, updateDoc, increment, setDoc } from "firebase/firestore";
 import { db } from "./firebaseconfig";
 import { auth } from '../api/firebaseconfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 // /**
-//  * Upserts a member document, only writing Excel-sourced fields.
-//  * If the document already exists, notes and email are preserved.
-//  * @param {string} id - The user ID
-//  * @param {string} name - User's name
-//  * @param {string} car - Car information
-//  * @param {'active'|'inactive'|'payment_needed'} status - Member status
-//  * @returns {Promise<{id: string, existed: boolean}>}
+//  * Creates or gets user document in Firestore
+//  * @param {string} uid - The user ID from Firebase Auth
+//  * @param {Object} userInfo - User info from Firebase Auth
+//  * @returns {Promise<Object>} User data
 //  */
-// async function upsertMember(id, name, car, status, basicWashes=0, deluxeWashes=0, ultimateWashes=0) {
-//     if (!auth.currentUser) {
-//         await signInWithEmailAndPassword(auth, 'test@gmail.com', '123456');
-//     }
-//     console.log(auth.currentUser);
+async function createOrGetUser(uid, userInfo = {}) {
+    try {
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
 
-//     try {
-//         const docRef = doc(db, "users", id);
+        if (docSnap.exists()) {
+            return docSnap.data();
+        } else {
+            // Create new user document
+            const userData = {
+                uid: uid,
+                email: userInfo.email || '',
+                displayName: userInfo.displayName || '',
+                membershipType: 'Basic',
+                memberSince: new Date().toISOString().split('T')[0],
+                totalWashes: 0,
+                basicWashes: 0,
+                deluxeWashes: 0,
+                ultimateWashes: 0,
+                washesPerFree: 10,
+                createdAt: new Date()
+            };
 
-//         const existed = await runTransaction(db, async (transaction) => {
-//             const docSnap = await transaction.get(docRef);
-//             if (docSnap.exists()) {
-//                 transaction.update(docRef, { basicWashes, deluxeWashes, ultimateWashes });
-//                 return true;
-//             }
-//             transaction.set(docRef, { name, car, status, basicWashes, deluxeWashes, ultimateWashes, notes: '', email: '' });
-//             return false;
-//         });
-
-//         return { id, existed };
-//     } catch (error) {
-//         console.error("Error upserting document:", error);
-//         throw error;
-//     }
-// }
+            await setDoc(docRef, userData);
+            return userData;
+        }
+    } catch (error) {
+        console.error("❌ Error creating/getting user:", error);
+        throw error;
+    }
+}
 
 async function getBasicWashes(id) {
     try {       
@@ -139,4 +142,4 @@ async function removeWash(id, washType) {
     }
 }
 
-export { getBasicWashes, getDeluxeWashes, getUltimateWashes, addWashes, removeWash };
+export { getBasicWashes, getDeluxeWashes, getUltimateWashes, addWashes, removeWash, createOrGetUser };

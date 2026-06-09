@@ -57,7 +57,7 @@ function HomePage() {
           <div className="section-title">MONTHLY PLANS</div>
           <div className="membership-flex">
             <div className="item" data-testid="box1">
-              <div className="item-title">Ultimate - $77.50</div>
+              <div className="item-title">Ultimate - $33.00</div>
               <ul>
                 <li className="" data-testid="ultimate1">WHEEL BRITE</li>
                 <li className="" data-testid="ultimate2">WASH AND SHINE</li>
@@ -67,7 +67,7 @@ function HomePage() {
               </ul>
             </div>
             <div className="item" data-testid="box2">
-              <div className="item-title">Deluxe - $62.50</div>
+              <div className="item-title">Deluxe - $27.00</div>
               <ul>
                 <li className="" data-testid="deluxe1">WASH AND SHINE</li>
                 <li className="" data-testid="deluxe2">FOAMING POLISH</li>
@@ -106,12 +106,12 @@ function HomePage() {
           <span className="hours-title">Hours of Operation</span>
           <Stack gap={3} className="hours-item" data-testid="hours-box">
             <div className="">Sunday: 9:00 AM - 5:00 PM</div>
-            <div className="">Monday: 7:30 AM - 7:00 PM</div>
-            <div className="">Tuesday: 7:30 AM - 7:00 PM</div>
-            <div className="">Wednesday: 7:30 AM - 7:00 PM</div>
-            <div className="">Thursday: 7:30 AM - 7:00 PM</div>
-            <div className="">Friday: 7:30 AM - 7:00 PM</div>
-            <div className="">Saturday: 9:00 AM - 5:00 PM</div>
+            <div className="">Monday: 7:30 AM - 5:30 PM</div>
+            <div className="">Tuesday: 7:30 AM - 5:30 PM</div>
+            <div className="">Wednesday: 7:30 AM - 5:30 PM</div>
+            <div className="">Thursday: 7:30 AM - 5:30 PM</div>
+            <div className="">Friday: 7:30 AM - 5:30 PM</div>
+            <div className="">Saturday: 8:00 AM - 5:00 PM</div>
           </Stack>
           <div className="hours-disclaimer">
             These hours change seasonally based on daylight hours. 

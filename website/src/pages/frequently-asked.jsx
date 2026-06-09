@@ -20,15 +20,15 @@ function FrequentlyAskedPage() {
         },
         {
           question: "How much does a car wash cost?",
-          answer: "Our prices range from $15 for a Basic Wash to $150 for Complete Detailing. We also offer monthly membership plans with unlimited washes starting at $29.99/month. Check our services page for detailed pricing."
+          answer: "Our prices range from $10 for a Basic Wash to $16.50 for an Ultimate Wash. We also offer monthly membership plans with unlimited washes starting at $62.50/month. Check our home page for detailed pricing."
         },
         {
           question: "Do you offer any discounts or membership plans?",
-          answer: "Yes! We offer monthly unlimited wash memberships, multi-wash packages, and special discounts for seniors, students, and military personnel. Ask our team about current promotions."
+          answer: "Yes! We offer monthly unlimited wash memberships."
         },
         {
           question: "How long does a car wash take?",
-          answer: "An Express Wash takes about 10-15 minutes, while our Full Detailing service can take 2-4 hours depending on your vehicle's condition. We'll provide an estimated time when you arrive."
+          answer: "A car wash takes about 10-15 minutes."
         }
       ]
     },
@@ -37,11 +37,11 @@ function FrequentlyAskedPage() {
       questions: [
         {
           question: "Do I need an appointment?",
-          answer: "No appointment is necessary for our express wash services. However, we recommend booking in advance for detailing services to ensure availability and minimize wait times."
+          answer: "No appointment is necessary for our express wash services."
         },
         {
           question: "What are your hours of operation?",
-          answer: "We're open Monday through Saturday from 8:00 AM to 7:00 PM, and Sunday from 9:00 AM to 5:00 PM. Holiday hours may vary."
+          answer: "We're open Monday through Friday from 7:30 AM to 5:30 PM, Saturday from 8:00 AM to 5:00 PM, and Sunday from 9:00 AM to 5:00 PM. Holiday hours may vary."
         },
         {
           question: "Are you open during bad weather?",
@@ -54,7 +54,7 @@ function FrequentlyAskedPage() {
       questions: [
         {
           question: "Is your car wash safe for all vehicles?",
-          answer: "Absolutely! Our state-of-the-art equipment uses soft-touch materials that are safe for all vehicle types, including luxury cars, SUVs, and trucks. We also offer touchless options."
+          answer: "Absolutely! Our equipment uses soft-touch materials that are safe for all vehicle types, including luxury cars, SUVs, and trucks. We also offer touchless options."
         },
         {
           question: "What products do you use?",
@@ -92,11 +92,11 @@ function FrequentlyAskedPage() {
       questions: [
         {
           question: "Can I wait while my car is being washed?",
-          answer: "Yes! We have a comfortable waiting area with free Wi-Fi, refreshments, and seating. You're welcome to relax while we take care of your vehicle."
+          answer: "Yes! You're welcome to relax inside of your car while we take care of your vehicle."
         },
         {
           question: "Do you wash motorcycles or RVs?",
-          answer: "We can wash motorcycles and smaller RVs. Please call ahead for larger vehicles so we can ensure we can accommodate your vehicle's size."
+          answer: "We cannot wash motorcycles but we can wash smaller RVs. Please call ahead for larger vehicles so we can ensure we can accommodate your vehicle's size."
         },
         {
           question: "How often should I wash my car?",

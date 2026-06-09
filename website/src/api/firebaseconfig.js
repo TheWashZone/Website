@@ -1,4 +1,3 @@
-/* global process */
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
@@ -10,11 +9,11 @@ import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// Use import.meta.env in Vite, fall back to process.env in Jest and CI
-const env = {
-  ...process.env,
-  ...(typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env : {}),
-};
+// Use import.meta.env in Vite, fall back to process.env in Jest
+
+// const env = typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env : process.env;
+const env = import.meta.env;
+
 
 const firebaseConfig = {
  apiKey: env.VITE_FIREBASE_API_KEY,
@@ -26,30 +25,16 @@ const firebaseConfig = {
  measurementId: env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-const hasFirebaseConfig = Boolean(
-  env.VITE_FIREBASE_API_KEY &&
-  env.VITE_FIREBASE_PROJECT_ID &&
-  env.VITE_FIREBASE_APP_ID
-);
 
-let app = null;
-let db = null;
-let auth = null;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-if (hasFirebaseConfig) {
-  app = initializeApp(firebaseConfig);
-  db = getFirestore(app);
-  auth = getAuth(app);
-
-  // Only connect to emulator in development mode
-  if (env.DEV) {
-    connectAuthEmulator(auth, "http://localhost:9099");
-    connectFirestoreEmulator(db, "127.0.0.1", 8080);
-  }
-} else {
-  console.warn(
-    "Firebase not initialized: missing VITE_FIREBASE_API_KEY, VITE_FIREBASE_PROJECT_ID, or VITE_FIREBASE_APP_ID."
-  );
+// Only connect to emulator in development mode
+if (env.DEV) {
+  connectAuthEmulator(auth, "http://localhost:9099");
+  connectFirestoreEmulator(db, "127.0.0.1", 8080);
 }
 
 // Export the db and auth instances

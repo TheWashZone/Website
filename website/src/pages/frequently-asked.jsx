@@ -16,19 +16,15 @@ function FrequentlyAskedPage() {
       questions: [
         {
           question: "What types of car wash services do you offer?",
-          answer: "We offer a variety of services including Basic Wash, Deluxe Wash, Premium Wash, Full Detailing, Interior Cleaning, Waxing, and Express Wash. Each package is designed to meet different needs and budgets."
+          answer: "We offer a variety of exterior services including Basic Wash, Deluxe Wash and Ultimate Wash. Each package is designed to meet different needs and budgets."
         },
         {
           question: "How much does a car wash cost?",
-          answer: "Our prices range from $10 for a Basic Wash to $16.50 for an Ultimate Wash. We also offer monthly membership plans with unlimited washes starting at $62.50/month. Check our home page for detailed pricing."
-        },
-        {
-          question: "Do you offer any discounts or membership plans?",
-          answer: "Yes! We offer monthly unlimited wash memberships."
+          answer: "Our prices begin at $10 for a Basic one-time wash. We offer monthly membership packages with unlimited washes. Check our home page for detailed pricing."
         },
         {
           question: "How long does a car wash take?",
-          answer: "A car wash takes about 10-15 minutes."
+          answer: "A car wash can take as little as 3 minutes, the variability is how many cars are in line in front of you."
         }
       ]
     },
@@ -37,7 +33,7 @@ function FrequentlyAskedPage() {
       questions: [
         {
           question: "Do I need an appointment?",
-          answer: "No appointment is necessary for our express wash services."
+          answer: "No appointment is necessary unless you want your RV hand-washed."
         },
         {
           question: "What are your hours of operation?",
@@ -45,7 +41,7 @@ function FrequentlyAskedPage() {
         },
         {
           question: "Are you open during bad weather?",
-          answer: "Yes, we're open rain or shine! In fact, washing your car after rain is important to remove contaminants. We may close during severe weather conditions for safety."
+          answer: "Yes, we're open rain or shine! In fact, washing your car after rain is important to remove contaminants. We may close during severe weather conditions for safety or for necessary maintenance."
         }
       ]
     },
@@ -54,7 +50,7 @@ function FrequentlyAskedPage() {
       questions: [
         {
           question: "Is your car wash safe for all vehicles?",
-          answer: "Absolutely! Our equipment uses soft-touch materials that are safe for all vehicle types, including luxury cars, SUVs, and trucks. We also offer touchless options."
+          answer: "Our equipment uses soft-touch materials that are safe for almost all vehicle types, including luxury cars, SUVs, and most trucks. However, some vehicles may not be compatible due to size or equipment restrictions. Large trucks, vehicles with ladder racks, roof-mounted accessories, or vehicles that exceed our height clearance may not be able to use the wash safely. If you're unsure whether your vehicle qualifies, please ask a team member before entering the wash."
         },
         {
           question: "What products do you use?",
@@ -62,11 +58,11 @@ function FrequentlyAskedPage() {
         },
         {
           question: "Will the car wash damage my antenna or accessories?",
-          answer: "Our brushes are designed to be gentle on antennas and accessories. However, we recommend removing or retracting tall antennas and securing loose items before entering the wash."
+          answer: "Our brushes are designed to be gentle on antennas and accessories. For the safety of your vehicle, please remove or retract antennas and secure or remove any loose exterior accessories before entering the wash. We are not responsible for damage to antennas, aftermarket accessories, roof-mounted equipment, or other loose or improperly secured items."
         },
         {
           question: "Do you wash cars with aftermarket modifications?",
-          answer: "Yes, but please inform our staff about any modifications like spoilers, body kits, or lowered suspensions so we can take extra care."
+          answer: "Yes, but we are not responsible for damage done to aftermarket accessories, roof-mounted equipment, or other loose or improperly secured items."
         }
       ]
     },
@@ -75,15 +71,15 @@ function FrequentlyAskedPage() {
       questions: [
         {
           question: "What payment methods do you accept?",
-          answer: "We accept cash, all major credit cards (Visa, Mastercard, American Express, Discover), debit cards, and mobile payments (Apple Pay, Google Pay)."
+          answer: "Cash, Visa, Mastercard and Discover (debit or credit). We do not accept American Express."
         },
         {
           question: "What is your refund policy?",
-          answer: "Customer satisfaction is our priority. If you're not completely satisfied with your wash, let us know within 24 hours and we'll re-wash your vehicle free of charge or provide a refund."
+          answer: "Customer satisfaction is our priority. If you're not completely satisfied with your wash, let us know the same day and we will re-wash your vehicle free of charge."
         },
         {
           question: "Do you offer gift cards?",
-          answer: "Yes! Gift cards are available in any denomination and make perfect gifts. They never expire and can be used for any of our services."
+          answer: "Yes, in a sense. We offer pre-paid books, which is five (5) passes"
         }
       ]
     },
@@ -96,7 +92,7 @@ function FrequentlyAskedPage() {
         },
         {
           question: "Do you wash motorcycles or RVs?",
-          answer: "We cannot wash motorcycles but we can wash smaller RVs. Please call ahead for larger vehicles so we can ensure we can accommodate your vehicle's size."
+          answer: "We cannot wash motorcycles but we can wash RVs. Please call ahead to reserve a time for RVs as we hand-wash them."
         },
         {
           question: "How often should I wash my car?",
@@ -104,7 +100,7 @@ function FrequentlyAskedPage() {
         },
         {
           question: "Do you have any environmental initiatives?",
-          answer: "Yes! We use water reclamation systems to recycle water, biodegradable soaps, and energy-efficient equipment. We're committed to minimizing our environmental impact."
+          answer: "Yes! We use biodegradable soaps, and energy-efficient equipment. We're committed to minimizing our environmental impact."
         }
       ]
     }

@@ -11,9 +11,12 @@ function ContactPage() {
           </div>
           <div className="contact-us-item">
             <i className="bi bi-telephone icon-format"></i> Call us at: 509 876-2455
-          </div>
+          </div>          
           <div className="message">
             If we aren't able to answer please leave us a message
+          </div>
+          <div className="contact-us-item">
+            <i className="bi bi-envelope icon-format"></i> Email us at: <a href="mailto:Washzone.manager@gmail.com">Washzone.manager@gmail.com</a>
           </div>
           <div className="contact-us-item">
             <i className="bi bi-facebook icon-format"></i> Check us out on Facebook at: <a href="https://www.facebook.com/profile.php?id=100054247250715">The Wash Zone</a>

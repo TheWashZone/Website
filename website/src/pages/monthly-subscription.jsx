@@ -48,8 +48,6 @@ function MonthlySubscriptionPage() {
     }
   };
   const [errors, setErrors] = useState({});
-  const [submitStatus, setSubmitStatus] = useState('idle');
-  const [statusMessage, setStatusMessage] = useState('');
 
   const checkoutUrl = useMemo(
     () => import.meta.env.VITE_CLOVER_SUBSCRIPTION_CHECKOUT_URL || '',
@@ -84,8 +82,6 @@ function MonthlySubscriptionPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmitStatus('idle');
-    setStatusMessage('');
 
     const nextErrors = validate();
     setErrors(nextErrors);
@@ -120,18 +116,15 @@ function MonthlySubscriptionPage() {
     try {
       const existing = JSON.parse(localStorage.getItem('monthlySubscriptionLeads') || '[]');
       localStorage.setItem('monthlySubscriptionLeads', JSON.stringify([...existing, submission]));
-
-      setSubmitStatus('success');
-      setStatusMessage('Form saved. Proceeding to payment...');
+      console.info('Form saved. Proceeding to payment...');
 
       if (checkoutUrl) {
         window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
       } else {
-        setStatusMessage('Form saved. Add VITE_CLOVER_SUBSCRIPTION_CHECKOUT_URL in your .env to enable payment redirect.');
+        console.info('Form saved. Add VITE_CLOVER_SUBSCRIPTION_CHECKOUT_URL in your .env to enable payment redirect.');
       }
     } catch {
-      setSubmitStatus('error');
-      setStatusMessage('Unable to save your form right now. Please try again.');
+      console.error('Unable to save your form right now. Please try again.');
     }
   };
 
@@ -534,10 +527,6 @@ function MonthlySubscriptionPage() {
           >
             Proceed to Payment
           </Button>
-
-          {submitStatus !== 'idle' && (
-            <p className={`status-text mt-3 ${submitStatus}`}>{statusMessage}</p>
-          )}
         </Form>
       </div>
     </div>
